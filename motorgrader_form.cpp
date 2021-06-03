@@ -7,20 +7,16 @@ MotorGrader_Form::MotorGrader_Form(QWidget *parent) :
 {
     ui->setupUi(this);
     scene = new QGraphicsScene;
-    image();
+    image("D:/DIIT KIT/Military/Programs/Fastening_test/Source/MotorGrade.bmp");
     stretchMarks_cursor();
-    show_grapgic();
+    show_graphics();
 }
 
 MotorGrader_Form::~MotorGrader_Form() {
     delete ui;
 }
 
-void MotorGrader_Form::image() {
-    scene->addPixmap(QPixmap("D:/DIIT KIT/Military/Programs/Fastening_test/Source/MotorGrade.bmp"));
-}
-
-void MotorGrader_Form::show_grapgic() {
+void MotorGrader_Form::show_graphics() {
     ui->graphicsView->setScene(scene);
     ui->graphicsView->show();
 }

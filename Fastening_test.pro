@@ -11,6 +11,9 @@ CONFIG += c++11
 SOURCES += \
     about_form.cpp \
     admin_form.cpp \
+    base_technics.cpp \
+    bulldozer_form.cpp \
+    excavator_form.cpp \
     main.cpp \
     mainwindow.cpp \
     motorgrader_form.cpp \
@@ -19,6 +22,9 @@ SOURCES += \
 HEADERS += \
     about_form.h \
     admin_form.h \
+    base_technics.h \
+    bulldozer_form.h \
+    excavator_form.h \
     mainwindow.h \
     motorgrader_form.h \
     vgm_form.h
@@ -26,6 +32,8 @@ HEADERS += \
 FORMS += \
     about_form.ui \
     admin_form.ui \
+    bulldozer_form.ui \
+    excavator_form.ui \
     mainwindow.ui \
     motorgrader_form.ui \
     vgm_form.ui

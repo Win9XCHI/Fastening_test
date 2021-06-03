@@ -2,13 +2,13 @@
 #define MOTORGRADER_FORM_H
 
 #include <QWidget>
-#include <QGraphicsScene>
+#include "base_technics.h"
 
 namespace Ui {
 class MotorGrader_Form;
 }
 
-class MotorGrader_Form : public QWidget
+class MotorGrader_Form : public QWidget, base_technics
 {
     Q_OBJECT
 
@@ -18,9 +18,7 @@ public:
 
 private:
     Ui::MotorGrader_Form *ui;
-    QGraphicsScene *scene;
-    void image();
-    void show_grapgic();
+    void show_graphics();
     void stretchMarks_cursor();
     void bars_cursor();
     void lining_cursor();
