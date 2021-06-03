@@ -13,18 +13,21 @@ SOURCES += \
     admin_form.cpp \
     main.cpp \
     mainwindow.cpp \
+    motorgrader_form.cpp \
     vgm_form.cpp
 
 HEADERS += \
     about_form.h \
     admin_form.h \
     mainwindow.h \
+    motorgrader_form.h \
     vgm_form.h
 
 FORMS += \
     about_form.ui \
     admin_form.ui \
     mainwindow.ui \
+    motorgrader_form.ui \
     vgm_form.ui
 
 # Default rules for deployment.
