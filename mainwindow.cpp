@@ -10,8 +10,10 @@ MainWindow::MainWindow(QWidget *parent)
     //ob = new MotorGrader_Form(this);
     //Excavator_Form *ob;
     //ob = new Excavator_Form(this);
-    Bulldozer_Form *ob;
-    ob = new Bulldozer_Form(this);
+    //Bulldozer_Form *ob;
+    //ob = new Bulldozer_Form(this);
+    Scraper_Form *ob;
+    ob = new Scraper_Form(this);
     ob->show();
 }
 

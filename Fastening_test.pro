@@ -17,6 +17,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     motorgrader_form.cpp \
+    scraper_form.cpp \
     vgm_form.cpp
 
 HEADERS += \
@@ -27,6 +28,7 @@ HEADERS += \
     excavator_form.h \
     mainwindow.h \
     motorgrader_form.h \
+    scraper_form.h \
     vgm_form.h
 
 FORMS += \
@@ -36,6 +38,7 @@ FORMS += \
     excavator_form.ui \
     mainwindow.ui \
     motorgrader_form.ui \
+    scraper_form.ui \
     vgm_form.ui
 
 # Default rules for deployment.

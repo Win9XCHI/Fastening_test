@@ -5,6 +5,7 @@
 #include "motorgrader_form.h"
 #include "excavator_form.h"
 #include "bulldozer_form.h"
+#include "scraper_form.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
