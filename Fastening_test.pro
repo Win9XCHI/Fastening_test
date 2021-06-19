@@ -14,6 +14,8 @@ SOURCES += \
     base_technics.cpp \
     bulldozer_form.cpp \
     excavator_form.cpp \
+    kraz_form.cpp \
+    kraz_pl_form.cpp \
     main.cpp \
     mainwindow.cpp \
     motorgrader_form.cpp \
@@ -26,6 +28,8 @@ HEADERS += \
     base_technics.h \
     bulldozer_form.h \
     excavator_form.h \
+    kraz_form.h \
+    kraz_pl_form.h \
     mainwindow.h \
     motorgrader_form.h \
     scraper_form.h \
@@ -36,6 +40,8 @@ FORMS += \
     admin_form.ui \
     bulldozer_form.ui \
     excavator_form.ui \
+    kraz_form.ui \
+    kraz_pl_form.ui \
     mainwindow.ui \
     motorgrader_form.ui \
     scraper_form.ui \
