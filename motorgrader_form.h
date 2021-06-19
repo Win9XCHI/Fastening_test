@@ -19,9 +19,9 @@ public:
 private:
     Ui::MotorGrader_Form *ui;
     void show_graphics();
-    void stretchMarks_cursor();
-    void bars_cursor();
-    void lining_cursor();
+    void stretchMarks_cursor(QPen);
+    void bars_cursor(QPen);
+    void lining_cursor(QPen);
 };
 
 #endif // MOTORGRADER_FORM_H
