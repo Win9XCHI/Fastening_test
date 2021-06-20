@@ -19,6 +19,17 @@ public:
 private:
     Ui::Excavator_Form *ui;
     void show_graphics();
+    void SM_swilev_cursor(QPen);
+    void SM_undercarriage_cursor(QPen);
+    void SM_root_cursor(QPen);
+    void SM_handle_cursor(QPen);
+    void SM_trolley_cursor(QPen);
+    void lining_cursor(QPen);
+    void arrow_cursor(QPen);
+    void axisT_cursor(QPen);
+    void axisL_cursor(QPen);
+
+    void triangle(QPen, int, int);
 };
 
 #endif // EXCAVATOR_FORM_H

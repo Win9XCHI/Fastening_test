@@ -8,11 +8,9 @@ MotorGrader_Form::MotorGrader_Form(QWidget *parent) :
     ui->setupUi(this);
     scene = new QGraphicsScene;
     image("D:/DIIT KIT/Military/Programs/Fastening_test/Source/MotorGrade.bmp");
-    QPen pen(Qt::green);
-    pen.setWidth(5);
-    stretchMarks_cursor(pen);
-    bars_cursor(pen);
-    lining_cursor(pen);
+    stretchMarks_cursor(green_pen());
+    bars_cursor(green_pen());
+    lining_cursor(green_pen());
     show_graphics();
 }
 
