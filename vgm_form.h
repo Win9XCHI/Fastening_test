@@ -2,12 +2,13 @@
 #define VGM_FORM_H
 
 #include <QWidget>
+#include "base_technics.h"
 
 namespace Ui {
 class VGM_Form;
 }
 
-class VGM_Form : public QWidget
+class VGM_Form : public QWidget, base_technics
 {
     Q_OBJECT
 
@@ -17,6 +18,9 @@ public:
 
 private:
     Ui::VGM_Form *ui;
+    void show_graphics();
+    void bar_cursor(QPen);
+    void stretch_marks_cursor(QPen);
 };
 
 #endif // VGM_FORM_H

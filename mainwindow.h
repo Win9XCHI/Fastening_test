@@ -8,6 +8,7 @@
 #include "scraper_form.h"
 #include "kraz_pl_form.h"
 #include "kraz_form.h"
+#include "vgm_form.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

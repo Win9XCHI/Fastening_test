@@ -16,8 +16,10 @@ MainWindow::MainWindow(QWidget *parent)
     //ob = new Scraper_Form(this);
     //KRAZ_pl_form *ob;
     //ob = new KRAZ_pl_form(this);
-    KRAZ_Form *ob;
-    ob = new KRAZ_Form(this);
+    //KRAZ_Form *ob;
+    //ob = new KRAZ_Form(this);
+    VGM_Form *ob;
+    ob = new VGM_Form(this);
     ob->show();
 }
 
