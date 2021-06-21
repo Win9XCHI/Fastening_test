@@ -6,12 +6,12 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //MotorGrader_Form *ob;
-    //ob = new MotorGrader_Form(this);
+    MotorGrader_Form *ob;
+    ob = new MotorGrader_Form(this);
     //Excavator_Form *ob;
     //ob = new Excavator_Form(this);
-    Bulldozer_Form *ob;
-    ob = new Bulldozer_Form(this);
+    //Bulldozer_Form *ob;
+    //ob = new Bulldozer_Form(this);
     //Scraper_Form *ob;
     //ob = new Scraper_Form(this);
     //KRAZ_pl_form *ob;

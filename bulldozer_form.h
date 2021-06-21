@@ -19,9 +19,10 @@ public:
 private:
     Ui::Bulldozer_Form *ui;
     void show_graphics();
-    void StretchMarks_cursor(QPen);
-    void BarT_cursor(QPen);
-    void BarS_cursor(QPen);
+    void stretch_marks_cursor(QPen);
+    //Thrust Bars
+    void bar_thrust_cursor(QPen);
+    void bar_side_cursor(QPen);
 };
 
 #endif // BULLDOZER_FORM_H

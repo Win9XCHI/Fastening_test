@@ -19,6 +19,13 @@ public:
 private:
     Ui::Scraper_Form *ui;
     void show_graphics();
+    void stretch_marks_cursor(QPen);
+    //Thrust Bars
+    void bar_cursor(QPen);
+    //Lining (blade)
+    void lining_blade_cursor(QPen);
+    //Lining (grubber)
+    void Lining_grubber_cursor(QPen);
 };
 
 #endif // SCRAPER_FORM_H
