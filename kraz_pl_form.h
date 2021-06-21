@@ -20,6 +20,8 @@ private:
     Ui::KRAZ_pl_form *ui;
     void show_graphics();
     void bar_cursor(QPen);
+    void bars(QPen);
+    void stretch_marks_cursor(QPen);
 };
 
 #endif // KRAZ_PL_FORM_H
