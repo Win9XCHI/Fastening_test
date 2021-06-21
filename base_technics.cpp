@@ -9,9 +9,9 @@ void base_technics::image(QString src) {
     scene->addPixmap(QPixmap(src));
 }
 
-QPen base_technics::green_pen() {
+QPen base_technics::green_pen(int width) {
     QPen pen(Qt::green);
-    pen.setWidth(5);
+    pen.setWidth(width);
     return pen;
 }
 

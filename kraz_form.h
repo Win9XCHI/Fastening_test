@@ -19,6 +19,10 @@ public:
 private:
     Ui::KRAZ_Form *ui;
     void show_graphics();
+    void bar_cursor(QPen);
+    void bars_thrust(QPen);
+    void bars_side(QPen);
+    void stretch_marks_cursor(QPen);
 };
 
 #endif // KRAZ_FORM_H

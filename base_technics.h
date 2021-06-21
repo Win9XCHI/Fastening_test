@@ -9,7 +9,7 @@ public:
 
     QGraphicsScene *scene;
     void image(QString);
-    QPen green_pen();
+    QPen green_pen(int width = 5);
     void triangle(QPen, int, int);
 };
 
