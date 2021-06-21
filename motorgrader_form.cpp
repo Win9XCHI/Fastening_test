@@ -9,7 +9,7 @@ MotorGrader_Form::MotorGrader_Form(QWidget *parent) :
     scene = new QGraphicsScene;
     image("D:/DIIT KIT/Military/Programs/Fastening_test/Source/MotorGrade.bmp");
     stretch_marks_cursor(green_pen());
-    bar_side_cursor(green_pen());
+    bar_cursor(green_pen());
     lining_blade_cursor(green_pen());
     lining_grubber_cursor(green_pen());
     show_graphics();
@@ -29,7 +29,7 @@ void MotorGrader_Form::stretch_marks_cursor(QPen pen) {
     scene->addLine(595, 205, 540, 160, pen);
 }
 
-void MotorGrader_Form::bar_side_cursor(QPen pen) {
+void MotorGrader_Form::bar_cursor(QPen pen) {
     scene->addLine(150, 205, 160, 205, pen);
     scene->addLine(280, 205, 290, 205, pen);
     scene->addLine(510, 205, 520, 205, pen);

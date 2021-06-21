@@ -20,7 +20,6 @@ private:
     Ui::Bulldozer_Form *ui;
     void show_graphics();
     void stretch_marks_cursor(QPen);
-    //Thrust Bars
     void bar_thrust_cursor(QPen);
     void bar_side_cursor(QPen);
 };

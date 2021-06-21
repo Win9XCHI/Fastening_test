@@ -20,7 +20,7 @@ private:
     Ui::MotorGrader_Form *ui;
     void show_graphics();
     void stretch_marks_cursor(QPen);
-    void bar_side_cursor(QPen);
+    void bar_cursor(QPen);
     void lining_blade_cursor(QPen);
     void lining_grubber_cursor(QPen);
 };

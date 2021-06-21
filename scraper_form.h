@@ -20,12 +20,9 @@ private:
     Ui::Scraper_Form *ui;
     void show_graphics();
     void stretch_marks_cursor(QPen);
-    //Thrust Bars
-    void bar_cursor(QPen);
-    //Lining (blade)
-    void lining_blade_cursor(QPen);
-    //Lining (grubber)
-    void Lining_grubber_cursor(QPen);
+    void bar_thrust_cursor(QPen);
+    void bar_side_cursor(QPen);
+    void lining_cursor(QPen);
 };
 
 #endif // SCRAPER_FORM_H
