@@ -22,6 +22,7 @@ private:
     void stretch_marks_cursor(QPen);
     void bar_thrust_cursor(QPen);
     void bar_side_cursor(QPen);
+    void lining_cursor(QPen);
 };
 
 #endif // BULLDOZER_FORM_H

@@ -12,6 +12,7 @@ Bulldozer_Form::Bulldozer_Form(QWidget *parent) :
     stretch_marks_cursor(green_pen());
     bar_thrust_cursor(green_pen());
     bar_side_cursor(green_pen());
+    lining_cursor(green_pen());
     show_graphics();
 }
 
@@ -37,4 +38,8 @@ void Bulldozer_Form::bar_thrust_cursor(QPen pen) {
 
 void Bulldozer_Form::bar_side_cursor(QPen pen) {
     scene->addLine(80, 195, 250, 195, pen);
+}
+
+void Bulldozer_Form::lining_cursor(QPen pen) {
+    scene->addLine(490, 220, 640, 220, pen);
 }
