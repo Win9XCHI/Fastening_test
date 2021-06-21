@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>868</width>
-    <height>609</height>
+    <height>711</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -107,7 +107,7 @@
      <x>480</x>
      <y>330</y>
      <width>221</width>
-     <height>61</height>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
@@ -119,8 +119,8 @@
   <widget class="QLabel" name="label_8">
    <property name="geometry">
     <rect>
-     <x>480</x>
-     <y>400</y>
+     <x>10</x>
+     <y>570</y>
      <width>201</width>
      <height>41</height>
     </rect>
@@ -133,8 +133,8 @@
   <widget class="QLabel" name="label_9">
    <property name="geometry">
     <rect>
-     <x>480</x>
-     <y>450</y>
+     <x>10</x>
+     <y>620</y>
      <width>271</width>
      <height>16</height>
     </rect>
@@ -146,8 +146,8 @@
   <widget class="QLabel" name="label_10">
    <property name="geometry">
     <rect>
-     <x>480</x>
-     <y>480</y>
+     <x>10</x>
+     <y>650</y>
      <width>41</width>
      <height>16</height>
     </rect>
@@ -159,8 +159,8 @@
   <widget class="QLabel" name="label_11">
    <property name="geometry">
     <rect>
-     <x>590</x>
-     <y>480</y>
+     <x>120</x>
+     <y>650</y>
      <width>31</width>
      <height>16</height>
     </rect>
@@ -172,8 +172,8 @@
   <widget class="QLabel" name="label_12">
    <property name="geometry">
     <rect>
-     <x>700</x>
-     <y>480</y>
+     <x>230</x>
+     <y>650</y>
      <width>41</width>
      <height>16</height>
     </rect>
@@ -185,8 +185,8 @@
   <widget class="QLabel" name="label_13">
    <property name="geometry">
     <rect>
-     <x>480</x>
-     <y>510</y>
+     <x>10</x>
+     <y>680</y>
      <width>181</width>
      <height>16</height>
     </rect>
@@ -201,15 +201,15 @@
      <x>705</x>
      <y>330</y>
      <width>141</width>
-     <height>71</height>
+     <height>51</height>
     </rect>
    </property>
   </widget>
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>720</x>
-     <y>410</y>
+     <x>250</x>
+     <y>580</y>
      <width>131</width>
      <height>22</height>
     </rect>
@@ -271,7 +271,7 @@
      <x>290</x>
      <y>520</y>
      <width>141</width>
-     <height>51</height>
+     <height>41</height>
     </rect>
    </property>
   </widget>
@@ -291,8 +291,8 @@
   <widget class="QLineEdit" name="lineEdit_5">
    <property name="geometry">
     <rect>
-     <x>530</x>
-     <y>480</y>
+     <x>60</x>
+     <y>650</y>
      <width>51</width>
      <height>22</height>
     </rect>
@@ -301,8 +301,8 @@
   <widget class="QLineEdit" name="lineEdit_6">
    <property name="geometry">
     <rect>
-     <x>630</x>
-     <y>480</y>
+     <x>160</x>
+     <y>650</y>
      <width>51</width>
      <height>22</height>
     </rect>
@@ -311,8 +311,8 @@
   <widget class="QLineEdit" name="lineEdit_7">
    <property name="geometry">
     <rect>
-     <x>750</x>
-     <y>480</y>
+     <x>280</x>
+     <y>650</y>
      <width>51</width>
      <height>22</height>
     </rect>
@@ -321,8 +321,8 @@
   <widget class="QLineEdit" name="lineEdit_8">
    <property name="geometry">
     <rect>
-     <x>670</x>
-     <y>510</y>
+     <x>200</x>
+     <y>680</y>
      <width>113</width>
      <height>22</height>
     </rect>
@@ -332,7 +332,7 @@
    <property name="geometry">
     <rect>
      <x>692</x>
-     <y>570</y>
+     <y>673</y>
      <width>161</width>
      <height>28</height>
     </rect>
@@ -345,7 +345,7 @@
    <property name="geometry">
     <rect>
      <x>520</x>
-     <y>557</y>
+     <y>660</y>
      <width>161</width>
      <height>41</height>
     </rect>
@@ -353,6 +353,208 @@
    <property name="text">
     <string>Готово</string>
    </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>540</y>
+     <width>371</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Кріплення брусків за допомогою будівельних скоб</string>
+   </property>
+   <widget class="QLabel" name="label_15">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Скільки скоб треба застосувати
+для кріплення одного бруска</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_9">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>40</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>390</y>
+     <width>371</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Кріплення будівельними скобами</string>
+   </property>
+   <widget class="QLabel" name="label_16">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Яка ширина гусениці у
+бульдозера</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_17">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>241</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Скільки будівельних скоб потрібно для
+закріплення</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_3">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>20</y>
+      <width>121</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_10">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>70</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>390</y>
+     <width>371</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Кріплення боковими брусками</string>
+   </property>
+   <widget class="QLabel" name="label_18">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>201</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Який розмір бокових брусків (мм)</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_11">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>51</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_12">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>40</y>
+      <width>51</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_13">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>40</y>
+      <width>51</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_19">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Скільки цвяхів потрібно забити в кожний
+брусок</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_14">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>70</y>
+      <width>91</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_20">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>211</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Який зазор між боковим бруском
+та гусеницею (мм)</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_15">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>110</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
