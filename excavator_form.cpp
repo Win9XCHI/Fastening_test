@@ -16,8 +16,18 @@ Excavator_Form::Excavator_Form(QWidget *parent) :
 
     lining_cursor(green_pen());
     arrow_cursor(green_pen());
-    axisT_cursor(green_pen());
-    axisL_cursor(green_pen());
+    axis_turnover_cursor(green_pen());
+    axis_longitudinal_cursor(green_pen());
+
+    SM_swilev(green_pen());
+    SM_undercarriage(green_pen());
+    SM_root(green_pen());
+    SM_handle(green_pen());
+    SM_trolley(green_pen());
+
+    bar_thrust(green_pen());
+    bar_side(green_pen(10));
+    lining(green_pen());
     show_graphics();
 }
 
@@ -62,10 +72,46 @@ void Excavator_Form::arrow_cursor(QPen pen) {
     scene->addLine(700, 190, 520, 190, pen);
 }
 
-void Excavator_Form::axisT_cursor(QPen pen) {
+void Excavator_Form::axis_turnover_cursor(QPen pen) {
     scene->addLine(310, 0, 310, 220, pen);
 }
 
-void Excavator_Form::axisL_cursor(QPen pen) {
+void Excavator_Form::axis_longitudinal_cursor(QPen pen) {
     scene->addLine(100, 140, 400, 140, pen);
+}
+
+void Excavator_Form::SM_swilev(QPen pen) {
+    scene->addLine(100, 190, 180, 130, pen);
+}
+
+void Excavator_Form::SM_undercarriage(QPen pen) {
+    scene->addLine(200, 190, 220, 170, pen);
+    scene->addLine(500, 200, 395, 170, pen);
+}
+
+void Excavator_Form::SM_root(QPen pen) {
+    scene->addLine(330, 110, 395, 200, pen);
+    scene->addLine(330, 110, 500, 200, pen);
+}
+
+void Excavator_Form::SM_handle(QPen pen) {
+    scene->addLine(590, 100, 635, 220, pen);
+}
+
+void Excavator_Form::SM_trolley(QPen pen) {
+    scene->addLine(245, 170, 310, 190, pen);
+    scene->addLine(310, 190, 375, 170, pen);
+}
+
+void Excavator_Form::bar_thrust(QPen pen) {
+    scene->addLine(225, 190, 235, 190, pen);
+    scene->addLine(390, 190, 400, 190, pen);
+}
+
+void Excavator_Form::bar_side(QPen pen) {
+    scene->addLine(240, 185, 390, 185, pen);
+}
+
+void Excavator_Form::lining(QPen pen) {
+    scene->addLine(505, 187, 530, 187, pen);
 }

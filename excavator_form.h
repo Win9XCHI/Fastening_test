@@ -26,8 +26,17 @@ private:
     void SM_trolley_cursor(QPen);
     void lining_cursor(QPen);
     void arrow_cursor(QPen);
-    void axisT_cursor(QPen);
-    void axisL_cursor(QPen);
+    void axis_turnover_cursor(QPen);
+    void axis_longitudinal_cursor(QPen);
+
+    void SM_swilev(QPen);
+    void SM_undercarriage(QPen);
+    void SM_root(QPen);
+    void SM_handle(QPen);
+    void SM_trolley(QPen);
+    void bar_thrust(QPen);
+    void bar_side(QPen);
+    void lining(QPen);
 };
 
 #endif // EXCAVATOR_FORM_H

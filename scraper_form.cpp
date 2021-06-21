@@ -11,7 +11,7 @@ Scraper_Form::Scraper_Form(QWidget *parent) :
     stretch_marks_cursor(green_pen());
     bar_thrust_cursor(green_pen());
     lining_cursor(green_pen());
-    bar_side_cursor(green_pen());
+    bar_side_cursor(green_pen(10));
     show_graphics();
 }
 
@@ -40,7 +40,7 @@ void Scraper_Form::bar_thrust_cursor(QPen pen) {
 }
 
 void Scraper_Form::bar_side_cursor(QPen pen) {
-    scene->addLine(380, 185, 400, 185, pen);
+    scene->addLine(380, 180, 400, 180, pen);
 }
 
 void Scraper_Form::lining_cursor(QPen pen) {
