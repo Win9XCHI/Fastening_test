@@ -10,6 +10,7 @@ public:
     QGraphicsScene *scene;
     void image(QString);
     QPen green_pen();
+    void triangle(QPen, int, int);
 };
 
 #endif // BASE_TECHNICS_H

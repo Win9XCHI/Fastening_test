@@ -69,9 +69,3 @@ void Excavator_Form::axisT_cursor(QPen pen) {
 void Excavator_Form::axisL_cursor(QPen pen) {
     scene->addLine(100, 140, 400, 140, pen);
 }
-
-void Excavator_Form::triangle(QPen pen, int x, int y) {
-    QPolygonF polygon;
-    polygon << QPointF(10 + x, 30 + y) << QPointF(30 + x, 10 + y) << QPointF(0 + x, 0 + y);
-    scene->addPolygon(polygon, pen);
-}

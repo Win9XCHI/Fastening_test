@@ -28,8 +28,6 @@ private:
     void arrow_cursor(QPen);
     void axisT_cursor(QPen);
     void axisL_cursor(QPen);
-
-    void triangle(QPen, int, int);
 };
 
 #endif // EXCAVATOR_FORM_H

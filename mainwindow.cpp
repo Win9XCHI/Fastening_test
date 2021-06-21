@@ -12,11 +12,11 @@ MainWindow::MainWindow(QWidget *parent)
     //ob = new Excavator_Form(this);
     //Bulldozer_Form *ob;
     //ob = new Bulldozer_Form(this);
-    Scraper_Form *ob;
-    ob = new Scraper_Form(this);
-    //KRAZ_pl_form *ob;
-    //ob = new KRAZ_pl_form(this);
-   // KRAZ_Form *ob;
+    //Scraper_Form *ob;
+    //ob = new Scraper_Form(this);
+    KRAZ_pl_form *ob;
+    ob = new KRAZ_pl_form(this);
+    //KRAZ_Form *ob;
     //ob = new KRAZ_Form(this);
     ob->show();
 }
