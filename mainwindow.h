@@ -9,6 +9,7 @@
 #include "kraz_pl_form.h"
 #include "kraz_form.h"
 #include "vgm_form.h"
+#include "projectdb.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,5 +25,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    ProjectDB *DB;
 };
 #endif // MAINWINDOW_H
