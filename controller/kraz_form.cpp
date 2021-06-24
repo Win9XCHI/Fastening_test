@@ -51,3 +51,13 @@ void KRAZ_Form::on_pushButton_2_clicked()
     this->close();
     emit firstWindow();
 }
+
+void KRAZ_Form::on_pushButton_clicked()
+{
+    frame message;
+    message.result = MESSAGE::FAIL;
+    message.string = MESSAGE::PREPARATION;
+    message.preparation = MESSAGE::KRAZ;
+    Message_Form *object = new Message_Form(message);
+    object->show();
+}

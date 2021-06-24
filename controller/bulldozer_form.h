@@ -22,6 +22,8 @@ signals:
 private slots:
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::Bulldozer_Form *ui;
     void show_graphics();

@@ -54,3 +54,13 @@ void Scraper_Form::on_pushButton_clicked()
     this->close();
     emit firstWindow();
 }
+
+void Scraper_Form::on_pushButton_2_clicked()
+{
+    frame message;
+    message.result = MESSAGE::FAIL;
+    message.string = MESSAGE::PREPARATION;
+    message.preparation = MESSAGE::SCRAPER;
+    Message_Form *object = new Message_Form(message);
+    object->show();
+}

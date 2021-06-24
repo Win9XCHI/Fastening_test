@@ -23,21 +23,21 @@ MainWindow::MainWindow(QWidget *parent)
     ui->comboBox->addItem("КрАЗ-256 порожній над зчепом");
     ui->comboBox->addItem("Танк");
 
-    //MotorGrader_Form *ob;
-    //ob = new MotorGrader_Form(this);
-    //Excavator_Form *ob;
-    //ob = new Excavator_Form(this);
-    //Bulldozer_Form *ob;
-    //ob = new Bulldozer_Form(this);
-    //Scraper_Form *ob;
-    //ob = new Scraper_Form(this);
-    //KRAZ_pl_form *ob;
-    //ob = new KRAZ_pl_form(this);
-    //KRAZ_Form *ob;
-    //ob = new KRAZ_Form(this);
-    //VGM_Form *ob;
-    //ob = new VGM_Form(this);
-    //ob->show();
+    //MotorGrader_Form *object;
+    //object = new MotorGrader_Form(this);
+    //Excavator_Form *object;
+    //object = new Excavator_Form(this);
+    //Bulldozer_Form *object;
+    //object = new Bulldozer_Form(this);
+    //Scraper_Form *object;
+    //object = new Scraper_Form(this);
+    //KRAZ_pl_form *object;
+    //object = new KRAZ_pl_form(this);
+    //KRAZ_Form *object;
+    //object = new KRAZ_Form(this);
+    //VGM_Form *object;
+    //object = new VGM_Form(this);
+    //object->show();
 }
 
 MainWindow::~MainWindow()
@@ -50,54 +50,66 @@ void MainWindow::on_pushButton_3_clicked() {
 
     switch(ui->comboBox->currentIndex()) {
         case EQUIPMENT::EXCAVATOR: {
-            Excavator_Form *ob;
-            ob = new Excavator_Form();
-            connect(ob, &Excavator_Form::firstWindow, this, &MainWindow::show);
-            ob->show();
+            Excavator_Form *object;
+            object = new Excavator_Form();
+            connect(object, &Excavator_Form::firstWindow, this, &MainWindow::show);
+            object->show();
             break;
         }
         case EQUIPMENT::BULLDOZER: {
-            Bulldozer_Form *ob;
-            ob = new Bulldozer_Form();
-            connect(ob, &Bulldozer_Form::firstWindow, this, &MainWindow::show);
-            ob->show();
+            Bulldozer_Form *object;
+            object = new Bulldozer_Form();
+            connect(object, &Bulldozer_Form::firstWindow, this, &MainWindow::show);
+            object->show();
             break;
         }
         case EQUIPMENT::MOTORGRADER: {
-            MotorGrader_Form *ob;
-            ob = new MotorGrader_Form();
-            connect(ob, &MotorGrader_Form::firstWindow, this, &MainWindow::show);
-            ob->show();
+            MotorGrader_Form *object;
+            object = new MotorGrader_Form();
+            connect(object, &MotorGrader_Form::firstWindow, this, &MainWindow::show);
+            object->show();
             break;
         }
         case EQUIPMENT::SCRAPER: {
-            Scraper_Form *ob;
-            ob = new Scraper_Form();
-            connect(ob, &Scraper_Form::firstWindow, this, &MainWindow::show);
-            ob->show();
+            Scraper_Form *object;
+            object = new Scraper_Form();
+            connect(object, &Scraper_Form::firstWindow, this, &MainWindow::show);
+            object->show();
             break;
         }
         case EQUIPMENT::KRAZ_PL: {
-            KRAZ_pl_form *ob;
-            ob = new KRAZ_pl_form();
-            connect(ob, &KRAZ_pl_form::firstWindow, this, &MainWindow::show);
-            ob->show();
+            KRAZ_pl_form *object;
+            object = new KRAZ_pl_form();
+            connect(object, &KRAZ_pl_form::firstWindow, this, &MainWindow::show);
+            object->show();
             break;
         }
         case EQUIPMENT::KRAZ: {
-            KRAZ_Form *ob;
-            ob = new KRAZ_Form();
-            connect(ob, &KRAZ_Form::firstWindow, this, &MainWindow::show);
-            ob->show();
+            KRAZ_Form *object;
+            object = new KRAZ_Form();
+            connect(object, &KRAZ_Form::firstWindow, this, &MainWindow::show);
+            object->show();
             break;
         }
         case EQUIPMENT::VGM: {
-            VGM_Form *ob;
-            ob = new VGM_Form();
-            connect(ob, &VGM_Form::firstWindow, this, &MainWindow::show);
-            ob->show();
+            VGM_Form *object;
+            object = new VGM_Form();
+            connect(object, &VGM_Form::firstWindow, this, &MainWindow::show);
+            object->show();
             break;
         }
     }
     this->close();
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    About_Form *object = new About_Form();
+    object->show();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    Password_Form *object = new Password_Form();
+    object->show();
 }
