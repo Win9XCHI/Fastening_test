@@ -37,3 +37,9 @@ void VGM_Form::stretch_marks_cursor(QPen pen) {
     scene->addLine(100, 155, 245, 110, pen);
     scene->addLine(700, 155, 580, 125, pen);
 }
+
+void VGM_Form::on_pushButton_clicked()
+{
+    this->close();
+    emit firstWindow();
+}

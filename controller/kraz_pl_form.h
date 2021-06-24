@@ -2,7 +2,7 @@
 #define KRAZ_PL_FORM_H
 
 #include <QWidget>
-#include "base_technics.h"
+#include "base/base_technics.h"
 
 namespace Ui {
 class KRAZ_pl_form;
@@ -15,6 +15,12 @@ class KRAZ_pl_form : public QWidget, base_technics
 public:
     explicit KRAZ_pl_form(QWidget *parent = nullptr);
     ~KRAZ_pl_form();
+
+signals:
+    void firstWindow();
+
+private slots:
+    void on_pushButton_2_clicked();
 
 private:
     Ui::KRAZ_pl_form *ui;

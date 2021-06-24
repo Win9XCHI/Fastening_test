@@ -1,12 +1,12 @@
 #ifndef BASE_TECHNICS_H
 #define BASE_TECHNICS_H
 #include <QGraphicsScene>
+#include "../../constants.h"
 
 class base_technics
 {
 public:
     base_technics();
-
     QGraphicsScene *scene;
     void image(QString);
     QPen green_pen(int width = 5);

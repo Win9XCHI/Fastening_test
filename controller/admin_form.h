@@ -15,6 +15,9 @@ public:
     explicit Admin_Form(QWidget *parent = nullptr);
     ~Admin_Form();
 
+signals:
+    void firstWindow();
+
 private:
     Ui::Admin_Form *ui;
 };

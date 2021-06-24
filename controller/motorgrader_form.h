@@ -2,7 +2,7 @@
 #define MOTORGRADER_FORM_H
 
 #include <QWidget>
-#include "base_technics.h"
+#include "base/base_technics.h"
 
 namespace Ui {
 class MotorGrader_Form;
@@ -15,6 +15,12 @@ class MotorGrader_Form : public QWidget, base_technics
 public:
     explicit MotorGrader_Form(QWidget *parent = nullptr);
     ~MotorGrader_Form();
+
+signals:
+    void firstWindow();
+
+private slots:
+    void on_pushButton_2_clicked();
 
 private:
     Ui::MotorGrader_Form *ui;

@@ -43,3 +43,9 @@ void Bulldozer_Form::bar_side_cursor(QPen pen) {
 void Bulldozer_Form::lining_cursor(QPen pen) {
     scene->addLine(490, 220, 640, 220, pen);
 }
+
+void Bulldozer_Form::on_pushButton_clicked()
+{
+    this->close();
+    emit firstWindow();
+}

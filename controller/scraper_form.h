@@ -2,7 +2,7 @@
 #define SCRAPER_FORM_H
 
 #include <QWidget>
-#include "base_technics.h"
+#include "base/base_technics.h"
 
 namespace Ui {
 class Scraper_Form;
@@ -15,6 +15,12 @@ class Scraper_Form : public QWidget, base_technics
 public:
     explicit Scraper_Form(QWidget *parent = nullptr);
     ~Scraper_Form();
+
+signals:
+    void firstWindow();
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
     Ui::Scraper_Form *ui;

@@ -42,3 +42,9 @@ void KRAZ_pl_form::stretch_marks_cursor(QPen pen) {
     scene->addLine(80, 280, 180, 250, pen);
     scene->addLine(710, 300, 660, 250, pen);
 }
+
+void KRAZ_pl_form::on_pushButton_2_clicked()
+{
+    this->close();
+    emit firstWindow();
+}

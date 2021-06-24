@@ -48,3 +48,9 @@ void Scraper_Form::lining_cursor(QPen pen) {
     scene->addLine(550, 185, 590, 185, pen);
 }
 
+
+void Scraper_Form::on_pushButton_clicked()
+{
+    this->close();
+    emit firstWindow();
+}

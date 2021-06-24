@@ -115,3 +115,9 @@ void Excavator_Form::bar_side(QPen pen) {
 void Excavator_Form::lining(QPen pen) {
     scene->addLine(505, 187, 530, 187, pen);
 }
+
+void Excavator_Form::on_pushButton_2_clicked()
+{
+    this->close();
+    emit firstWindow();
+}

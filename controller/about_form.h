@@ -15,6 +15,9 @@ public:
     explicit About_Form(QWidget *parent = nullptr);
     ~About_Form();
 
+signals:
+    void firstWindow();
+
 private:
     Ui::About_Form *ui;
 };

@@ -2,7 +2,7 @@
 #define EXCAVATOR_FORM_H
 
 #include <QWidget>
-#include "base_technics.h"
+#include "base/base_technics.h"
 
 namespace Ui {
 class Excavator_Form;
@@ -15,6 +15,12 @@ class Excavator_Form : public QWidget, base_technics
 public:
     explicit Excavator_Form(QWidget *parent = nullptr);
     ~Excavator_Form();
+
+signals:
+    void firstWindow();
+
+private slots:
+    void on_pushButton_2_clicked();
 
 private:
     Ui::Excavator_Form *ui;

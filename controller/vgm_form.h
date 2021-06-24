@@ -2,7 +2,7 @@
 #define VGM_FORM_H
 
 #include <QWidget>
-#include "base_technics.h"
+#include "base/base_technics.h"
 
 namespace Ui {
 class VGM_Form;
@@ -15,6 +15,12 @@ class VGM_Form : public QWidget, base_technics
 public:
     explicit VGM_Form(QWidget *parent = nullptr);
     ~VGM_Form();
+
+signals:
+    void firstWindow();
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
     Ui::VGM_Form *ui;

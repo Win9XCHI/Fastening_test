@@ -27,6 +27,7 @@ SOURCES += \
     controller\vgm_form.cpp
 
 HEADERS += \
+    constants.h \
     controller\about_form.h \
     controller\admin_form.h \
     controller\base\base_technics.h \
@@ -35,9 +36,9 @@ HEADERS += \
     controller\excavator_form.h \
     controller\kraz_form.h \
     controller\kraz_pl_form.h \
-    model\mainwindow.h \
+    mainwindow.h \
     controller\motorgrader_form.h \
-    projectdb.h \
+    model\projectdb.h \
     controller\scraper_form.h \
     controller\vgm_form.h
 

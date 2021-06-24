@@ -43,3 +43,9 @@ void MotorGrader_Form::lining_blade_cursor(QPen pen) {
 void MotorGrader_Form::lining_grubber_cursor(QPen pen) {
     scene->addLine(615, 205, 635, 205, pen);
 }
+
+void MotorGrader_Form::on_pushButton_2_clicked()
+{
+    this->close();
+    emit firstWindow();
+}
