@@ -9,39 +9,49 @@ PACKAGECONFIG_append_pn-qtbase = " sql-sqlite"
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-include(view/view.pri)
 
 SOURCES += \
-    about_form.cpp \
-    admin_form.cpp \
-    base_technics.cpp \
-    bulldozer_form.cpp \
-    db.cpp \
-    excavator_form.cpp \
-    kraz_form.cpp \
-    kraz_pl_form.cpp \
+    controller\about_form.cpp \
+    controller\admin_form.cpp \
+    controller\base\base_technics.cpp \
+    controller\bulldozer_form.cpp \
+    model\driver\db.cpp \
+    controller\excavator_form.cpp \
+    controller\kraz_form.cpp \
+    controller\kraz_pl_form.cpp \
     main.cpp \
     mainwindow.cpp \
-    motorgrader_form.cpp \
-    projectdb.cpp \
-    scraper_form.cpp \
-    vgm_form.cpp
+    controller\motorgrader_form.cpp \
+    model\projectdb.cpp \
+    controller\scraper_form.cpp \
+    controller\vgm_form.cpp
 
 HEADERS += \
-    about_form.h \
-    admin_form.h \
-    base_technics.h \
-    bulldozer_form.h \
-    db.h \
-    excavator_form.h \
-    kraz_form.h \
-    kraz_pl_form.h \
-    mainwindow.h \
-    motorgrader_form.h \
+    controller\about_form.h \
+    controller\admin_form.h \
+    controller\base\base_technics.h \
+    controller\bulldozer_form.h \
+    model\driver\db.h \
+    controller\excavator_form.h \
+    controller\kraz_form.h \
+    controller\kraz_pl_form.h \
+    model\mainwindow.h \
+    controller\motorgrader_form.h \
     projectdb.h \
-    scraper_form.h \
-    vgm_form.h
+    controller\scraper_form.h \
+    controller\vgm_form.h
 
+FORMS += \
+    view\about_form.ui \
+    view\admin_form.ui \
+    view\bulldozer_form.ui \
+    view\excavator_form.ui \
+    view\kraz_form.ui \
+    view\kraz_pl_form.ui \
+    view\mainwindow.ui \
+    view\motorgrader_form.ui \
+    view\scraper_form.ui \
+    view\vgm_form.ui
 
 
 # Default rules for deployment.
