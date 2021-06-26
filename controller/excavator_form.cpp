@@ -1,11 +1,12 @@
 #include "excavator_form.h"
 #include "ui_excavator_form.h"
 
-Excavator_Form::Excavator_Form(QWidget *parent) :
+Excavator_Form::Excavator_Form(ExcavatorDB db, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Excavator_Form)
 {
     ui->setupUi(this);
+    DB = db;
     scene = new QGraphicsScene;
     image("D:/DIIT KIT/Military/Programs/Fastening_test/Source/excavator.bmp");
     SM_swilev_cursor(green_pen());
@@ -124,6 +125,7 @@ void Excavator_Form::on_pushButton_2_clicked()
 
 void Excavator_Form::on_pushButton_clicked()
 {
+//db
     frame message;
     message.result = MESSAGE::FAIL;
     message.string = MESSAGE::PREPARATION;

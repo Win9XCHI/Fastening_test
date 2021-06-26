@@ -30,10 +30,10 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     controller/motorgrader_form.cpp \
-    model/projectdb.cpp \
     controller/scraper_form.cpp \
     controller/vgm_form.cpp \
-    controller/password_form.cpp
+    controller/password_form.cpp \
+    model/excavator_db.cpp
 
 HEADERS += \
     classes/bar.h \
@@ -55,10 +55,10 @@ HEADERS += \
     controller/kraz_pl_form.h \
     mainwindow.h \
     controller/motorgrader_form.h \
-    model/projectdb.h \
     controller/scraper_form.h \
     controller/vgm_form.h \
     controller/password_form.h \
+    model/excavator_db.h \
     structure.h
 
 FORMS += \

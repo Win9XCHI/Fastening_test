@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "base/base_technics.h"
+#include "../classes/excavator.h"
 
 namespace Ui {
 class Excavator_Form;
@@ -13,7 +14,7 @@ class Excavator_Form : public QWidget, base_technics
     Q_OBJECT
 
 public:
-    explicit Excavator_Form(QWidget *parent = nullptr);
+    explicit Excavator_Form(ExcavatorDB db, QWidget *parent = nullptr);
     ~Excavator_Form();
 
 signals:
@@ -26,6 +27,7 @@ private slots:
 
 private:
     Ui::Excavator_Form *ui;
+    ExcavatorDB DB;
     void show_graphics();
     void SM_swilev_cursor(QPen);
     void SM_undercarriage_cursor(QPen);

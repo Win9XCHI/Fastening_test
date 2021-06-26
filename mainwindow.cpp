@@ -9,11 +9,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    DB = new ProjectDB("DB.db");
+    /*DB = new ProjectDB("DB.db");
 
     if (!DB->CheckConnection()) {
         DB->createConnection();
-    }
+    }*/
 
     ui->comboBox->addItem("Екскаватор ЕО-4125 на платформі");
     ui->comboBox->addItem("Бульдозер на платформі");
@@ -50,8 +50,17 @@ void MainWindow::on_pushButton_3_clicked() {
 
     switch(ui->comboBox->currentIndex()) {
         case EQUIPMENT::EXCAVATOR: {
+            ExcavatorDB DB("DB_for_test.db");
+
+            if (!DB.CheckConnection()) {
+                DB.createConnection();
+            }
+            if (!DB.CheckConnection()) {
+                //throw;
+            }
+
             Excavator_Form *object;
-            object = new Excavator_Form();
+            object = new Excavator_Form(DB);
             connect(object, &Excavator_Form::firstWindow, this, &MainWindow::show);
             object->show();
             break;

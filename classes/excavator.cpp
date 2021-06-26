@@ -1,6 +1,6 @@
 #include "excavator.h"
 
-Excavator::Excavator()
-{
+Excavator::Excavator(ExcavatorDB db) {
+
 
 }

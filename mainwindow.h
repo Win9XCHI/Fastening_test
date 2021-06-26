@@ -11,7 +11,7 @@
 #include "controller/kraz_form.h"
 #include "controller/vgm_form.h"
 #include "controller/password_form.h"
-#include "model/projectdb.h"
+#include "model/excavator_db.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -34,6 +34,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    ProjectDB *DB;
+    //ProjectDB *DB;
 };
 #endif // MAINWINDOW_H
