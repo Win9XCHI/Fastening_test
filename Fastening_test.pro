@@ -14,6 +14,8 @@ SOURCES += \
     classes/bar.cpp \
     classes/dimensions.cpp \
     classes/equipment.cpp \
+    classes/excavator.cpp \
+    classes/fromto.cpp \
     classes/lining.cpp \
     classes/stretching.cpp \
     controller/message_form.cpp \
@@ -37,6 +39,8 @@ HEADERS += \
     classes/bar.h \
     classes/dimensions.h \
     classes/equipment.h \
+    classes/excavator.h \
+    classes/fromto.h \
     classes/lining.h \
     classes/stretching.h \
     constants.h \
