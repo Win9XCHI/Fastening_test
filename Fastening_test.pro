@@ -11,6 +11,11 @@ PACKAGECONFIG_append_pn-qtbase = " sql-sqlite"
 
 
 SOURCES += \
+    classes/bar.cpp \
+    classes/dimensions.cpp \
+    classes/equipment.cpp \
+    classes/lining.cpp \
+    classes/stretching.cpp \
     controller/message_form.cpp \
     controller/about_form.cpp \
     controller/admin_form.cpp \
@@ -29,6 +34,11 @@ SOURCES += \
     controller/password_form.cpp
 
 HEADERS += \
+    classes/bar.h \
+    classes/dimensions.h \
+    classes/equipment.h \
+    classes/lining.h \
+    classes/stretching.h \
     constants.h \
     controller/message_form.h \
     controller/about_form.h \
