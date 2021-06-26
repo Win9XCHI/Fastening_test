@@ -48,65 +48,61 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_3_clicked() {
 
-    switch(ui->comboBox->currentIndex()) {
-        case EQUIPMENT::EXCAVATOR: {
-            ExcavatorDB DB("DB_for_test.db");
-
-            if (!DB.CheckConnection()) {
-                DB.createConnection();
+    try {
+        switch(ui->comboBox->currentIndex()) {
+            case EQUIPMENT::EXCAVATOR: {
+                Excavator();
+                break;
             }
-            if (!DB.CheckConnection()) {
-                //throw;
+            case EQUIPMENT::BULLDOZER: {
+                Bulldozer_Form *object;
+                object = new Bulldozer_Form();
+                connect(object, &Bulldozer_Form::firstWindow, this, &MainWindow::show);
+                object->show();
+                break;
             }
-
-            Excavator_Form *object;
-            object = new Excavator_Form(DB);
-            connect(object, &Excavator_Form::firstWindow, this, &MainWindow::show);
-            object->show();
-            break;
+            case EQUIPMENT::MOTORGRADER: {
+                MotorGrader_Form *object;
+                object = new MotorGrader_Form();
+                connect(object, &MotorGrader_Form::firstWindow, this, &MainWindow::show);
+                object->show();
+                break;
+            }
+            case EQUIPMENT::SCRAPER: {
+                Scraper_Form *object;
+                object = new Scraper_Form();
+                connect(object, &Scraper_Form::firstWindow, this, &MainWindow::show);
+                object->show();
+                break;
+            }
+            case EQUIPMENT::KRAZ_PL: {
+                KRAZ_pl_form *object;
+                object = new KRAZ_pl_form();
+                connect(object, &KRAZ_pl_form::firstWindow, this, &MainWindow::show);
+                object->show();
+                break;
+            }
+            case EQUIPMENT::KRAZ: {
+                KRAZ_Form *object;
+                object = new KRAZ_Form();
+                connect(object, &KRAZ_Form::firstWindow, this, &MainWindow::show);
+                object->show();
+                break;
+            }
+            case EQUIPMENT::VGM: {
+                VGM_Form *object;
+                object = new VGM_Form();
+                connect(object, &VGM_Form::firstWindow, this, &MainWindow::show);
+                object->show();
+                break;
+            }
         }
-        case EQUIPMENT::BULLDOZER: {
-            Bulldozer_Form *object;
-            object = new Bulldozer_Form();
-            connect(object, &Bulldozer_Form::firstWindow, this, &MainWindow::show);
-            object->show();
-            break;
-        }
-        case EQUIPMENT::MOTORGRADER: {
-            MotorGrader_Form *object;
-            object = new MotorGrader_Form();
-            connect(object, &MotorGrader_Form::firstWindow, this, &MainWindow::show);
-            object->show();
-            break;
-        }
-        case EQUIPMENT::SCRAPER: {
-            Scraper_Form *object;
-            object = new Scraper_Form();
-            connect(object, &Scraper_Form::firstWindow, this, &MainWindow::show);
-            object->show();
-            break;
-        }
-        case EQUIPMENT::KRAZ_PL: {
-            KRAZ_pl_form *object;
-            object = new KRAZ_pl_form();
-            connect(object, &KRAZ_pl_form::firstWindow, this, &MainWindow::show);
-            object->show();
-            break;
-        }
-        case EQUIPMENT::KRAZ: {
-            KRAZ_Form *object;
-            object = new KRAZ_Form();
-            connect(object, &KRAZ_Form::firstWindow, this, &MainWindow::show);
-            object->show();
-            break;
-        }
-        case EQUIPMENT::VGM: {
-            VGM_Form *object;
-            object = new VGM_Form();
-            connect(object, &VGM_Form::firstWindow, this, &MainWindow::show);
-            object->show();
-            break;
-        }
+    } catch (DatabaseException ob) {
+        frame message;
+        message.result = "Помилка програми, будь-ласка перевірте наявність бази даних";
+        message.preparation = ob.what();
+        Message_Form *object = new Message_Form(message);
+        object->show();
     }
     this->close();
 }
@@ -120,5 +116,26 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::on_pushButton_clicked()
 {
     Password_Form *object = new Password_Form();
+    object->show();
+}
+
+void MainWindow::Excavator() {
+    ExcavatorDB DB("DB_for_test.db");
+
+    std::ifstream file("DB_for_test.db");
+    if(!file.is_open()) {
+        throw DatabaseException("Файлу DB_for_test.db не знайдено");
+    }
+
+    if (!DB.CheckConnection()) {
+        DB.createConnection();
+    }
+    if (!DB.CheckConnection()) {
+        throw DatabaseException(DB.LastError().toStdString());
+    }
+
+    Excavator_Form *object;
+    object = new Excavator_Form(DB);
+    connect(object, &Excavator_Form::firstWindow, this, &MainWindow::show);
     object->show();
 }

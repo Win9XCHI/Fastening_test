@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <fstream>
 #include "controller/about_form.h"
 #include "controller/motorgrader_form.h"
 #include "controller/excavator_form.h"
@@ -34,6 +35,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    //ProjectDB *DB;
+
+    void Connection();
+    void Excavator();
 };
 #endif // MAINWINDOW_H

@@ -335,6 +335,12 @@
      <height>22</height>
     </rect>
    </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::DefaultContextMenu</enum>
+   </property>
+   <property name="placeholderText">
+    <string/>
+   </property>
   </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">

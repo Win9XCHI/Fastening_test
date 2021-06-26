@@ -22,6 +22,7 @@ public:
     bool createConnection();
 
     bool CheckConnection();
+    void close();
 
     //Return last error in database
     //Input: -

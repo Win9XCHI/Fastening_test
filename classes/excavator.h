@@ -19,7 +19,7 @@ public:
     Excavator(ExcavatorDB db);
     virtual ~Excavator();
 
-    form_answer CheckAnswer(form_excavator);
+    form_answer_excavator CheckAnswer(form_excavator);
 };
 
 #endif // EXCAVATOR_H

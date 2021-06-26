@@ -13,6 +13,12 @@ bool DB::CheckConnection() {
     return db.isOpen();
 }
 
+void DB::close() {
+    if (CheckConnection()) {
+        db.close();
+    }
+}
+
 bool DB::createConnection() {
     bool connected = db.open();
 

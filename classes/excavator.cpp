@@ -51,8 +51,8 @@ void Excavator::Filling(std::map<QString, QString> cont, std::map<QString, FromT
     object_lining = new Lining(flag);
 }
 
-form_answer Excavator::CheckAnswer(form_excavator form) {
-    form_answer object;
+form_answer_excavator Excavator::CheckAnswer(form_excavator form) {
+    form_answer_excavator object;
 
     if (form.s1 != mas_stretching["swivel platform"].GetCount()) {
         object.s1 = false;

@@ -32,7 +32,7 @@ struct form_excavator {
     unsigned int gb2;
 };
 
-struct form_answer {
+struct form_answer_excavator {
     bool s1;
     bool s2;
     bool s3;
@@ -55,7 +55,7 @@ struct form_answer {
     bool gb1;
     bool gb2;
 
-    form_answer() {
+    form_answer_excavator() {
         s1 = s2 = s3 = s4 = s5 = t1 = t2 = t3 = t4 = t5 = wd = bh = b1 = b2 = n1 = n2 = l = at = al = gb1 = gb2 = true;
     }
 };

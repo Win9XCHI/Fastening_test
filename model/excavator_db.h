@@ -7,6 +7,7 @@
 #include "driver/db.h"
 #include "../structure.h"
 #include "../classes/fromto.h"
+#include "../exceptions/database_exception.h"
 
 class ExcavatorDB : public DB {
 

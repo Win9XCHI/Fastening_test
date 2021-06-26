@@ -28,6 +28,12 @@ private slots:
 private:
     Ui::Excavator_Form *ui;
     ExcavatorDB DB;
+    Excavator *object_excavator;
+
+    void FillingFormExcavator(form_excavator &object_form);
+    bool CheckAnswer(form_answer_excavator form);
+    void Default();
+
     void show_graphics();
     void SM_swilev_cursor(QPen);
     void SM_undercarriage_cursor(QPen);

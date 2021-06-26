@@ -49,6 +49,7 @@ HEADERS += \
     controller/admin_form.h \
     controller/base/base_technics.h \
     controller/bulldozer_form.h \
+    exceptions/database_exception.h \
     model/driver/db.h \
     controller/excavator_form.h \
     controller/kraz_form.h \
