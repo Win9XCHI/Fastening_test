@@ -1,7 +1,6 @@
 #ifndef STRETCHING_H
 #define STRETCHING_H
 
-
 class Stretching {
     unsigned int count;
     unsigned int thread;

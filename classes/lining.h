@@ -4,10 +4,14 @@
 
 class Lining {
     bool YesNo;
-    Dimensions *object;
+    Dimensions object;
 
 public:
     Lining();
+    Lining(bool);
+    Lining(bool, Dimensions);
+
+    bool GetYesNo();
 };
 
 #endif // LINING_H

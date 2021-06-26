@@ -5,11 +5,12 @@
 class Bar {
     unsigned int count;
     unsigned int nails;
-    Dimensions *object;
+    Dimensions object;
 
 public:
     Bar();
     Bar(unsigned int, unsigned int);
+    Bar(unsigned int, unsigned int, Dimensions);
 
     unsigned int GetCount();
     unsigned int GetNails();

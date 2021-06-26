@@ -9,6 +9,8 @@
 
 class Equipment {
 
+protected:
+    QString name;
     std::map<QString, Stretching> mas_stretching;
     std::map<QString, Bar> mas_bar;
     std::map<QString, FromTo> mas_fromto;
