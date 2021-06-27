@@ -104,6 +104,7 @@ void Excavator_Form::lining(QPen pen) {
 
 void Excavator_Form::on_pushButton_2_clicked()
 {
+    DB.close();
     this->close();
     emit firstWindow();
 }

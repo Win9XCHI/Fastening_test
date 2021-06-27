@@ -57,6 +57,7 @@ void MotorGrader_Form::lining_grubber_cursor(QPen pen) {
 
 void MotorGrader_Form::on_pushButton_2_clicked()
 {
+    DB.close();
     this->close();
     emit firstWindow();
 }

@@ -4,11 +4,11 @@ Bar::Bar() : count(0), nails(0) {
 
 }
 
-Bar::Bar(unsigned int a, unsigned int b) : count(a), nails(b) {
+Bar::Bar(unsigned int c, unsigned int n) : count(c), nails(n) {
 
 }
 
-Bar::Bar(unsigned int a, unsigned int b, Dimensions c) : count(a), nails(b), object(c) {
+Bar::Bar(unsigned int c, Dimensions o, unsigned int n) : count(c), nails(n), object(o) {
 
 }
 
@@ -18,4 +18,8 @@ unsigned int Bar::GetCount() {
 
 unsigned int Bar::GetNails() {
     return nails;
+}
+
+Dimensions Bar::GetDimensions() {
+    return object;
 }

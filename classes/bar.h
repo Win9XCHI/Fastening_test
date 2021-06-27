@@ -9,11 +9,12 @@ class Bar {
 
 public:
     Bar();
-    Bar(unsigned int, unsigned int);
-    Bar(unsigned int, unsigned int, Dimensions);
+    Bar(unsigned int c, unsigned int n = 0);
+    Bar(unsigned int c, Dimensions o, unsigned int n = 0);
 
     unsigned int GetCount();
     unsigned int GetNails();
+    Dimensions GetDimensions();
 };
 
 #endif // BAR_H
