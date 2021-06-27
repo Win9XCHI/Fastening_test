@@ -7,35 +7,13 @@ Excavator_Form::Excavator_Form(ExcavatorDB db, QWidget *parent) :
 {
     ui->setupUi(this);
     DB = db;
-    DB.SELECT("Icon", "Equipment", "Name = 'Екскаватор ЕО-4125 на платформі'");
-
+    scene = new QGraphicsScene;
     object_excavator = new Excavator(DB);
+    count = 0;
+    ui->comboBox->addItem("");
     ui->comboBox->addItem("Ні");
     ui->comboBox->addItem("Так");
-
-    scene = new QGraphicsScene;
-    image("D:/DIIT KIT/Military/Programs/Fastening_test/Source/" + DB.GetIcon());
-    SM_swilev_cursor(green_pen());
-    SM_undercarriage_cursor(green_pen());
-    SM_root_cursor(green_pen());
-    SM_handle_cursor(green_pen());
-    SM_trolley_cursor(green_pen());
-
-    lining_cursor(green_pen());
-    arrow_cursor(green_pen());
-    axis_turnover_cursor(green_pen());
-    axis_longitudinal_cursor(green_pen());
-
-    SM_swilev(green_pen());
-    SM_undercarriage(green_pen());
-    SM_root(green_pen());
-    SM_handle(green_pen());
-    SM_trolley(green_pen());
-
-    bar_thrust(green_pen());
-    bar_side(green_pen(10));
-    lining(green_pen());
-    show_graphics();
+    set_image();
 }
 
 Excavator_Form::~Excavator_Form()
@@ -285,6 +263,12 @@ bool Excavator_Form::CheckAnswer(form_answer_excavator form) {
     return flag;
 }
 
+void Excavator_Form::set_image() {
+    DB.SELECT("Icon", "Equipment", "Name = 'Екскаватор ЕО-4125 на платформі'");
+    image("D:/DIIT KIT/Military/Programs/Fastening_test/Source/" + DB.GetIcon());
+    show_graphics();
+}
+
 void Excavator_Form::on_pushButton_clicked()
 {
     Default();
@@ -302,7 +286,153 @@ void Excavator_Form::on_pushButton_clicked()
         message.result = MESSAGE::FAIL;
         message.string = MESSAGE::PREPARATION;
         message.preparation = MESSAGE::EXCAVATOR;
+        scene->clear();
+        set_image();
     }
     Message_Form *object = new Message_Form(message);
     object->show();
 }
+
+void Excavator_Form::on_lineEdit_7_cursorPositionChanged(int arg1, int arg2) {
+    if ((arg1 == -1 || arg1 == 1) && arg2 == 0) {
+        SM_swilev_cursor(green_pen());
+        show_graphics();
+    }
+}
+
+void Excavator_Form::on_lineEdit_7_editingFinished() {
+    remove_last_item();
+    SM_swilev(red_pen());
+    show_graphics();
+}
+
+void Excavator_Form::on_lineEdit_9_cursorPositionChanged(int arg1, int arg2) {
+    if ((arg1 == -1 || arg1 == 1) && arg2 == 0) {
+        SM_undercarriage_cursor(green_pen());
+        show_graphics();
+    }
+}
+
+void Excavator_Form::on_lineEdit_9_editingFinished() {
+    remove_last_item();
+    remove_last_item();
+    SM_undercarriage(red_pen());
+    show_graphics();
+}
+
+void Excavator_Form::on_lineEdit_11_cursorPositionChanged(int arg1, int arg2) {
+    if ((arg1 == -1 || arg1 == 1) && arg2 == 0) {
+        SM_root_cursor(green_pen());
+        show_graphics();
+    }
+}
+
+void Excavator_Form::on_lineEdit_11_editingFinished() {
+    remove_last_item();
+    SM_root(red_pen());
+    show_graphics();
+}
+
+void Excavator_Form::on_lineEdit_13_cursorPositionChanged(int arg1, int arg2)
+{
+    if ((arg1 == -1 || arg1 == 1) && arg2 == 0) {
+        SM_handle_cursor(green_pen());
+        show_graphics();
+    }
+}
+
+void Excavator_Form::on_lineEdit_13_editingFinished()
+{
+    remove_last_item();
+    SM_handle(red_pen());
+    show_graphics();
+}
+
+void Excavator_Form::on_lineEdit_15_cursorPositionChanged(int arg1, int arg2)
+{
+    if ((arg1 == -1 || arg1 == 1) && arg2 == 0) {
+        SM_trolley_cursor(green_pen());
+        show_graphics();
+    }
+}
+
+void Excavator_Form::on_lineEdit_15_editingFinished()
+{
+    remove_last_item();
+    SM_trolley(red_pen());
+    show_graphics();
+}
+
+void Excavator_Form::on_comboBox_highlighted(int index)
+{
+    lining_cursor(green_pen());
+    count++;
+    show_graphics();
+}
+
+void Excavator_Form::on_comboBox_activated(int index)
+{
+    for (unsigned int i = 0; i < count; i++) {
+        remove_last_item();
+    }
+    count = 0;
+    lining(red_pen());
+    show_graphics();
+}
+
+void Excavator_Form::on_lineEdit_5_cursorPositionChanged(int arg1, int arg2)
+{
+    if ((arg1 == -1 || arg1 == 1) && arg2 == 0) {
+        arrow_cursor(green_pen());
+        show_graphics();
+    }
+}
+
+void Excavator_Form::on_lineEdit_5_editingFinished()
+{
+    remove_last_item();
+    remove_last_item();
+    remove_last_item();
+    show_graphics();
+}
+
+void Excavator_Form::on_lineEdit_6_cursorPositionChanged(int arg1, int arg2)
+{
+    if ((arg1 == -1 || arg1 == 1) && arg2 == 0) {
+        axis_turnover_cursor(green_pen());
+        show_graphics();
+    }
+}
+
+void Excavator_Form::on_lineEdit_6_editingFinished()
+{
+    remove_last_item();
+    show_graphics();
+}
+
+void Excavator_Form::on_lineEdit_16_cursorPositionChanged(int arg1, int arg2)
+{
+    if ((arg1 == -1 || arg1 == 1) && arg2 == 0) {
+        axis_longitudinal_cursor(green_pen());
+        show_graphics();
+    }
+}
+
+void Excavator_Form::on_lineEdit_16_editingFinished()
+{
+    remove_last_item();
+    show_graphics();
+}
+
+void Excavator_Form::on_lineEdit_editingFinished()
+{
+    bar_thrust(red_pen());
+    show_graphics();
+}
+
+void Excavator_Form::on_lineEdit_3_editingFinished()
+{
+    bar_side(red_pen());
+    show_graphics();
+}
+

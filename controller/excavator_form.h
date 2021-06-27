@@ -25,14 +25,56 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_lineEdit_7_cursorPositionChanged(int arg1, int arg2);
+
+    void on_lineEdit_7_editingFinished();
+
+    void on_lineEdit_9_cursorPositionChanged(int arg1, int arg2);
+
+    void on_lineEdit_9_editingFinished();
+
+    void on_lineEdit_11_cursorPositionChanged(int arg1, int arg2);
+
+    void on_lineEdit_11_editingFinished();
+
+    void on_lineEdit_13_cursorPositionChanged(int arg1, int arg2);
+
+    void on_lineEdit_13_editingFinished();
+
+    void on_lineEdit_15_cursorPositionChanged(int arg1, int arg2);
+
+    void on_lineEdit_15_editingFinished();
+
+    void on_comboBox_activated(int index);
+
+    void on_lineEdit_5_cursorPositionChanged(int arg1, int arg2);
+
+    void on_lineEdit_5_editingFinished();
+
+    void on_lineEdit_6_cursorPositionChanged(int arg1, int arg2);
+
+    void on_lineEdit_6_editingFinished();
+
+    void on_lineEdit_16_cursorPositionChanged(int arg1, int arg2);
+
+    void on_lineEdit_16_editingFinished();
+
+    void on_lineEdit_editingFinished();
+
+    void on_lineEdit_3_editingFinished();
+
+    void on_comboBox_highlighted(int index);
+
 private:
     Ui::Excavator_Form *ui;
     ExcavatorDB DB;
     Excavator *object_excavator;
+    unsigned int count;
 
     void FillingFormExcavator(form_excavator &object_form);
     bool CheckAnswer(form_answer_excavator form);
     void Default();
+    void set_image();
 
     void show_graphics();
     void SM_swilev_cursor(QPen);
