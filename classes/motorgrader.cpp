@@ -30,12 +30,16 @@ void MotorGrader::Filling(std::map<QString, QString> cont, std::map<QString, Dim
 
     wire_diameter = cont["Якого діаметру повинен бути дріт (мм)"].toUInt();
 
+    bool flag1(false), flag2(false);
     if (cont["Чи потрібна підкладка під ніж відвалу"] == "Так") {
-        mas_lining.insert({"dump", {true, contD["Розміри підкладки під ніж відвалу (мм)"], cont["Кількість цвяхів на підкладку (44)"].toUInt()}});
+        flag1 = true;
     }
+    mas_lining.insert({"dump", {flag1, contD["Розміри підкладки під ніж відвалу (мм)"], cont["Кількість цвяхів на підкладку (44)"].toUInt()}});
+
     if (cont["Чи потрібна підкладка під ніж корчувача"] == "Так") {
-        mas_lining.insert({"grubber", {true, contD["Розміри підкладки під ніж корчувача (мм)"], cont["Кількість цвяхів на підкладку (41)"].toUInt()}});
+        flag2 = true;
     }
+    mas_lining.insert({"grubber", {flag2, contD["Розміри підкладки під ніж корчувача (мм)"], cont["Кількість цвяхів на підкладку (41)"].toUInt()}});
 }
 
 form_answer_motorgrader MotorGrader::CheckAnswer(form_motorgrader form) {

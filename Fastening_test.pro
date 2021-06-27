@@ -18,6 +18,7 @@ SOURCES += \
     classes/fromto.cpp \
     classes/lining.cpp \
     classes/motorgrader.cpp \
+    classes/scraper.cpp \
     classes/stretching.cpp \
     controller/message_form.cpp \
     controller/about_form.cpp \
@@ -46,6 +47,7 @@ HEADERS += \
     classes/fromto.h \
     classes/lining.h \
     classes/motorgrader.h \
+    classes/scraper.h \
     classes/stretching.h \
     constants.h \
     controller/message_form.h \
