@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>835</width>
-    <height>664</height>
+    <height>618</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,7 +28,7 @@
     <rect>
      <x>20</x>
      <y>340</y>
-     <width>341</width>
+     <width>191</width>
      <height>41</height>
     </rect>
    </property>
@@ -92,49 +92,10 @@
 закріплення кожного бруска</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>590</y>
-     <width>301</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Для підготовки рекомендується використовувати:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>610</y>
-     <width>541</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Наставление по перевозкам войск Приложение 6 и 15 к наставлению стр. 100, 104-105.</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_8">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>630</y>
-     <width>571</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Размещение и крепление техники на железнодорожных платформах Справочник. стр. 83-85.</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_9">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>360</x>
      <y>350</y>
      <width>231</width>
      <height>16</height>
@@ -147,20 +108,20 @@
   <widget class="QLabel" name="label_10">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>360</x>
      <y>370</y>
      <width>281</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>Розміри підкладки під ніж автогрейдера (мм)</string>
+    <string>Розміри підкладки під ніж відвалу (мм)</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_11">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>360</x>
      <y>400</y>
      <width>41</width>
      <height>16</height>
@@ -173,7 +134,7 @@
   <widget class="QLabel" name="label_12">
    <property name="geometry">
     <rect>
-     <x>620</x>
+     <x>490</x>
      <y>400</y>
      <width>31</width>
      <height>16</height>
@@ -186,7 +147,7 @@
   <widget class="QLabel" name="label_13">
    <property name="geometry">
     <rect>
-     <x>720</x>
+     <x>590</x>
      <y>400</y>
      <width>41</width>
      <height>16</height>
@@ -199,7 +160,7 @@
   <widget class="QLabel" name="label_14">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>360</x>
      <y>430</y>
      <width>191</width>
      <height>16</height>
@@ -212,7 +173,7 @@
   <widget class="QLabel" name="label_15">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>360</x>
      <y>460</y>
      <width>251</width>
      <height>16</height>
@@ -225,7 +186,7 @@
   <widget class="QLabel" name="label_16">
    <property name="geometry">
     <rect>
-     <x>500</x>
+     <x>370</x>
      <y>490</y>
      <width>261</width>
      <height>16</height>
@@ -238,7 +199,7 @@
   <widget class="QLabel" name="label_20">
    <property name="geometry">
     <rect>
-     <x>500</x>
+     <x>370</x>
      <y>550</y>
      <width>181</width>
      <height>16</height>
@@ -251,7 +212,7 @@
   <widget class="QLabel" name="label_21">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>360</x>
      <y>520</y>
      <width>41</width>
      <height>16</height>
@@ -264,7 +225,7 @@
   <widget class="QLabel" name="label_22">
    <property name="geometry">
     <rect>
-     <x>620</x>
+     <x>490</x>
      <y>520</y>
      <width>31</width>
      <height>16</height>
@@ -277,7 +238,7 @@
   <widget class="QLabel" name="label_23">
    <property name="geometry">
     <rect>
-     <x>720</x>
+     <x>590</x>
      <y>520</y>
      <width>41</width>
      <height>16</height>
@@ -290,9 +251,9 @@
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>220</x>
      <y>350</y>
-     <width>81</width>
+     <width>111</width>
      <height>22</height>
     </rect>
    </property>
@@ -340,7 +301,7 @@
   <widget class="QLineEdit" name="lineEdit_6">
    <property name="geometry">
     <rect>
-     <x>560</x>
+     <x>430</x>
      <y>400</y>
      <width>51</width>
      <height>22</height>
@@ -350,7 +311,7 @@
   <widget class="QLineEdit" name="lineEdit_7">
    <property name="geometry">
     <rect>
-     <x>660</x>
+     <x>530</x>
      <y>400</y>
      <width>51</width>
      <height>22</height>
@@ -360,7 +321,7 @@
   <widget class="QLineEdit" name="lineEdit_8">
    <property name="geometry">
     <rect>
-     <x>762</x>
+     <x>632</x>
      <y>400</y>
      <width>51</width>
      <height>22</height>
@@ -370,7 +331,7 @@
   <widget class="QLineEdit" name="lineEdit_9">
    <property name="geometry">
     <rect>
-     <x>700</x>
+     <x>570</x>
      <y>430</y>
      <width>113</width>
      <height>22</height>
@@ -380,7 +341,7 @@
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>740</x>
+     <x>610</x>
      <y>350</y>
      <width>73</width>
      <height>22</height>
@@ -390,7 +351,7 @@
   <widget class="QComboBox" name="comboBox_2">
    <property name="geometry">
     <rect>
-     <x>740</x>
+     <x>610</x>
      <y>460</y>
      <width>73</width>
      <height>22</height>
@@ -400,7 +361,7 @@
   <widget class="QLineEdit" name="lineEdit_10">
    <property name="geometry">
     <rect>
-     <x>700</x>
+     <x>570</x>
      <y>550</y>
      <width>113</width>
      <height>22</height>
@@ -410,7 +371,7 @@
   <widget class="QLineEdit" name="lineEdit_11">
    <property name="geometry">
     <rect>
-     <x>560</x>
+     <x>430</x>
      <y>520</y>
      <width>51</width>
      <height>22</height>
@@ -420,7 +381,7 @@
   <widget class="QLineEdit" name="lineEdit_12">
    <property name="geometry">
     <rect>
-     <x>660</x>
+     <x>530</x>
      <y>520</y>
      <width>51</width>
      <height>22</height>
@@ -430,7 +391,7 @@
   <widget class="QLineEdit" name="lineEdit_13">
    <property name="geometry">
     <rect>
-     <x>760</x>
+     <x>630</x>
      <y>520</y>
      <width>51</width>
      <height>22</height>
@@ -440,9 +401,9 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>640</x>
-     <y>580</y>
-     <width>181</width>
+     <x>690</x>
+     <y>530</y>
+     <width>131</width>
      <height>41</height>
     </rect>
    </property>
@@ -453,9 +414,9 @@
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>640</x>
-     <y>630</y>
-     <width>181</width>
+     <x>650</x>
+     <y>580</y>
+     <width>171</width>
      <height>28</height>
     </rect>
    </property>

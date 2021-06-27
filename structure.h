@@ -60,4 +60,44 @@ struct form_answer_excavator {
     }
 };
 
+struct form_motorgrader {
+    unsigned int s;
+    unsigned int t;
+    unsigned int wd;
+    unsigned int b;
+    unsigned int n;
+    bool li1;
+    bool li2;
+    unsigned int nli1;
+    unsigned int nli2;
+    unsigned int t1;
+    unsigned int t2;
+    unsigned int w1;
+    unsigned int w2;
+    unsigned int l1;
+    unsigned int l2;
+};
+
+struct form_answer_motorgrader {
+    bool s;
+    bool t;
+    bool wd;
+    bool b;
+    bool n;
+    bool li1;
+    bool li2;
+    bool nli1;
+    bool nli2;
+    bool t1;
+    bool t2;
+    bool w1;
+    bool w2;
+    bool l1;
+    bool l2;
+
+    form_answer_motorgrader() {
+        s = t = wd = b = n = li1 = li2 = nli1 = nli2 = t1 = t2 = w1 = w2 = l1 = l2 = true;
+    }
+};
+
 #endif // STRUCTURE_H

@@ -17,6 +17,7 @@ SOURCES += \
     classes/excavator.cpp \
     classes/fromto.cpp \
     classes/lining.cpp \
+    classes/motorgrader.cpp \
     classes/stretching.cpp \
     controller/message_form.cpp \
     controller/about_form.cpp \
@@ -43,6 +44,7 @@ HEADERS += \
     classes/excavator.h \
     classes/fromto.h \
     classes/lining.h \
+    classes/motorgrader.h \
     classes/stretching.h \
     constants.h \
     controller/message_form.h \

@@ -14,6 +14,7 @@ protected:
     std::map<QString, Stretching> mas_stretching;
     std::map<QString, Bar> mas_bar;
     std::map<QString, FromTo> mas_fromto;
+    std::map<QString, Lining> mas_lining;
 
 public:
     Equipment();
