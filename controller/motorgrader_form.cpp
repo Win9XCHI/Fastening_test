@@ -7,6 +7,7 @@ MotorGrader_Form::MotorGrader_Form(MotorGraderDB db, QWidget *parent) :
 {
     ui->setupUi(this);
     DB = db;
+    count1 = count2 = 0;
     scene = new QGraphicsScene;
     ui->comboBox->addItem("");
     ui->comboBox->addItem("Ні");
@@ -16,11 +17,6 @@ MotorGrader_Form::MotorGrader_Form(MotorGraderDB db, QWidget *parent) :
     ui->comboBox_2->addItem("Так");
     object_motorgrader = new MotorGrader(DB);
     MotorGrader_Form::set_image();
-    /*stretch_marks_cursor(green_pen());
-    bar_cursor(green_pen());
-    lining_blade_cursor(green_pen());
-    lining_grubber_cursor(green_pen());
-    show_graphics();*/
 }
 
 MotorGrader_Form::~MotorGrader_Form() {
@@ -198,4 +194,71 @@ bool MotorGrader_Form::CheckAnswer(form_answer_motorgrader form) {
     }
 
     return flag;
+}
+
+void MotorGrader_Form::on_lineEdit_cursorPositionChanged(int arg1, int arg2)
+{
+    if ((arg1 == -1 || arg1 == 1) && arg2 == 0) {
+        stretch_marks_cursor(green_pen());
+        show_graphics();
+    }
+}
+
+void MotorGrader_Form::on_lineEdit_editingFinished()
+{
+    remove_last_item();
+    remove_last_item();
+    stretch_marks_cursor(red_pen());
+    show_graphics();
+}
+
+void MotorGrader_Form::on_lineEdit_4_cursorPositionChanged(int arg1, int arg2)
+{
+    if ((arg1 == -1 || arg1 == 1) && arg2 == 0) {
+        bar_cursor(green_pen());
+        show_graphics();
+    }
+}
+
+void MotorGrader_Form::on_lineEdit_4_editingFinished()
+{
+    for (unsigned int i = 0; i < 4; i++) {
+        remove_last_item();
+    }
+    bar_cursor(red_pen());
+    show_graphics();
+}
+
+void MotorGrader_Form::on_comboBox_highlighted(int index)
+{
+    lining_blade_cursor(green_pen());
+    count1++;
+    show_graphics();
+}
+
+void MotorGrader_Form::on_comboBox_activated(int index)
+{
+    for (unsigned int i = 0; i < count1; i++) {
+        remove_last_item();
+    }
+    count1 = 0;
+    lining_blade_cursor(red_pen());
+    show_graphics();
+}
+
+void MotorGrader_Form::on_comboBox_2_highlighted(int index)
+{
+    lining_grubber_cursor(green_pen());
+    count2++;
+    show_graphics();
+}
+
+void MotorGrader_Form::on_comboBox_2_activated(int index)
+{
+    for (unsigned int i = 0; i < count2; i++) {
+        remove_last_item();
+    }
+    count2 = 0;
+    lining_grubber_cursor(red_pen());
+    show_graphics();
 }

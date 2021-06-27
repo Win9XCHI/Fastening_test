@@ -25,10 +25,27 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_lineEdit_cursorPositionChanged(int arg1, int arg2);
+
+    void on_lineEdit_editingFinished();
+
+    void on_lineEdit_4_cursorPositionChanged(int arg1, int arg2);
+
+    void on_lineEdit_4_editingFinished();
+
+    void on_comboBox_highlighted(int index);
+
+    void on_comboBox_activated(int index);
+
+    void on_comboBox_2_highlighted(int index);
+
+    void on_comboBox_2_activated(int index);
+
 private:
     Ui::MotorGrader_Form *ui;
     MotorGraderDB DB;
     MotorGrader *object_motorgrader;
+    unsigned int count1, count2;
 
     void FillingFormMotorGrader(form_motorgrader &object_form);
     bool CheckAnswer(form_answer_motorgrader form);
