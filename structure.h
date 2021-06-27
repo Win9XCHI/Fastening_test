@@ -100,4 +100,44 @@ struct form_answer_motorgrader {
     }
 };
 
+struct form_scraper {
+    unsigned int s;
+    unsigned int t;
+    unsigned int wd;
+    unsigned int b1;
+    unsigned int n1;
+    unsigned int b2;
+    unsigned int n2;
+    unsigned int t2;
+    unsigned int w2;
+    unsigned int l2;
+    bool li;
+    unsigned int nli;
+    unsigned int t1;
+    unsigned int w1;
+    unsigned int l1;
+};
+
+struct form_answer_scraper {
+    bool s;
+    bool t;
+    bool wd;
+    bool b1;
+    bool n1;
+    bool b2;
+    bool n2;
+    bool t2;
+    bool w2;
+    bool l2;
+    bool li;
+    bool nli;
+    bool t1;
+    bool w1;
+    bool l1;
+
+    form_answer_scraper() {
+        s = t = wd = b1 = n1 = b2 = n2 = nli = li = t1 = t2 = w1 = w2 = l1 = l2 = true;
+    }
+};
+
 #endif // STRUCTURE_H
