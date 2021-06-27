@@ -3,6 +3,9 @@
 
 #include <QtSql>
 #include <QDebug>
+#include <map>
+#include "../../exceptions/database_exception.h"
+#include "../../structure.h"
 
 class DB {
 protected:

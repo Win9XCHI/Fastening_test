@@ -1,13 +1,7 @@
-#ifndef EXCAVATOR_DB_H
-#define EXCAVATOR_DB_H
-
-#include <QtSql>
-#include <QDebug>
-#include <map>
+#ifndef MOTORGRADER_DB_H
+#define MOTORGRADER_DB_H
 #include "driver/db.h"
-#include "../structure.h"
 #include "../classes/dimensions.h"
-#include "../exceptions/database_exception.h"
 
 class MotorGraderDB : public DB {
 

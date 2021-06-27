@@ -1,13 +1,7 @@
 #ifndef EXCAVATOR_DB_H
 #define EXCAVATOR_DB_H
-
-#include <QtSql>
-#include <QDebug>
-#include <map>
 #include "driver/db.h"
-#include "../structure.h"
 #include "../classes/fromto.h"
-#include "../exceptions/database_exception.h"
 
 class ExcavatorDB : public DB {
 

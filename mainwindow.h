@@ -12,7 +12,6 @@
 #include "controller/kraz_form.h"
 #include "controller/vgm_form.h"
 #include "controller/password_form.h"
-#include "model/excavator_db.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -38,5 +37,13 @@ private:
 
     void Connection();
     void Excavator();
+    void MotorGrader();
+    void Bulldozer();
+    void KRAZ();
+    void KRAZ_PL();
+    void Scraper();
+    void VGM();
+
+    void CheckFileDB();
 };
 #endif // MAINWINDOW_H

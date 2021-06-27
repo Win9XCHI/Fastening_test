@@ -8,13 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    /*DB = new ProjectDB("DB.db");
-
-    if (!DB->CheckConnection()) {
-        DB->createConnection();
-    }*/
-
     ui->comboBox->addItem("Екскаватор ЕО-4125 на платформі");
     ui->comboBox->addItem("Бульдозер на платформі");
     ui->comboBox->addItem("Автогрейдер ДЗ-98 на платформі");
@@ -22,22 +15,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->comboBox->addItem("КрАЗ-256 порожній на платформі");
     ui->comboBox->addItem("КрАЗ-256 порожній над зчепом");
     ui->comboBox->addItem("Танк");
-
-    //MotorGrader_Form *object;
-    //object = new MotorGrader_Form(this);
-    //Excavator_Form *object;
-    //object = new Excavator_Form(this);
-    //Bulldozer_Form *object;
-    //object = new Bulldozer_Form(this);
-    //Scraper_Form *object;
-    //object = new Scraper_Form(this);
-    //KRAZ_pl_form *object;
-    //object = new KRAZ_pl_form(this);
-    //KRAZ_Form *object;
-    //object = new KRAZ_Form(this);
-    //VGM_Form *object;
-    //object = new VGM_Form(this);
-    //object->show();
 }
 
 MainWindow::~MainWindow()
@@ -55,45 +32,27 @@ void MainWindow::on_pushButton_3_clicked() {
                 break;
             }
             case EQUIPMENT::BULLDOZER: {
-                Bulldozer_Form *object;
-                object = new Bulldozer_Form();
-                connect(object, &Bulldozer_Form::firstWindow, this, &MainWindow::show);
-                object->show();
+                Bulldozer();
                 break;
             }
             case EQUIPMENT::MOTORGRADER: {
-                MotorGrader_Form *object;
-                object = new MotorGrader_Form();
-                connect(object, &MotorGrader_Form::firstWindow, this, &MainWindow::show);
-                object->show();
+                MotorGrader();
                 break;
             }
             case EQUIPMENT::SCRAPER: {
-                Scraper_Form *object;
-                object = new Scraper_Form();
-                connect(object, &Scraper_Form::firstWindow, this, &MainWindow::show);
-                object->show();
+                Scraper();
                 break;
             }
             case EQUIPMENT::KRAZ_PL: {
-                KRAZ_pl_form *object;
-                object = new KRAZ_pl_form();
-                connect(object, &KRAZ_pl_form::firstWindow, this, &MainWindow::show);
-                object->show();
+                KRAZ_PL();
                 break;
             }
             case EQUIPMENT::KRAZ: {
-                KRAZ_Form *object;
-                object = new KRAZ_Form();
-                connect(object, &KRAZ_Form::firstWindow, this, &MainWindow::show);
-                object->show();
+                KRAZ();
                 break;
             }
             case EQUIPMENT::VGM: {
-                VGM_Form *object;
-                object = new VGM_Form();
-                connect(object, &VGM_Form::firstWindow, this, &MainWindow::show);
-                object->show();
+                VGM();
                 break;
             }
         }
@@ -119,13 +78,17 @@ void MainWindow::on_pushButton_clicked()
     object->show();
 }
 
-void MainWindow::Excavator() {
-    ExcavatorDB DB("DB_for_test.db");
-
+void MainWindow::CheckFileDB() {
     std::ifstream file("DB_for_test.db");
     if(!file.is_open()) {
         throw DatabaseException("Файлу DB_for_test.db не знайдено");
     }
+}
+
+void MainWindow::Excavator() {
+    ExcavatorDB DB("DB_for_test.db");
+
+    CheckFileDB();
 
     if (!DB.CheckConnection()) {
         DB.createConnection();
@@ -139,3 +102,57 @@ void MainWindow::Excavator() {
     connect(object, &Excavator_Form::firstWindow, this, &MainWindow::show);
     object->show();
 }
+
+void MainWindow::MotorGrader() {
+    MotorGraderDB DB("DB_for_test.db");
+
+    CheckFileDB();
+
+    if (!DB.CheckConnection()) {
+        DB.createConnection();
+    }
+    if (!DB.CheckConnection()) {
+        throw DatabaseException(DB.LastError().toStdString());
+    }
+
+    MotorGrader_Form *object;
+    object = new MotorGrader_Form(DB);
+    connect(object, &MotorGrader_Form::firstWindow, this, &MainWindow::show);
+    object->show();
+}
+
+void MainWindow::Bulldozer() {
+    Bulldozer_Form *object;
+    object = new Bulldozer_Form();
+    connect(object, &Bulldozer_Form::firstWindow, this, &MainWindow::show);
+    object->show();
+}
+
+void MainWindow::KRAZ() {
+    KRAZ_Form *object;
+    object = new KRAZ_Form();
+    connect(object, &KRAZ_Form::firstWindow, this, &MainWindow::show);
+    object->show();
+}
+
+void MainWindow::KRAZ_PL() {
+    KRAZ_pl_form *object;
+    object = new KRAZ_pl_form();
+    connect(object, &KRAZ_pl_form::firstWindow, this, &MainWindow::show);
+    object->show();
+}
+
+void MainWindow::Scraper() {
+    Scraper_Form *object;
+    object = new Scraper_Form();
+    connect(object, &Scraper_Form::firstWindow, this, &MainWindow::show);
+    object->show();
+}
+
+void MainWindow::VGM() {
+    VGM_Form *object;
+    object = new VGM_Form();
+    connect(object, &VGM_Form::firstWindow, this, &MainWindow::show);
+    object->show();
+}
+
