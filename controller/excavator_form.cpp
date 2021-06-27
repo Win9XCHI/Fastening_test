@@ -13,7 +13,7 @@ Excavator_Form::Excavator_Form(ExcavatorDB db, QWidget *parent) :
     ui->comboBox->addItem("");
     ui->comboBox->addItem("Ні");
     ui->comboBox->addItem("Так");
-    set_image();
+    Excavator_Form::set_image();
 }
 
 Excavator_Form::~Excavator_Form()
