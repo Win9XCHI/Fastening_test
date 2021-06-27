@@ -4,7 +4,7 @@ Dimensions::Dimensions() : thickness(0), width(0), length(0) {
 
 }
 
-Dimensions::Dimensions(double a, double b, double c) : thickness(a), width(b), length(c) {
+Dimensions::Dimensions(double t, double w, double l) : thickness(t), width(w), length(l) {
 
 }
 

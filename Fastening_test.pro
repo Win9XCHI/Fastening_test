@@ -33,7 +33,8 @@ SOURCES += \
     controller/scraper_form.cpp \
     controller/vgm_form.cpp \
     controller/password_form.cpp \
-    model/excavator_db.cpp
+    model/excavator_db.cpp \
+    model/motorgrader_db.cpp
 
 HEADERS += \
     classes/bar.h \
@@ -60,6 +61,7 @@ HEADERS += \
     controller/vgm_form.h \
     controller/password_form.h \
     model/excavator_db.h \
+    model/motorgrader_db.h \
     structure.h
 
 FORMS += \

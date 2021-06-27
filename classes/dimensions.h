@@ -8,8 +8,8 @@ class Dimensions {
 
 public:
     Dimensions();
-    Dimensions(double, double, double);
-    explicit Dimensions(const Dimensions &);
+    Dimensions(double t, double w, double l);
+    Dimensions(const Dimensions &other);
 
     double GetThickness();
     double GetWidth();

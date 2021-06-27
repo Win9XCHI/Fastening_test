@@ -8,7 +8,7 @@ class FromTo {
 
 public:
     FromTo();
-    FromTo(double, double);
+    FromTo(double f, double t);
     FromTo(const FromTo &);
 
     double GetFrom();
