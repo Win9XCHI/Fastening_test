@@ -25,11 +25,27 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_lineEdit_cursorPositionChanged(int arg1, int arg2);
+
+    void on_lineEdit_editingFinished();
+
+    void on_lineEdit_4_cursorPositionChanged(int arg1, int arg2);
+
+    void on_lineEdit_4_editingFinished();
+
+    void on_comboBox_highlighted(int index);
+
+    void on_comboBox_activated(int index);
+
+    void on_lineEdit_10_cursorPositionChanged(int arg1, int arg2);
+
+    void on_lineEdit_10_editingFinished();
+
 private:
     Ui::Scraper_Form *ui;
     ScraperDB DB;
     Scraper *object_scraper;
-    unsigned int count1, count2;
+    unsigned int count;
 
     void FillingFormMotorScraper(form_scraper &object_form);
     bool CheckAnswer(form_answer_scraper form);

@@ -8,20 +8,13 @@ Scraper_Form::Scraper_Form(ScraperDB db, QWidget *parent) :
     ui->setupUi(this);
     scene = new QGraphicsScene;
     DB = db;
-    count1 = count2 = 0;
+    count = 0;
     scene = new QGraphicsScene;
     ui->comboBox->addItem("");
     ui->comboBox->addItem("Ні");
     ui->comboBox->addItem("Так");
     object_scraper = new Scraper(DB);
     Scraper_Form::set_image();
-
-    /*image("D:/DIIT KIT/Military/Programs/Fastening_test/Source/scraper.bmp");
-    stretch_marks_cursor(green_pen());
-    bar_thrust_cursor(green_pen());
-    lining_cursor(green_pen());
-    bar_side_cursor(green_pen(10));
-    show_graphics();*/
 }
 
 Scraper_Form::~Scraper_Form()
@@ -50,12 +43,12 @@ void Scraper_Form::bar_thrust_cursor(QPen pen) {
 }
 
 void Scraper_Form::bar_side_cursor(QPen pen) {
-    scene->addLine(380, 180, 400, 180, pen);
+    scene->addLine(220, 185, 250, 185, pen);
+    scene->addLine(550, 185, 590, 185, pen);
 }
 
 void Scraper_Form::lining_cursor(QPen pen) {
-    scene->addLine(220, 185, 250, 185, pen);
-    scene->addLine(550, 185, 590, 185, pen);
+    scene->addLine(380, 180, 400, 180, pen);
 }
 
 
@@ -206,4 +199,72 @@ bool Scraper_Form::CheckAnswer(form_answer_scraper form) {
     }
 
     return flag;
+}
+
+void Scraper_Form::on_lineEdit_cursorPositionChanged(int arg1, int arg2)
+{
+    if ((arg1 == -1 || arg1 == 1) && arg2 == 0) {
+        stretch_marks_cursor(green_pen());
+        show_graphics();
+    }
+}
+
+void Scraper_Form::on_lineEdit_editingFinished()
+{
+    for (unsigned int i = 0; i < 4; i++) {
+        remove_last_item();
+    }
+    stretch_marks_cursor(red_pen());
+    show_graphics();
+}
+
+void Scraper_Form::on_lineEdit_4_cursorPositionChanged(int arg1, int arg2)
+{
+    if ((arg1 == -1 || arg1 == 1) && arg2 == 0) {
+        bar_thrust_cursor(green_pen());
+        show_graphics();
+    }
+}
+
+void Scraper_Form::on_lineEdit_4_editingFinished()
+{
+    for (unsigned int i = 0; i < 4; i++) {
+        remove_last_item();
+    }
+    bar_thrust_cursor(red_pen());
+    show_graphics();
+}
+
+void Scraper_Form::on_comboBox_highlighted(int index)
+{
+    lining_cursor(green_pen());
+    count++;
+    show_graphics();
+}
+
+void Scraper_Form::on_comboBox_activated(int index)
+{
+    for (unsigned int i = 0; i < count; i++) {
+        remove_last_item();
+    }
+    count = 0;
+    lining_cursor(red_pen());
+    show_graphics();
+}
+
+void Scraper_Form::on_lineEdit_10_cursorPositionChanged(int arg1, int arg2)
+{
+    if ((arg1 == -1 || arg1 == 1) && arg2 == 0) {
+        bar_side_cursor(green_pen());
+        show_graphics();
+    }
+}
+
+void Scraper_Form::on_lineEdit_10_editingFinished()
+{
+    for (unsigned int i = 0; i < 2; i++) {
+        remove_last_item();
+    }
+    bar_side_cursor(red_pen());
+    show_graphics();
 }
