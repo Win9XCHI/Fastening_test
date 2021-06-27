@@ -26,6 +26,9 @@ private slots:
 
 private:
     Ui::KRAZ_Form *ui;
+
+    void set_image() override;
+
     void show_graphics();
     void bar_cursor(QPen);
     void bars_thrust(QPen);

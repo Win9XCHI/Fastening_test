@@ -26,6 +26,9 @@ private slots:
 
 private:
     Ui::VGM_Form *ui;
+
+    void set_image() override;
+
     void show_graphics();
     void bar_cursor(QPen);
     void stretch_marks_cursor(QPen);

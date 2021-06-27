@@ -13,7 +13,7 @@ public:
     QPen red_pen(int width = 5);
     void triangle(QPen, int, int);
     void remove_last_item();
-    //virtual void set_image() = 0;
+    virtual void set_image() = 0;
 };
 
 #endif // BASE_TECHNICS_H

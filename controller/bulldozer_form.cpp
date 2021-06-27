@@ -59,3 +59,7 @@ void Bulldozer_Form::on_pushButton_2_clicked()
     Message_Form *object = new Message_Form(message);
     object->show();
 }
+
+void Bulldozer_Form::set_image() {
+
+}

@@ -53,3 +53,7 @@ void VGM_Form::on_pushButton_2_clicked()
     Message_Form *object = new Message_Form(message);
     object->show();
 }
+
+void VGM_Form::set_image() {
+
+}

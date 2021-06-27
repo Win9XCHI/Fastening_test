@@ -33,7 +33,7 @@ private:
     void FillingFormMotorGrader(form_motorgrader &object_form);
     bool CheckAnswer(form_answer_motorgrader form);
     void Default();
-    void set_image(); //override
+    void set_image() override;
 
     void show_graphics();
     void stretch_marks_cursor(QPen);

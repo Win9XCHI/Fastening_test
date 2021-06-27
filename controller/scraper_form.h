@@ -26,6 +26,9 @@ private slots:
 
 private:
     Ui::Scraper_Form *ui;
+
+    void set_image() override;
+
     void show_graphics();
     void stretch_marks_cursor(QPen);
     void bar_thrust_cursor(QPen);

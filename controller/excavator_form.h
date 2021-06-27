@@ -74,7 +74,7 @@ private:
     void FillingFormExcavator(form_excavator &object_form);
     bool CheckAnswer(form_answer_excavator form);
     void Default();
-    void set_image(); //override
+    void set_image() override;
 
     void show_graphics();
     void SM_swilev_cursor(QPen);

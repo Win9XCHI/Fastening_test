@@ -58,3 +58,7 @@ void KRAZ_pl_form::on_pushButton_clicked()
     Message_Form *object = new Message_Form(message);
     object->show();
 }
+
+void KRAZ_pl_form::set_image() {
+
+}
