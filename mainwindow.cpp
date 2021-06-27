@@ -141,8 +141,19 @@ void MainWindow::KRAZ_PL() {
 }
 
 void MainWindow::Scraper() {
+    ScraperDB DB("DB_for_test.db");
+
+    CheckFileDB();
+
+    if (!DB.CheckConnection()) {
+        DB.createConnection();
+    }
+    if (!DB.CheckConnection()) {
+        throw DatabaseException(DB.LastError().toStdString());
+    }
+
     Scraper_Form *object;
-    object = new Scraper_Form();
+    object = new Scraper_Form(DB);
     connect(object, &Scraper_Form::firstWindow, this, &MainWindow::show);
     object->show();
 }
