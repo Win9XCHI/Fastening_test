@@ -140,4 +140,58 @@ struct form_answer_scraper {
     }
 };
 
+struct form_bulldozer {
+    QString weight;
+    unsigned int s;
+    unsigned int wd;
+    unsigned int t;
+    unsigned int b;
+    QString nail_boards;
+    unsigned int st1;
+    unsigned int n1;
+    unsigned int nl1;
+    QString side_bar;
+    unsigned int st2;
+    unsigned int width;
+    unsigned int st;
+    unsigned int sw;
+    unsigned int sl;
+    unsigned int sn;
+    unsigned int gap;
+    bool l;
+    unsigned int ln;
+    unsigned int lt;
+    unsigned int lw;
+    unsigned int ll;
+};
+
+struct form_answer_bulldozer {
+    QString weight;
+    bool s;
+    bool wd;
+    bool t;
+    bool b;
+    QString nail_boards;
+    bool st1;
+    bool n1;
+    bool nl1;
+    QString side_bar;
+    bool st2;
+    bool width;
+    bool st;
+    bool sw;
+    bool sl;
+    bool sn;
+    bool gap;
+    bool l;
+    bool ln;
+    bool lt;
+    bool lw;
+    bool ll;
+
+    form_answer_bulldozer() {
+        s = wd = t = b = st1 = n1 = nl1 = st2 = width = st = sw = sl = sn = gap = l = ln = lt = lw = ll = true;
+    }
+};
+
 #endif // STRUCTURE_H
