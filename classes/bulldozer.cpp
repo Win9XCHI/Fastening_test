@@ -6,6 +6,7 @@ Bulldozer::Bulldozer(BulldozerDB db) {
     std::map<QString, Dimensions> contD;
     DB = db;
     weight = nail_boards = side_bar = "";
+    width_trackYesNo = false;
 
     Quiry(cont, contD);
     Filling(cont, contD);
@@ -44,6 +45,7 @@ void Bulldozer::ClearNailBoards() {
 
 void Bulldozer::ClearSideBar() {
     side_bar = "";
+    width_trackYesNo = false;
     if (mas_bar.find("side") != mas_bar.cend()) {
         mas_bar.erase(mas_bar.find("side"));
     }
@@ -106,10 +108,17 @@ void Bulldozer::SetSideBar(QString string) {
         mas_fromto.insert({"gap", {contFT["Який зазор між боковим бруском та гусеницею (мм)"]}});
 
     } else {
-        width_track = cont["Яка ширина гусениці у бульдозера"];
+        width_trackYesNo = true;
+    }
+}
+
+void Bulldozer::SetWidthTrack(QString string) {
+    if (width_trackYesNo) {
+        width_track = string;
+        std::map<QString, QString> cont;
         DB.SELECT("Con.Value, Cha.Name",
                   "Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id",
-                  "Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '" + width_track + "' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '" + side_bar + "' AND Cha.Name = '" + string + "' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = '" + name + "' AND Con.Value = '" + weight + "')))");
+                  "Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '" + width_track + "' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '" + side_bar + "' AND Cha.Name = 'Чим будете кріпити бульдозер від поперечного зміщення при відкритих бортах платформи' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = '" + name + "' AND Con.Value = '" + weight + "')))");
         DB.GetValue(cont);
         mas_bar.insert({"side", {2, 0, 0, cont["Скільки будівельних скоб потрібно для закріплення"].toUInt()}});
     }

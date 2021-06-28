@@ -10,6 +10,7 @@ class Bulldozer : Equipment {
     QString side_bar;
     unsigned int wire_diameter;
     QString width_track;
+    bool width_trackYesNo;
 
     void Quiry(std::map<QString, QString> &cont, std::map<QString, Dimensions> &contD);
     void Filling(std::map<QString, QString> cont, std::map<QString, Dimensions> contD);
@@ -24,6 +25,7 @@ public:
     void SetSideBar(QString string);
     void ClearNailBoards();
     void ClearSideBar();
+    void SetWidthTrack(QString string);
 };
 
 #endif // BULLDOZER_H

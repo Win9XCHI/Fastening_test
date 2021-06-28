@@ -120,8 +120,19 @@ void MainWindow::MotorGrader() {
 }
 
 void MainWindow::Bulldozer() {
+    BulldozerDB DB("DB_for_test.db");
+
+    CheckFileDB();
+
+    if (!DB.CheckConnection()) {
+        DB.createConnection();
+    }
+    if (!DB.CheckConnection()) {
+        throw DatabaseException(DB.LastError().toStdString());
+    }
+
     Bulldozer_Form *object;
-    object = new Bulldozer_Form();
+    object = new Bulldozer_Form(DB);
     connect(object, &Bulldozer_Form::firstWindow, this, &MainWindow::show);
     object->show();
 }
