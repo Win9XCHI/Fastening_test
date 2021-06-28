@@ -14,6 +14,8 @@ public:
     double GetThickness();
     double GetWidth();
     double GetLength();
+
+    Dimensions& operator=(Dimensions &other);
 };
 
 #endif // DIMENSIONS_H

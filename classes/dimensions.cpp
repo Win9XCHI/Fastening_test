@@ -23,3 +23,10 @@ double Dimensions::GetLength() {
     return length;
 }
 
+Dimensions& Dimensions::operator=(Dimensions &other) {
+    thickness = other.GetThickness();
+    width = other.GetWidth();
+    length = other.GetLength();
+    return *this;
+}
+

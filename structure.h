@@ -152,12 +152,13 @@ struct form_bulldozer {
     unsigned int nl1;
     QString side_bar;
     unsigned int st2;
-    unsigned int width;
+    QString width;
     unsigned int st;
     unsigned int sw;
     unsigned int sl;
     unsigned int sn;
-    unsigned int gap;
+    unsigned int gap1;
+    unsigned int gap2;
     bool l;
     unsigned int ln;
     unsigned int lt;
@@ -182,7 +183,8 @@ struct form_answer_bulldozer {
     bool sw;
     bool sl;
     bool sn;
-    bool gap;
+    bool gap1;
+    bool gap2;
     bool l;
     bool ln;
     bool lt;
@@ -190,7 +192,7 @@ struct form_answer_bulldozer {
     bool ll;
 
     form_answer_bulldozer() {
-        s = wd = t = b = st1 = n1 = nl1 = st2 = width = st = sw = sl = sn = gap = l = ln = lt = lw = ll = true;
+        s = wd = t = b = st1 = n1 = nl1 = st2 = width = st = sw = sl = sn = gap1 = gap2 = l = ln = lt = lw = ll = true;
     }
 };
 

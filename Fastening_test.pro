@@ -12,6 +12,7 @@ PACKAGECONFIG_append_pn-qtbase = " sql-sqlite"
 
 SOURCES += \
     classes/bar.cpp \
+    classes/bulldozer.cpp \
     classes/dimensions.cpp \
     classes/equipment.cpp \
     classes/excavator.cpp \
@@ -42,6 +43,7 @@ SOURCES += \
 
 HEADERS += \
     classes/bar.h \
+    classes/bulldozer.h \
     classes/dimensions.h \
     classes/equipment.h \
     classes/excavator.h \
