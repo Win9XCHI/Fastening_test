@@ -5,7 +5,6 @@
 
 class MotorGrader : Equipment {
     MotorGraderDB DB;
-    unsigned int wire_diameter;
 
     void Quiry(std::map<QString, QString> &cont, std::map<QString, Dimensions> &contD);
     void Filling(std::map<QString, QString> cont, std::map<QString, Dimensions> contD);

@@ -6,7 +6,6 @@
 class Excavator : Equipment {
     ExcavatorDB DB;
 
-    unsigned int wire_diameter;
     unsigned int boom_height;
     double axis_turnover;
     double axis_longitudinal;

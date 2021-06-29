@@ -24,11 +24,9 @@ void MotorGrader::Quiry(std::map<QString, QString> &cont, std::map<QString, Dime
 }
 
 void MotorGrader::Filling(std::map<QString, QString> cont, std::map<QString, Dimensions> contD) {
-    mas_stretching.insert({"stretch", {cont["Скільки розтяжок потрібно для кріплення автогрейдера"].toUInt(), cont["Скільки ниток в розтяжці (47)"].toUInt()}});
+    mas_stretching.insert({"stretch", {cont["Скільки розтяжок потрібно для кріплення автогрейдера"].toUInt(), cont["Скільки ниток в розтяжці (47)"].toUInt(), cont["Якого діаметру повинен бути дріт (мм)"].toUInt()}});
 
     mas_bar.insert({"thrust", {cont["Скільки упорних брусків потрібно для кріплення автогрейдера"].toUInt(), cont["Скільки цвяхів потрібно для закріплення кожного бруска"].toUInt()}});
-
-    wire_diameter = cont["Якого діаметру повинен бути дріт (мм)"].toUInt();
 
     bool flag1(false), flag2(false);
     if (cont["Чи потрібна підкладка під ніж відвалу"] == "Так") {
@@ -59,7 +57,7 @@ form_answer_motorgrader MotorGrader::CheckAnswer(form_motorgrader form) {
         object.n = false;
     }
 
-    if (form.wd != wire_diameter) {
+    if (form.wd != mas_stretching["stretch"].GetWireDiameter()) {
         object.wd = false;
     }
 

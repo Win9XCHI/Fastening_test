@@ -25,9 +25,8 @@ void KRAZ_pl::Quiry(std::map<QString, QString> &cont, std::map<QString, FromTo> 
 }
 
 void KRAZ_pl::Filling(std::map<QString, QString> cont, std::map<QString, FromTo> contFT, std::map<QString, Dimensions> contD) {
-    mas_stretching.insert({"stretch", {cont["Скільки розтяжок потрібно використати"].toUInt(), cont["Скільки ниток в розтяжці (51)"].toUInt()}});
+    mas_stretching.insert({"stretch", {cont["Скільки розтяжок потрібно використати"].toUInt(), cont["Скільки ниток в розтяжці (51)"].toUInt(), cont["Якого діаметру розтяжки потрібно використати (мм)"].toUInt()}});
     mas_bar.insert({"thrust", {cont["Скільки потрібно використати упорних брусків"].toUInt(), contD["Які потрібні розміри упорних брусків (мм)"], cont["Скільки цвяхів (150 мм) на брусок"].toUInt()}});
-    wire_diameter = cont["Якого діаметру розтяжки потрібно використати (мм)"].toUInt();
     mas_fromto.insert({"kg/pog", contFT["Які витрати проволоки (кг/пог.м))"]});
 }
 
@@ -46,7 +45,7 @@ form_answer_KRAZ_pl KRAZ_pl::CheckAnswer(form_KRAZ_pl form) {
     if (form.n != mas_bar["thrust"].GetNails()) {
         object.n = false;
     }
-    if (form.wd != wire_diameter) {
+    if (form.wd != mas_stretching["stretch"].GetWireDiameter()) {
         object.wd = false;
     }
     if (form.t1 != mas_bar["thrust"].GetDimensions().GetThickness()) {

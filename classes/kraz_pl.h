@@ -5,8 +5,6 @@
 
 class KRAZ_pl : Equipment {
     KRAZ_pl_DB DB;
-
-    unsigned int wire_diameter;
     double kg;
     double pog;
 

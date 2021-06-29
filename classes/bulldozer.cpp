@@ -26,9 +26,8 @@ void Bulldozer::Quiry(std::map<QString, QString> &cont, std::map<QString, Dimens
 }
 
 void Bulldozer::Filling(std::map<QString, QString> cont, std::map<QString, Dimensions> contD) {
-    mas_stretching.insert({"stretch", {cont["Скільки буде використано розтяжок"].toUInt()}});
+    mas_stretching.insert({"stretch", {cont["Скільки буде використано розтяжок"].toUInt(), 0, cont["Дріт якого діаметру треба застосувати"].toUInt()}});
     mas_bar.insert({"thrust", {cont["Скільки упорних брусків треба використати"].toUInt()}});
-    wire_diameter = cont["Дріт якого діаметру треба застосувати"].toUInt();
     bool flag(false);
     if (cont["Чи потрібна дерев'яна підкладки під ніж бульдозера"] == "Так") {
         flag = true;
@@ -130,7 +129,7 @@ form_answer_bulldozer Bulldozer::CheckAnswer(form_bulldozer form) {
     if (form.s != mas_stretching["stretch"].GetCount()) {
         object.s = false;
     }
-    if (form.wd != wire_diameter) {
+    if (form.wd != mas_stretching["stretch"].GetWireDiameter()) {
         object.wd = false;
     }
     if (form.t != mas_stretching["stretch"].GetThread()) {

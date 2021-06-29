@@ -24,12 +24,10 @@ void Scraper::Quiry(std::map<QString, QString> &cont, std::map<QString, Dimensio
 }
 
 void Scraper::Filling(std::map<QString, QString> cont, std::map<QString, Dimensions> contD) {
-    mas_stretching.insert({"stretch", {cont["Скільки розтяжок потрібно для кріплення скрепера"].toUInt(), cont["Скільки ниток в розтяжці (75)"].toUInt()}});
+    mas_stretching.insert({"stretch", {cont["Скільки розтяжок потрібно для кріплення скрепера"].toUInt(), cont["Скільки ниток в розтяжці (75)"].toUInt(), cont["Якого діаметру повинен бути дріт (мм)"].toUInt()}});
 
     mas_bar.insert({"thrust", {cont["Скільки упорних брусків потрібно для кріплення скрепера"].toUInt(), cont["Скільки цвяхів потрібно для закріплення кожного бруска"].toUInt()}});
     mas_bar.insert({"side", {cont["Скільки потрібно бічних брусків від поперечного зміщення при відкритих бортах платформи"].toUInt(), contD["Розміри бічних брусків (мм):"], cont["Кількість цвяхів на брусок"].toUInt()}});
-
-    wire_diameter = cont["Якого діаметру повинен бути дріт (мм)"].toUInt();
 
     bool flag(false);
     if (cont["Чи потрібна підкладка під ніж скрепера"] == "Так") {
@@ -71,7 +69,7 @@ form_answer_scraper Scraper::CheckAnswer(form_scraper form) {
         object.l2 = false;
     }
 
-    if (form.wd != wire_diameter) {
+    if (form.wd != mas_stretching["stretch"].GetWireDiameter()) {
         object.wd = false;
     }
 

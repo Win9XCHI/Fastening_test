@@ -8,7 +8,6 @@ class Bulldozer : Equipment {
     QString weight;
     QString nail_boards;
     QString side_bar;
-    unsigned int wire_diameter;
     QString width_track;
     bool width_trackYesNo;
 

@@ -28,18 +28,17 @@ void Excavator::Quiry(std::map<QString, QString> &cont, std::map<QString, FromTo
 }
 
 void Excavator::Filling(std::map<QString, QString> cont, std::map<QString, FromTo> contFT) {
-    mas_stretching.insert({"swivel platform", {cont["Скільки розтяжок потрібно для кріплення поворотної платформи"].toUInt(), cont["Скільки ниток в розтяжці (2)"].toUInt()}});
-    mas_stretching.insert({"chassis", {cont["Скільки розтяжок потрібно для кріплення ходової частини"].toUInt(), cont["Скільки ниток в розтяжці (4)"].toUInt()}});
-    mas_stretching.insert({"arrow root", {cont["Скільки розтяжок потрібно для кріплення корня стріли"].toUInt(), cont["Скільки ниток в розтяжці (6)"].toUInt()}});
-    mas_stretching.insert({"arrow handle", {cont["Скільки розтяжок потрібно для кріплення рукояті стріли"].toUInt(), cont["Скільки ниток в розтяжці (8)"].toUInt()}});
-    mas_stretching.insert({"caterpillar trolley", {cont["Скільки розтяжок потрібно для кріплення гусенічного візка"].toUInt(), cont["Скільки ниток в розтяжці (10)"].toUInt()}});
+    mas_stretching.insert({"swivel platform", {cont["Скільки розтяжок потрібно для кріплення поворотної платформи"].toUInt(), cont["Скільки ниток в розтяжці (2)"].toUInt(), cont["Якого діаметру треба застосувати проволоку (мм)"].toUInt()}});
+    mas_stretching.insert({"chassis", {cont["Скільки розтяжок потрібно для кріплення ходової частини"].toUInt(), cont["Скільки ниток в розтяжці (4)"].toUInt(), cont["Якого діаметру треба застосувати проволоку (мм)"].toUInt()}});
+    mas_stretching.insert({"arrow root", {cont["Скільки розтяжок потрібно для кріплення корня стріли"].toUInt(), cont["Скільки ниток в розтяжці (6)"].toUInt(), cont["Якого діаметру треба застосувати проволоку (мм)"].toUInt()}});
+    mas_stretching.insert({"arrow handle", {cont["Скільки розтяжок потрібно для кріплення рукояті стріли"].toUInt(), cont["Скільки ниток в розтяжці (8)"].toUInt(), cont["Якого діаметру треба застосувати проволоку (мм)"].toUInt()}});
+    mas_stretching.insert({"caterpillar trolley", {cont["Скільки розтяжок потрібно для кріплення гусенічного візка"].toUInt(), cont["Скільки ниток в розтяжці (10)"].toUInt(), cont["Якого діаметру треба застосувати проволоку (мм)"].toUInt()}});
 
     mas_bar.insert({"thrust", {cont["Скільки потрібно упорних брусків"].toUInt(), cont["Скільки потрібно цвяхів в кожний брусок (13)"].toUInt()}});
     mas_bar.insert({"side", {cont["Скільки потрібно бічних брусків від поперечного зміщення при відкритих ботах платформи"].toUInt(), cont["Скільки потрібно цвяхів в кожний брусок (15)"].toUInt()}});
 
     mas_fromto.insert({"gap", contFT["Який зазор повинен бути між гусеницями і боковими брусками (мм)? від"]});
 
-    wire_diameter = cont["Якого діаметру треба застосувати проволоку (мм)"].toUInt();
     boom_height = cont["Після опускання стріли відстань між полом платформи та верхньою точкою стріли не повинна перевищувати ... (м)"].toUInt();
     axis_turnover = cont["На скільки потрібно змістити вісь обертання ексковатора від середини платформи назад (м)"].toDouble();
     axis_longitudinal = cont["На скільки повинна бути зміщена повздовжня вісь ексковатора відносно вісі платформи вправо (м)"].toDouble();
@@ -105,7 +104,7 @@ form_answer_excavator Excavator::CheckAnswer(form_excavator form) {
         object.n2 = false;
     }
 
-    if (form.wd != wire_diameter) {
+    if (form.wd != mas_stretching["swivel platform"].GetWireDiameter()) {
         object.wd = false;
     }
     if (form.at != axis_turnover) {
