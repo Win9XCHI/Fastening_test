@@ -145,8 +145,19 @@ void MainWindow::KRAZ() {
 }
 
 void MainWindow::KRAZ_PL() {
+    KRAZ_pl_DB DB("DB_for_test.db");
+
+    CheckFileDB();
+
+    if (!DB.CheckConnection()) {
+        DB.createConnection();
+    }
+    if (!DB.CheckConnection()) {
+        throw DatabaseException(DB.LastError().toStdString());
+    }
+
     KRAZ_pl_form *object;
-    object = new KRAZ_pl_form();
+    object = new KRAZ_pl_form(DB);
     connect(object, &KRAZ_pl_form::firstWindow, this, &MainWindow::show);
     object->show();
 }
