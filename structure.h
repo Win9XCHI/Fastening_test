@@ -197,4 +197,34 @@ struct form_answer_bulldozer {
     }
 };
 
+struct form_KRAZ_pl {
+    unsigned int b;
+    unsigned int t1;
+    unsigned int w1;
+    unsigned int l1;
+    unsigned int n;
+    unsigned int s;
+    unsigned int t;
+    unsigned int wd;
+    unsigned int kg;
+    unsigned int pog;
+};
+
+struct form_answer_KRAZ_pl {
+    bool b;
+    bool t1;
+    bool w1;
+    bool l1;
+    bool n;
+    bool s;
+    bool t;
+    bool wd;
+    bool kg;
+    bool pog;
+
+    form_answer_KRAZ_pl() {
+        b = t1 = w1 = l1 = n = s = t = wd = kg = pog = true;
+    }
+};
+
 #endif // STRUCTURE_H
