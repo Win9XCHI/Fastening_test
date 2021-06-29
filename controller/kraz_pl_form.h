@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "base/base_technics.h"
+#include "../classes/kraz_pl.h"
 
 namespace Ui {
 class KRAZ_pl_form;

@@ -206,8 +206,8 @@ struct form_KRAZ_pl {
     unsigned int s;
     unsigned int t;
     unsigned int wd;
-    unsigned int kg;
-    unsigned int pog;
+    double kg;
+    double pog;
 };
 
 struct form_answer_KRAZ_pl {

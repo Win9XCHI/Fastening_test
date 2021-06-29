@@ -17,6 +17,7 @@ SOURCES += \
     classes/equipment.cpp \
     classes/excavator.cpp \
     classes/fromto.cpp \
+    classes/kraz_pl.cpp \
     classes/lining.cpp \
     classes/motorgrader.cpp \
     classes/scraper.cpp \
@@ -49,6 +50,7 @@ HEADERS += \
     classes/equipment.h \
     classes/excavator.h \
     classes/fromto.h \
+    classes/kraz_pl.h \
     classes/lining.h \
     classes/motorgrader.h \
     classes/scraper.h \
