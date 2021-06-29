@@ -99,22 +99,34 @@ void Bulldozer_Form::set_image() {
 }
 
 void Bulldozer_Form::FillingFormBulldozer(form_bulldozer &object_form) {
-    /*object_form.s = ui->lineEdit->text().toUInt();
-    object_form.t = ui->lineEdit_2->text().toUInt();
-    object_form.wd = ui->lineEdit_3->text().toUInt();
+    object_form.s = ui->lineEdit->text().toUInt();
+    object_form.wd = ui->lineEdit_2->text().toUInt();
+    object_form.t = ui->lineEdit_3->text().toUInt();
     object_form.b = ui->lineEdit_4->text().toUInt();
-    object_form.n = ui->lineEdit_5->text().toUInt();
-    object_form.nli1 = ui->lineEdit_9->text().toUInt();
-    object_form.nli2 = ui->lineEdit_10->text().toUInt();
-    object_form.t1 = ui->lineEdit_6->text().toUInt();
-    object_form.t2 = ui->lineEdit_11->text().toUInt();
-    object_form.w1 = ui->lineEdit_7->text().toUInt();
-    object_form.w2 = ui->lineEdit_12->text().toUInt();
-    object_form.l1 = ui->lineEdit_8->text().toUInt();
-    object_form.l2 = ui->lineEdit_13->text().toUInt();
+    object_form.st1 = ui->lineEdit_9->text().toUInt();
+    object_form.n1 = ui->lineEdit_16->text().toUInt();
+    object_form.nl1 = ui->lineEdit_17->text().toUInt();
+    object_form.st2 = ui->lineEdit_10->text().toUInt();
+    object_form.st = ui->lineEdit_11->text().toUInt();
+    object_form.sw = ui->lineEdit_12->text().toUInt();
+    object_form.sl = ui->lineEdit_13->text().toUInt();
+    object_form.sn = ui->lineEdit_14->text().toUInt();
+    object_form.gap1 = ui->lineEdit_15->text().toUInt();
+    object_form.gap2 = ui->lineEdit_18->text().toUInt();
+    object_form.ln = ui->lineEdit_8->text().toUInt();
+    object_form.lt = ui->lineEdit_5->text().toUInt();
+    object_form.lw = ui->lineEdit_6->text().toUInt();
+    object_form.ll = ui->lineEdit_7->text().toUInt();
 
-    ui->comboBox->currentText() == "Так" ? object_form.li1 = true : object_form.li1 = false;
-    ui->comboBox_2->currentText() == "Так" ? object_form.li2 = true : object_form.li2 = false;*/
+    ui->comboBox->currentText() == "Так" ? object_form.l = true : object_form.l = false;
+    object_form.weight = ui->comboBox_2->currentText();
+    object_form.width = ui->comboBox_3->currentText();
+    if (ui->listWidget->currentRow() != -1) {
+        object_form.nail_boards = ui->listWidget->currentItem()->text();
+    }
+    if (ui->listWidget_2->currentRow() != -1) {
+        object_form.side_bar = ui->listWidget_2->currentItem()->text();
+    }
 }
 
 void Bulldozer_Form::Default() {
@@ -131,81 +143,138 @@ void Bulldozer_Form::Default() {
 
 bool Bulldozer_Form::CheckAnswer(form_answer_bulldozer form) {
     bool flag(true);
-/*
+
     if (!form.s) {
         ui->lineEdit->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label->setStyleSheet("color: rgb(200, 0, 0)");
-        flag = false;
-    }
-    if (!form.t) {
-        ui->lineEdit_2->setStyleSheet("color: rgb(200, 0, 0)");
         ui->label_2->setStyleSheet("color: rgb(200, 0, 0)");
         flag = false;
     }
     if (!form.wd) {
-        ui->lineEdit_3->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_2->setStyleSheet("color: rgb(200, 0, 0)");
         ui->label_3->setStyleSheet("color: rgb(200, 0, 0)");
         flag = false;
     }
+    if (ui->comboBox_2->currentText() == "") {
+        ui->label->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+
+    } else {
+        if (!form.t) {
+            ui->lineEdit_3->setStyleSheet("color: rgb(200, 0, 0)");
+            ui->label_4->setStyleSheet("color: rgb(200, 0, 0)");
+            flag = false;
+        }
+    }
     if (!form.b) {
         ui->lineEdit_4->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_4->setStyleSheet("color: rgb(200, 0, 0)");
-        flag = false;
-    }
-    if (!form.n) {
-        ui->lineEdit_5->setStyleSheet("color: rgb(200, 0, 0)");
         ui->label_5->setStyleSheet("color: rgb(200, 0, 0)");
         flag = false;
     }
-    if (!form.li1) {
-        ui->label_9->setStyleSheet("color: rgb(200, 0, 0)");
+
+    if (ui->listWidget->currentRow() == -1) {
+        ui->label_6->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    } else {
+
+        if (ui->listWidget->currentItem()->text() == "Будівельні скоби") {
+            if (!form.st1) {
+                ui->lineEdit_9->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->label_15->setStyleSheet("color: rgb(200, 0, 0)");
+                flag = false;
+            }
+        }
+        if (ui->listWidget->currentItem()->text() == "Цвяхи") {
+            if (!form.n1) {
+                ui->lineEdit_16->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->label_21->setStyleSheet("color: rgb(200, 0, 0)");
+                flag = false;
+            }
+            if (!form.nl1) {
+                ui->lineEdit_17->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->label_22->setStyleSheet("color: rgb(200, 0, 0)");
+                flag = false;
+            }
+        }
+    }
+
+    if (ui->listWidget_2->currentRow() == -1) {
+        ui->label_7->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    } else {
+
+        if (ui->listWidget_2->currentItem()->text() == "Будівельні скоби") {
+            if (ui->comboBox_3->currentText() == "") {
+                ui->label_16->setStyleSheet("color: rgb(200, 0, 0)");
+                flag = false;
+            } else {
+                if (!form.st2) {
+                    ui->lineEdit_10->setStyleSheet("color: rgb(200, 0, 0)");
+                    ui->label_17->setStyleSheet("color: rgb(200, 0, 0)");
+                    flag = false;
+                }
+            }
+        }
+
+        if (ui->listWidget_2->currentItem()->text() == "Бокові бруски") {
+            if (!form.st) {
+                ui->lineEdit_11->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->label_25->setStyleSheet("color: rgb(200, 0, 0)");
+                flag = false;
+            }
+            if (!form.sw) {
+                ui->lineEdit_12->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->label_14->setStyleSheet("color: rgb(200, 0, 0)");
+                flag = false;
+            }
+            if (!form.sl) {
+                ui->lineEdit_13->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->label_26->setStyleSheet("color: rgb(200, 0, 0)");
+                flag = false;
+            }
+            if (!form.sn) {
+                ui->lineEdit_14->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->label_19->setStyleSheet("color: rgb(200, 0, 0)");
+                flag = false;
+            }
+            if (!form.gap1) {
+                ui->lineEdit_15->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->label_20->setStyleSheet("color: rgb(200, 0, 0)");
+                flag = false;
+            }
+            if (!form.gap2) {
+                ui->lineEdit_18->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->label_20->setStyleSheet("color: rgb(200, 0, 0)");
+                flag = false;
+            }
+        }
+    }
+
+
+    if (!form.l) {
+        ui->label_8->setStyleSheet("color: rgb(200, 0, 0)");
         flag = false;
     }
-    if (!form.li2) {
-        ui->label_15->setStyleSheet("color: rgb(200, 0, 0)");
-        flag = false;
-    }
-    if (!form.nli1) {
-        ui->lineEdit_9->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_14->setStyleSheet("color: rgb(200, 0, 0)");
-        flag = false;
-    }
-    if (!form.nli2) {
-        ui->lineEdit_10->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_20->setStyleSheet("color: rgb(200, 0, 0)");
-        flag = false;
-    }
-    if (!form.t1) {
-        ui->lineEdit_6->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_11->setStyleSheet("color: rgb(200, 0, 0)");
-        flag = false;
-    }
-    if (!form.t2) {
-        ui->lineEdit_11->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_21->setStyleSheet("color: rgb(200, 0, 0)");
-        flag = false;
-    }
-    if (!form.w1) {
-        ui->lineEdit_7->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_12->setStyleSheet("color: rgb(200, 0, 0)");
-        flag = false;
-    }
-    if (!form.w2) {
-        ui->lineEdit_12->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_22->setStyleSheet("color: rgb(200, 0, 0)");
-        flag = false;
-    }
-    if (!form.l1) {
+    if (!form.ln) {
         ui->lineEdit_8->setStyleSheet("color: rgb(200, 0, 0)");
         ui->label_13->setStyleSheet("color: rgb(200, 0, 0)");
         flag = false;
     }
-    if (!form.l2) {
-        ui->lineEdit_13->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_23->setStyleSheet("color: rgb(200, 0, 0)");
+    if (!form.lt) {
+        ui->lineEdit_5->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_10->setStyleSheet("color: rgb(200, 0, 0)");
         flag = false;
     }
-*/
+    if (!form.lw) {
+        ui->lineEdit_6->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_11->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.ll) {
+        ui->lineEdit_7->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_12->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+
     return flag;
 }
 

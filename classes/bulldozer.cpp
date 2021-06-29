@@ -64,6 +64,7 @@ void Bulldozer::SetWeight(QString string) {
 }
 
 void Bulldozer::SetNailBoards(QString string) {
+    ClearNailBoards();
     nail_boards = string;
     string = "Чим будуть прибивати бруски до платформи";
     std::map<QString, QString> cont;
@@ -71,7 +72,6 @@ void Bulldozer::SetNailBoards(QString string) {
               "Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id",
               "Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '" + nail_boards + "' AND Cha.Name = '" + string + "' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = '" + name + "' AND Con.Value = '" + weight + "'))");
     DB.GetValue(cont);
-    ClearNailBoards();
 
     if (nail_boards == "Будівельні скоби") {
         mas_bar["thrust"].SetStaple(cont["Скільки скоб треба застосувати для кріплення одного бруска"].toUInt());
@@ -82,9 +82,9 @@ void Bulldozer::SetNailBoards(QString string) {
 }
 
 void Bulldozer::SetSideBar(QString string) {
+    ClearSideBar();
     side_bar = string;
     string = "Чим будете кріпити бульдозер від поперечного зміщення при відкритих бортах платформи";
-    ClearSideBar();
     std::map<QString, QString> cont;
     std::map<QString, FromTo> contFT;
     std::map<QString, Dimensions> contD;

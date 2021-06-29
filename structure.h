@@ -167,6 +167,7 @@ struct form_bulldozer {
 
     form_bulldozer() {
         s = wd = t = b = st1 = n1 = nl1 = st2 = st = sw = sl = sn = gap1 = gap2 = l = ln = lt = lw = ll = 0;
+        weight = nail_boards = nail_boards = width = "";
     }
 };
 
