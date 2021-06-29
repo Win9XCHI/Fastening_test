@@ -38,6 +38,7 @@ SOURCES += \
     controller/vgm_form.cpp \
     controller/password_form.cpp \
     model/excavator_db.cpp \
+    model/kraz_pl_db.cpp \
     model/motorgrader_db.cpp \
     model/scraper_db.cpp
 
@@ -70,6 +71,7 @@ HEADERS += \
     controller/vgm_form.h \
     controller/password_form.h \
     model/excavator_db.h \
+    model/kraz_pl_db.h \
     model/motorgrader_db.h \
     model/scraper_db.h \
     structure.h
