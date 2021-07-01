@@ -13,7 +13,7 @@ VGM::VGM(VGM_DB db) : staple(0) {
 VGM::~VGM() {}
 
 void VGM::Quiry(std::map<QString, QString> &cont) {
-    DB.SELECT("Con.Value, Cha.Name", "Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id", "Equ.Name = '" + name + "' AND Con.Value NOT NULL AND Con.Conditions_id IS NULL AND Cha.Name != 'Вага бульдозера'");
+    DB.SELECT("Con.Value, Cha.Name", "Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id", "Equ.Name = '" + name + "' AND Con.Value NOT NULL AND Con.Conditions_id IS NULL AND Cha.Name != 'Вага ВГМ'");
     DB.GetValue(cont);
 }
 
@@ -23,7 +23,23 @@ void VGM::Filling(std::map<QString, QString> cont) {
     staple = cont["скоб від поперечного зміщення"].toUInt();
 }
 
-void VGM::SetWeight(QString string) {
+void VGM::SetWeight(double number) {
+    QString string("");
+
+    if (number <= 0 || number > 50) {
+        weight = "";
+        return;
+    }
+    if (number > 0 && number < 15.1) {
+        string = "До 15 т.";
+    }
+    if (number > 15 && number < 25.1) {
+        string = "Від 15.1 до 25 т.";
+    }
+    if (number > 25 && number <= 50) {
+        string = "Від 25.1 до 50 т.";
+    }
+
     mas_stretching["stretch"].SetThread(0);
     mas_bar["thrust"].SetNails(0);
     mas_bar["thrust"].SetStaple(0);
@@ -58,6 +74,9 @@ form_answer_VGM VGM::CheckAnswer(form_VGM form) {
     }
     if (form.st2 != staple) {
         object.st2 = false;
+    }
+    if (weight == "") {
+        object.weight = false;
     }
 
     return object;

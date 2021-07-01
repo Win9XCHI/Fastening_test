@@ -191,8 +191,19 @@ void MainWindow::Scraper() {
 }
 
 void MainWindow::VGM() {
+    VGM_DB DB("DB_for_test.db");
+
+    CheckFileDB();
+
+    if (!DB.CheckConnection()) {
+        DB.createConnection();
+    }
+    if (!DB.CheckConnection()) {
+        throw DatabaseException(DB.LastError().toStdString());
+    }
+
     VGM_Form *object;
-    object = new VGM_Form();
+    object = new VGM_Form(DB);
     connect(object, &VGM_Form::firstWindow, this, &MainWindow::show);
     object->show();
 }

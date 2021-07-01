@@ -282,6 +282,7 @@ struct form_VGM {
 };
 
 struct form_answer_VGM {
+    bool weight;
     bool s;
     bool t;
     bool b;
@@ -290,7 +291,7 @@ struct form_answer_VGM {
     bool st2;
 
     form_answer_VGM() {
-        s = t = b = st1 = n = st2 = true;
+        weight = s = t = b = st1 = n = st2 = true;
     }
 };
 

@@ -16,7 +16,7 @@ public:
     virtual ~VGM();
 
     form_answer_VGM CheckAnswer(form_VGM);
-    void SetWeight(QString string);
+    void SetWeight(double number);
 };
 
 #endif // VGM_H
