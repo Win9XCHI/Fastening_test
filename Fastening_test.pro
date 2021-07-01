@@ -43,7 +43,8 @@ SOURCES += \
     model/kraz_db.cpp \
     model/kraz_pl_db.cpp \
     model/motorgrader_db.cpp \
-    model/scraper_db.cpp
+    model/scraper_db.cpp \
+    model/vgm_db.cpp
 
 HEADERS += \
     classes/bar.h \
@@ -80,6 +81,7 @@ HEADERS += \
     model/kraz_pl_db.h \
     model/motorgrader_db.h \
     model/scraper_db.h \
+    model/vgm_db.h \
     structure.h
 
 FORMS += \
