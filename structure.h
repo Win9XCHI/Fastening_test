@@ -227,4 +227,48 @@ struct form_answer_KRAZ_pl {
     }
 };
 
+struct form_KRAZ {
+    unsigned int b1;
+    unsigned int t1;
+    unsigned int w1;
+    unsigned int l1;
+    unsigned int s;
+    unsigned int t;
+    unsigned int wd;
+    unsigned int b2;
+    unsigned int t2;
+    unsigned int w2;
+    unsigned int l2;
+    double kg;
+    double pog;
+    unsigned int n1;
+    unsigned int n2;
+    unsigned int distance1;
+    unsigned int distance2;
+};
+
+struct form_answer_KRAZ {
+    bool b1;
+    bool t1;
+    bool w1;
+    bool l1;
+    bool s;
+    bool t;
+    bool wd;
+    bool b2;
+    bool t2;
+    bool w2;
+    bool l2;
+    bool kg;
+    bool pog;
+    bool n1;
+    bool n2;
+    bool distance1;
+    bool distance2;
+
+    form_answer_KRAZ() {
+        b1 = t1 = w1 = l1 = s = t = wd = b2 = t2 = w2 = l2 =  kg = pog = n1 = n2 = distance1 = distance2 = true;
+    }
+};
+
 #endif // STRUCTURE_H
