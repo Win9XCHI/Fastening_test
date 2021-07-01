@@ -1,19 +1,19 @@
-#ifndef KRAZ_PL_H
-#define KRAZ_PL_H
+#ifndef KRAZ_H
+#define KRAZ_H
 #include "equipment.h"
-#include "../model/kraz_pl_db.h"
+#include "../model/kraz_db.h"
 
-class KRAZ_pl : Equipment {
-    KRAZ_pl_DB DB;
+class KRAZ : Equipment {
+    KRAZ_DB DB;
 
     void Quiry(std::map<QString, QString> &cont, std::map<QString, FromTo> &contFT, std::map<QString, Dimensions> &contD);
     void Filling(std::map<QString, QString> cont, std::map<QString, FromTo> contFT, std::map<QString, Dimensions> contD);
 
 public:
-    KRAZ_pl(KRAZ_pl_DB db);
-    virtual ~KRAZ_pl();
+    KRAZ(KRAZ_DB db);
+    virtual ~KRAZ();
 
-    form_answer_KRAZ_pl CheckAnswer(form_KRAZ_pl);
+    form_answer_KRAZ CheckAnswer(form_KRAZ);
 };
 
-#endif // KRAZ_PL_H
+#endif // KRAZ_H
