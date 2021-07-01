@@ -20,7 +20,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
 void MainWindow::on_pushButton_3_clicked() {
 
     try {
@@ -138,8 +137,19 @@ void MainWindow::Bulldozer() {
 }
 
 void MainWindow::KRAZ() {
+    KRAZ_DB DB("DB_for_test.db");
+
+    CheckFileDB();
+
+    if (!DB.CheckConnection()) {
+        DB.createConnection();
+    }
+    if (!DB.CheckConnection()) {
+        throw DatabaseException(DB.LastError().toStdString());
+    }
+
     KRAZ_Form *object;
-    object = new KRAZ_Form();
+    object = new KRAZ_Form(DB);
     connect(object, &KRAZ_Form::firstWindow, this, &MainWindow::show);
     object->show();
 }

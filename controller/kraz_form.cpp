@@ -1,22 +1,20 @@
 #include "kraz_form.h"
 #include "ui_kraz_form.h"
 
-KRAZ_Form::KRAZ_Form(QWidget *parent) :
+KRAZ_Form::KRAZ_Form(KRAZ_DB db, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::KRAZ_Form)
 {
     ui->setupUi(this);
+    DB = db;
     scene = new QGraphicsScene;
-    image("D:/DIIT KIT/Military/Programs/Fastening_test/Source/kraz.bmp");
-    bar_cursor(green_pen());
-    bars_thrust(green_pen(10));
-    bars_side(green_pen(10));
-    stretch_marks_cursor(green_pen());
-    show_graphics();
+    object_KRAZ = new KRAZ(DB);
+    KRAZ_Form::set_image();
 }
 
 KRAZ_Form::~KRAZ_Form()
 {
+    DB.close();
     delete ui;
 }
 
@@ -25,9 +23,12 @@ void KRAZ_Form::show_graphics() {
     ui->graphicsView->show();
 }
 
-void KRAZ_Form::bar_cursor(QPen pen) {
+void KRAZ_Form::bar_side_cursor(QPen pen) {
     triangle(pen, 120, 260);
     triangle(pen, 160, 260);
+}
+
+void KRAZ_Form::bar_thrust_cursor(QPen pen) {
     triangle(pen, 470, 260);
     triangle(pen, 630, 260);
 }
@@ -48,20 +49,211 @@ void KRAZ_Form::stretch_marks_cursor(QPen pen) {
 
 void KRAZ_Form::on_pushButton_2_clicked()
 {
+    DB.close();
     this->close();
     emit firstWindow();
 }
 
 void KRAZ_Form::on_pushButton_clicked()
 {
+    Default();
+    form_KRAZ object_form;
+    FillingFormKRAZ(object_form);
+    form_answer_KRAZ object_answer = object_KRAZ->CheckAnswer(object_form);
+
     frame message;
-    message.result = MESSAGE::FAIL;
-    message.string = MESSAGE::PREPARATION;
-    message.preparation = MESSAGE::KRAZ;
+
+    if (CheckAnswer(object_answer)) {
+        message.result = MESSAGE::SUCCESS;
+        message.string = MESSAGE::PREPARATION;
+        message.preparation = MESSAGE::KRAZ;
+    } else {
+        message.result = MESSAGE::FAIL;
+        message.string = MESSAGE::PREPARATION;
+        message.preparation = MESSAGE::KRAZ;
+        scene->clear();
+        set_image();
+    }
     Message_Form *object = new Message_Form(message);
     object->show();
 }
 
 void KRAZ_Form::set_image() {
+    DB.SELECT("Icon", "Equipment", "Name = 'КрАЗ-256 порожній над зчепом'");
+    image("D:/DIIT KIT/Military/Programs/Fastening_test/Source/" + DB.GetIcon());
+    show_graphics();
+}
 
+void KRAZ_Form::FillingFormKRAZ(form_KRAZ &object_form) {
+    object_form.b1 = ui->lineEdit->text().toUInt();
+    object_form.t1 = ui->lineEdit_3->text().toUInt();
+    object_form.w1 = ui->lineEdit_4->text().toUInt();
+    object_form.l1 = ui->lineEdit_5->text().toUInt();
+    object_form.n1 = ui->lineEdit_15->text().toUInt();
+    object_form.s = ui->lineEdit_9->text().toUInt();
+    object_form.t = ui->lineEdit_10->text().toUInt();
+    object_form.wd = ui->lineEdit_11->text().toUInt();
+    object_form.b2 = ui->lineEdit_2->text().toUInt();
+    object_form.t2 = ui->lineEdit_6->text().toUInt();
+    object_form.w2 = ui->lineEdit_7->text().toUInt();
+    object_form.l2 = ui->lineEdit_8->text().toUInt();
+    object_form.n2 = ui->lineEdit_15->text().toUInt();
+    object_form.kg = ui->lineEdit_12->text().toDouble();
+    object_form.pog = ui->lineEdit_13->text().toDouble();
+    object_form.distance1 = ui->lineEdit_16->text().toUInt();
+    object_form.distance2 = ui->lineEdit_17->text().toUInt();
+}
+
+void KRAZ_Form::Default() {
+    QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
+    for (auto &element : allEdits) {
+        element->setStyleSheet("color: rgb(0, 0, 0)");
+    }
+    QList<QLabel *> allLabels = this->findChildren<QLabel *>();
+    for (auto &element : allLabels) {
+        element->setStyleSheet("color: rgb(0, 0, 0)");
+    }
+}
+
+bool KRAZ_Form::CheckAnswer(form_answer_KRAZ form) {
+    bool flag(true);
+
+    if (!form.b1) {
+        ui->lineEdit->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.t1) {
+        ui->lineEdit_3->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_3->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.w1) {
+        ui->lineEdit_4->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_4->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.l1) {
+        ui->lineEdit_5->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_5->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.n1) {
+        ui->lineEdit_14->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_15->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.s) {
+        ui->lineEdit_9->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_10->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.t) {
+        ui->lineEdit_10->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_11->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.wd) {
+        ui->lineEdit_11->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_12->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.b2) {
+        ui->lineEdit_2->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_6->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.t2) {
+        ui->lineEdit_6->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_21->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.w2) {
+        ui->lineEdit_7->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_23->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.l2) {
+        ui->lineEdit_8->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_22->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.n2) {
+        ui->lineEdit_15->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_16->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.kg) {
+        ui->lineEdit_12->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_13->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.pog) {
+        ui->lineEdit_13->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_13->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.distance1) {
+        ui->lineEdit_16->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_17->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.distance2) {
+        ui->lineEdit_17->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_17->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+
+    return flag;
+}
+
+void KRAZ_Form::on_lineEdit_cursorPositionChanged(int arg1, int arg2)
+{
+    if ((arg1 == -1 || arg1 == 1) && arg2 == 0) {
+        bar_thrust_cursor(green_pen());
+        show_graphics();
+    }
+}
+
+void KRAZ_Form::on_lineEdit_editingFinished()
+{
+    for (unsigned int i = 0; i < 2; i++) {
+        remove_last_item();
+    }
+    bars_thrust(red_pen(10));
+    show_graphics();
+}
+
+void KRAZ_Form::on_lineEdit_2_cursorPositionChanged(int arg1, int arg2)
+{
+    if ((arg1 == -1 || arg1 == 1) && arg2 == 0) {
+        bar_side_cursor(green_pen());
+        show_graphics();
+    }
+}
+
+void KRAZ_Form::on_lineEdit_2_editingFinished()
+{
+    for (unsigned int i = 0; i < 2; i++) {
+        remove_last_item();
+    }
+    bars_side(red_pen(10));
+    show_graphics();
+}
+
+void KRAZ_Form::on_lineEdit_9_cursorPositionChanged(int arg1, int arg2)
+{
+    if ((arg1 == -1 || arg1 == 1) && arg2 == 0) {
+        stretch_marks_cursor(green_pen());
+        show_graphics();
+    }
+}
+
+void KRAZ_Form::on_lineEdit_9_editingFinished()
+{
+    for (unsigned int i = 0; i < 2; i++) {
+        remove_last_item();
+    }
+    stretch_marks_cursor(red_pen());
+    show_graphics();
 }
