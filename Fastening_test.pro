@@ -23,6 +23,7 @@ SOURCES += \
     classes/motorgrader.cpp \
     classes/scraper.cpp \
     classes/stretching.cpp \
+    classes/vgm.cpp \
     controller/message_form.cpp \
     controller/about_form.cpp \
     controller/admin_form.cpp \
@@ -59,6 +60,7 @@ HEADERS += \
     classes/motorgrader.h \
     classes/scraper.h \
     classes/stretching.h \
+    classes/vgm.h \
     constants.h \
     controller/message_form.h \
     controller/about_form.h \
