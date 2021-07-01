@@ -271,4 +271,27 @@ struct form_answer_KRAZ {
     }
 };
 
+struct form_VGM {
+    QString weight;
+    unsigned int s;
+    unsigned int t;
+    unsigned int b;
+    unsigned int st1;
+    unsigned int n;
+    unsigned int st2;
+};
+
+struct form_answer_VGM {
+    bool s;
+    bool t;
+    bool b;
+    bool st1;
+    bool n;
+    bool st2;
+
+    form_answer_VGM() {
+        s = t = b = st1 = n = st2 = true;
+    }
+};
+
 #endif // STRUCTURE_H
