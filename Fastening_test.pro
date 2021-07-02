@@ -23,6 +23,8 @@ SOURCES += \
     classes/motorgrader.cpp \
     classes/scraper.cpp \
     classes/stretching.cpp \
+    classes/test.cpp \
+    classes/user.cpp \
     classes/vgm.cpp \
     controller/message_form.cpp \
     controller/about_form.cpp \
@@ -45,6 +47,7 @@ SOURCES += \
     model/kraz_pl_db.cpp \
     model/motorgrader_db.cpp \
     model/scraper_db.cpp \
+    model/user_db.cpp \
     model/vgm_db.cpp
 
 HEADERS += \
@@ -60,6 +63,8 @@ HEADERS += \
     classes/motorgrader.h \
     classes/scraper.h \
     classes/stretching.h \
+    classes/test.h \
+    classes/user.h \
     classes/vgm.h \
     constants.h \
     controller/message_form.h \
@@ -83,6 +88,7 @@ HEADERS += \
     model/kraz_pl_db.h \
     model/motorgrader_db.h \
     model/scraper_db.h \
+    model/user_db.h \
     model/vgm_db.h \
     structure.h
 
