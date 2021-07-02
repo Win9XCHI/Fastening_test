@@ -1,9 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>About_Form</class>
- <widget name="About_Form" class="QWidget">
+ <widget class="QWidget" name="About_Form">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,9 +11,9 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Про програму</string>
   </property>
  </widget>
- <pixmapfunction/>
+ <resources/>
  <connections/>
 </ui>

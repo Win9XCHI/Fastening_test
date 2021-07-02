@@ -208,3 +208,8 @@ void MainWindow::VGM() {
     object->show();
 }
 
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    this->close();
+}
