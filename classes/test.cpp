@@ -1,6 +1,6 @@
 #include "test.h"
 
-Test::Test() : id(0), user_id(0), grade(""), date(""), equipment_id(0) {
+Test::Test() : id(0), equipment_id(0), user_id(0), grade(""), date("") {
 }
 
 Test::Test(unsigned int i, unsigned int u_i, User u, QString g, QString d, unsigned int ei) : id(i), equipment_id(ei), user_id(u_i), grade(g), date(d) {
@@ -34,6 +34,10 @@ void Test::SetDate(QString a) {
     date = a;
 }
 
+void Test::SetEquipment(unsigned int a) {
+    equipment_id = a;
+}
+
 
 unsigned int Test::GetId() {
     return id;
@@ -53,5 +57,9 @@ QString Test::GetGrade() {
 
 QString Test::GetDate() {
     return date;
+}
+
+unsigned int Test::GetEquipment() {
+    return equipment_id;
 }
 

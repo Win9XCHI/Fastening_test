@@ -21,12 +21,14 @@ public:
     void SetUser(User a);
     void SetGrade(QString a);
     void SetDate(QString a);
+    void SetEquipment(unsigned int a);
 
     unsigned int GetId();
     unsigned int GetUser_id();
     User GetUser();
     QString GetGrade();
     QString GetDate();
+    unsigned int GetEquipment();
 };
 
 #endif // TEST_H

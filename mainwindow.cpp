@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->comboBox->addItem("КрАЗ-256 порожній над зчепом");
     ui->comboBox->addItem("Танк");
     equipment = "";
+    object_user = new UserDB("DB_for_test.db");
 }
 
 MainWindow::~MainWindow()
@@ -22,6 +23,28 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::on_pushButton_3_clicked() {
+
+    if (!object_user->CheckConnection()) {
+        object_user->createConnection();
+    }
+    if (!object_user->CheckConnection()) {
+        throw DatabaseException(object_user->LastError().toStdString());
+    }
+
+    QString name = ui->lineEdit->text();
+    QString platoon = ui->lineEdit->text();
+    object_user->SELECT("*", "Student", "Name = '" + name + "' AND Platoon = '" + platoon + "'");
+    std::vector<User> cont;
+    object_user->GetUsers(cont);
+
+    if (cont.size() == 0) {
+        std::vector<QString> listColumns, listValue;
+        listColumns.push_back("Name");
+        listColumns.push_back("Platoon");
+        listValue.push_back(name);
+        listValue.push_back(platoon);
+        object_user->Insert("Student", listColumns, listValue);
+    }
 
     try {
         switch(ui->comboBox->currentIndex()) {
@@ -231,17 +254,35 @@ void MainWindow::VGM() {
 }
 
 void MainWindow::win() {
-    QString time = QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss");
+    add_attemt("Склав");
 }
 
 void MainWindow::fail() {
-    QString time = QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss");
+    add_attemt("Не склав");
+}
 
-    frame message;
-    message.result = "Не склав";
-    message.preparation = time;
-    Message_Form *object = new Message_Form(message);
-    object->show();
+void MainWindow::add_attemt(QString result) {
+    QString time = QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss");
+    QString name = ui->lineEdit->text();
+    QString platoon = ui->lineEdit->text();
+    object_user->SELECT("id, Name, Platoon", "Student", "Name = '" + name + "' AND Platoon = '" + platoon + "'");
+    //qDebug() << object_user->LastError();
+    std::vector<User> cont;
+    object_user->GetUsers(cont);
+    object_user->SELECT("id", "Equipment", "Name = '" + equipment + "'");
+
+    Test object_test(0, cont.at(0).GetId(), cont.at(0), result, time, object_user->GetEquipmentId());
+
+    std::vector<QString> listColumns, listValue;
+    listColumns.push_back("Date");
+    listColumns.push_back("Grade");
+    listColumns.push_back("Student_id");
+    listColumns.push_back("Equipment_id");
+    listValue.push_back(object_test.GetDate());
+    listValue.push_back(object_test.GetGrade());
+    listValue.push_back(QString::number(object_test.GetUser_id()));
+    listValue.push_back(QString::number(object_test.GetEquipment()));
+    object_user->Insert("Test", listColumns, listValue);
 }
 
 

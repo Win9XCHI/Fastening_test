@@ -38,7 +38,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QString equipment;
-    UserDB object_user;
+    UserDB *object_user;
 
     void Connection();
     void Excavator();
@@ -51,6 +51,7 @@ private:
 
     void win();
     void fail();
+    void add_attemt(QString result);
 
     void CheckFileDB();
 };
