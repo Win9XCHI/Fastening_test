@@ -26,4 +26,8 @@ namespace MESSAGE {
     const QString VGM = "Наставление по перевозкам войск Приложение 6 и 15 к наставлению, стр. 83-84.";
 }
 
+namespace PATHS {
+    const QString RESOURCES = "resources/";
+}
+
 #endif // CONST_MESSAGE_H

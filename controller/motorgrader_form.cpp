@@ -26,7 +26,7 @@ MotorGrader_Form::~MotorGrader_Form() {
 
 void MotorGrader_Form::set_image() {
     DB.SELECT("Icon", "Equipment", "Name = 'Автогрейдер ДЗ-98 на платформі'");
-    image("D:/DIIT KIT/Military/Programs/Fastening_test/Source/" + DB.GetIcon());
+    image(PATHS::RESOURCES + DB.GetIcon());
     show_graphics();
 }
 

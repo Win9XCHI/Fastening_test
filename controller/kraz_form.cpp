@@ -80,7 +80,7 @@ void KRAZ_Form::on_pushButton_clicked()
 
 void KRAZ_Form::set_image() {
     DB.SELECT("Icon", "Equipment", "Name = 'КрАЗ-256 порожній над зчепом'");
-    image("D:/DIIT KIT/Military/Programs/Fastening_test/Source/" + DB.GetIcon());
+    image(PATHS::RESOURCES + DB.GetIcon());
     show_graphics();
 }
 

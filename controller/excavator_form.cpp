@@ -266,7 +266,7 @@ bool Excavator_Form::CheckAnswer(form_answer_excavator form) {
 
 void Excavator_Form::set_image() {
     DB.SELECT("Icon", "Equipment", "Name = 'Екскаватор ЕО-4125 на платформі'");
-    image("D:/DIIT KIT/Military/Programs/Fastening_test/Source/" + DB.GetIcon());
+    image(PATHS::RESOURCES + DB.GetIcon());
     show_graphics();
 }
 

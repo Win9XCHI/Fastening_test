@@ -72,7 +72,7 @@ void VGM_Form::on_pushButton_2_clicked()
 
 void VGM_Form::set_image() {
     DB.SELECT("Icon", "Equipment", "Name = 'Танк'");
-    image("D:/DIIT KIT/Military/Programs/Fastening_test/Source/" + DB.GetIcon());
+    image(PATHS::RESOURCES + DB.GetIcon());
     show_graphics();
 }
 
