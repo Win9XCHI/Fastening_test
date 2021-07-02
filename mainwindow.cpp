@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->comboBox->addItem("КрАЗ-256 порожній на платформі");
     ui->comboBox->addItem("КрАЗ-256 порожній над зчепом");
     ui->comboBox->addItem("Танк");
+    equipment = "";
 }
 
 MainWindow::~MainWindow()
@@ -25,30 +26,37 @@ void MainWindow::on_pushButton_3_clicked() {
     try {
         switch(ui->comboBox->currentIndex()) {
             case EQUIPMENT::EXCAVATOR: {
+                equipment = "Екскаватор ЕО-4125 на платформі";
                 Excavator();
                 break;
             }
             case EQUIPMENT::BULLDOZER: {
+                equipment = "Бульдозер Д-686 на платформі";
                 Bulldozer();
                 break;
             }
             case EQUIPMENT::MOTORGRADER: {
+                equipment = "Автогрейдер ДЗ-98 на платформі";
                 MotorGrader();
                 break;
             }
             case EQUIPMENT::SCRAPER: {
+                equipment = "Скрепер Д-357П на платформі";
                 Scraper();
                 break;
             }
             case EQUIPMENT::KRAZ_PL: {
+                equipment = "КрАЗ-256 порожній на платформі";
                 KRAZ_PL();
                 break;
             }
             case EQUIPMENT::KRAZ: {
+                equipment = "КрАЗ-256 порожній над зчепом";
                 KRAZ();
                 break;
             }
             case EQUIPMENT::VGM: {
+                equipment = "Танк";
                 VGM();
                 break;
             }
@@ -97,6 +105,8 @@ void MainWindow::Excavator() {
     Excavator_Form *object;
     object = new Excavator_Form(DB);
     connect(object, &Excavator_Form::firstWindow, this, &MainWindow::show);
+    connect(object, &Excavator_Form::win, this, &MainWindow::win);
+    connect(object, &Excavator_Form::fail, this, &MainWindow::fail);
     object->show();
 }
 
@@ -115,6 +125,8 @@ void MainWindow::MotorGrader() {
     MotorGrader_Form *object;
     object = new MotorGrader_Form(DB);
     connect(object, &MotorGrader_Form::firstWindow, this, &MainWindow::show);
+    connect(object, &MotorGrader_Form::win, this, &MainWindow::win);
+    connect(object, &MotorGrader_Form::fail, this, &MainWindow::fail);
     object->show();
 }
 
@@ -133,6 +145,8 @@ void MainWindow::Bulldozer() {
     Bulldozer_Form *object;
     object = new Bulldozer_Form(DB);
     connect(object, &Bulldozer_Form::firstWindow, this, &MainWindow::show);
+    connect(object, &Bulldozer_Form::win, this, &MainWindow::win);
+    connect(object, &Bulldozer_Form::fail, this, &MainWindow::fail);
     object->show();
 }
 
@@ -151,6 +165,8 @@ void MainWindow::KRAZ() {
     KRAZ_Form *object;
     object = new KRAZ_Form(DB);
     connect(object, &KRAZ_Form::firstWindow, this, &MainWindow::show);
+    connect(object, &KRAZ_Form::win, this, &MainWindow::win);
+    connect(object, &KRAZ_Form::fail, this, &MainWindow::fail);
     object->show();
 }
 
@@ -169,6 +185,8 @@ void MainWindow::KRAZ_PL() {
     KRAZ_pl_form *object;
     object = new KRAZ_pl_form(DB);
     connect(object, &KRAZ_pl_form::firstWindow, this, &MainWindow::show);
+    connect(object, &KRAZ_pl_form::win, this, &MainWindow::win);
+    connect(object, &KRAZ_pl_form::fail, this, &MainWindow::fail);
     object->show();
 }
 
@@ -187,6 +205,8 @@ void MainWindow::Scraper() {
     Scraper_Form *object;
     object = new Scraper_Form(DB);
     connect(object, &Scraper_Form::firstWindow, this, &MainWindow::show);
+    connect(object, &Scraper_Form::win, this, &MainWindow::win);
+    connect(object, &Scraper_Form::fail, this, &MainWindow::fail);
     object->show();
 }
 
@@ -205,6 +225,22 @@ void MainWindow::VGM() {
     VGM_Form *object;
     object = new VGM_Form(DB);
     connect(object, &VGM_Form::firstWindow, this, &MainWindow::show);
+    connect(object, &VGM_Form::win, this, &MainWindow::win);
+    connect(object, &VGM_Form::fail, this, &MainWindow::fail);
+    object->show();
+}
+
+void MainWindow::win() {
+    QString time = QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss");
+}
+
+void MainWindow::fail() {
+    QString time = QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss");
+
+    frame message;
+    message.result = "Не склав";
+    message.preparation = time;
+    Message_Form *object = new Message_Form(message);
     object->show();
 }
 

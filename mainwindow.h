@@ -36,6 +36,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QString equipment;
 
     void Connection();
     void Excavator();
@@ -45,6 +46,9 @@ private:
     void KRAZ_PL();
     void Scraper();
     void VGM();
+
+    void win();
+    void fail();
 
     void CheckFileDB();
 };

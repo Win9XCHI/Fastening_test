@@ -62,12 +62,14 @@ void KRAZ_pl_form::on_pushButton_clicked()
         message.result = MESSAGE::SUCCESS;
         message.string = MESSAGE::PREPARATION;
         message.preparation = MESSAGE::KRAZ_PL;
+        emit win();
     } else {
         message.result = MESSAGE::FAIL;
         message.string = MESSAGE::PREPARATION;
         message.preparation = MESSAGE::KRAZ_PL;
         scene->clear();
         set_image();
+        emit fail();
     }
     Message_Form *object = new Message_Form(message);
     object->show();

@@ -19,6 +19,8 @@ public:
 
 signals:
     void firstWindow();
+    void win();
+    void fail();
 
 private slots:
     void on_pushButton_2_clicked();

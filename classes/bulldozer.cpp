@@ -1,7 +1,7 @@
 #include "bulldozer.h"
 
 Bulldozer::Bulldozer(BulldozerDB db) {
-    name = "Бульдозер на платформі";
+    name = "Бульдозер Д-686 на платформі";
     std::map<QString, QString> cont;
     std::map<QString, Dimensions> contD;
     DB = db;

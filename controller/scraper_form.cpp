@@ -72,12 +72,14 @@ void Scraper_Form::on_pushButton_2_clicked()
         message.result = MESSAGE::SUCCESS;
         message.string = MESSAGE::PREPARATION;
         message.preparation = MESSAGE::SCRAPER;
+        emit win();
     } else {
         message.result = MESSAGE::FAIL;
         message.string = MESSAGE::PREPARATION;
         message.preparation = MESSAGE::SCRAPER;
         scene->clear();
-        Scraper_Form::set_image();
+        set_image();
+        emit fail();
     }
     Message_Form *object = new Message_Form(message);
     object->show();

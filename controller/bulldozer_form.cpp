@@ -81,19 +81,21 @@ void Bulldozer_Form::on_pushButton_2_clicked()
         message.result = MESSAGE::SUCCESS;
         message.string = MESSAGE::PREPARATION;
         message.preparation = MESSAGE::BULLDOZER;
+        emit win();
     } else {
         message.result = MESSAGE::FAIL;
         message.string = MESSAGE::PREPARATION;
         message.preparation = MESSAGE::BULLDOZER;
         scene->clear();
         set_image();
+        emit fail();
     }
     Message_Form *object = new Message_Form(message);
     object->show();
 }
 
 void Bulldozer_Form::set_image() {
-    DB.SELECT("Icon", "Equipment", "Name = 'Бульдозер на платформі'");
+    DB.SELECT("Icon", "Equipment", "Name = 'Бульдозер Д-686 на платформі'");
     image(PATHS::RESOURCES + DB.GetIcon());
     show_graphics();
 }

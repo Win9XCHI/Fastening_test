@@ -75,12 +75,14 @@ void MotorGrader_Form::on_pushButton_clicked()
         message.result = MESSAGE::SUCCESS;
         message.string = MESSAGE::PREPARATION;
         message.preparation = MESSAGE::MOTORGRADER;
+        emit win();
     } else {
         message.result = MESSAGE::FAIL;
         message.string = MESSAGE::PREPARATION;
         message.preparation = MESSAGE::MOTORGRADER;
         scene->clear();
         set_image();
+        emit fail();
     }
     Message_Form *object = new Message_Form(message);
     object->show();
