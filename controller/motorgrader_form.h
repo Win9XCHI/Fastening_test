@@ -20,8 +20,6 @@ public:
 
 signals:
     void firstWindow();
-    void win();
-    void fail();
 
 private slots:
     void on_pushButton_2_clicked();
@@ -49,6 +47,7 @@ private:
     MotorGraderDB DB;
     MotorGrader *object_motorgrader;
     User object_user;
+    QString name;
     unsigned int count1, count2;
 
     void FillingFormMotorGrader(form_motorgrader &object_form);

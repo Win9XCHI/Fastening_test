@@ -20,8 +20,6 @@ public:
 
 signals:
     void firstWindow();
-    void win();
-    void fail();
 
 private slots:
     void on_pushButton_clicked();
@@ -43,6 +41,7 @@ private:
     VGM_DB DB;
     VGM *object_VGM;
     User object_user;
+    QString name;
     unsigned int count1, count2;
 
     void FillingFormVGM(form_VGM &object_form);

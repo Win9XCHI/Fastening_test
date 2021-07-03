@@ -20,8 +20,6 @@ public:
 
 signals:
     void firstWindow();
-    void win();
-    void fail();
 
 private slots:
     void on_pushButton_clicked();
@@ -53,6 +51,7 @@ private:
     BulldozerDB DB;
     Bulldozer *object_bulldozer;
     User object_user;
+    QString name;
     unsigned int count;
 
     void FillingFormBulldozer(form_bulldozer &object_form);

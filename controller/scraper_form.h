@@ -20,8 +20,6 @@ public:
 
 signals:
     void firstWindow();
-    void win();
-    void fail();
 
 private slots:
     void on_pushButton_clicked();
@@ -49,6 +47,7 @@ private:
     ScraperDB DB;
     Scraper *object_scraper;
     User object_user;
+    QString name;
     unsigned int count;
 
     void FillingFormMotorScraper(form_scraper &object_form);

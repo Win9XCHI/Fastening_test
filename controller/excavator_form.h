@@ -20,8 +20,6 @@ public:
 
 signals:
     void firstWindow();
-    void win();
-    void fail();
 
 private slots:
     void on_pushButton_2_clicked();
@@ -73,6 +71,7 @@ private:
     ExcavatorDB DB;
     Excavator *object_excavator;
     User object_user;
+    QString name;
     unsigned int count;
 
     void FillingFormExcavator(form_excavator &object_form);

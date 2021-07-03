@@ -20,8 +20,6 @@ public:
 
 signals:
     void firstWindow();
-    void win();
-    void fail();
 
 private slots:
     void on_pushButton_2_clicked();
@@ -41,6 +39,7 @@ private:
     KRAZ_pl_DB DB;
     KRAZ_pl *object_KRAZ_pl;
     User object_user;
+    QString name;
 
     void FillingFormKRAZ_pl(form_KRAZ_pl &object_form);
     bool CheckAnswer(form_answer_KRAZ_pl form);

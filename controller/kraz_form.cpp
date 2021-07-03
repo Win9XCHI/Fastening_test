@@ -7,9 +7,24 @@ KRAZ_Form::KRAZ_Form(KRAZ_DB db, User u, QWidget *parent) :
 {
     ui->setupUi(this);
     DB = db;
+    name = "КрАЗ-256 порожній над зчепом";
     scene = new QGraphicsScene;
     object_KRAZ = new KRAZ(DB);
     KRAZ_Form::set_image();
+
+    object_user = u;
+    DB.SELECT("*", "Student", "Name = '" + object_user.GetName() + "' AND Platoon = '" + object_user.GetPlatoon() + "'");
+    std::vector<User> cont;
+    DB.GetUsers(cont);
+
+    if (cont.size() == 0) {
+        std::vector<QString> listColumns, listValue;
+        listColumns.push_back("Name");
+        listColumns.push_back("Platoon");
+        listValue.push_back(object_user.GetName());
+        listValue.push_back(object_user.GetPlatoon());
+        DB.Insert("Student", listColumns, listValue);
+    }
 }
 
 KRAZ_Form::~KRAZ_Form()
@@ -62,26 +77,43 @@ void KRAZ_Form::on_pushButton_clicked()
     form_answer_KRAZ object_answer = object_KRAZ->CheckAnswer(object_form);
 
     frame message;
+    QString grade = "";
 
     if (CheckAnswer(object_answer)) {
         message.result = MESSAGE::SUCCESS;
         message.string = MESSAGE::PREPARATION;
         message.preparation = MESSAGE::KRAZ;
-        emit win();
+        grade = "Склав";
     } else {
         message.result = MESSAGE::FAIL;
         message.string = MESSAGE::PREPARATION;
         message.preparation = MESSAGE::KRAZ;
         scene->clear();
         set_image();
-        emit fail();
+        grade = "Не склав";
     }
+    DB.SELECT("*", "Student", "Name = '" + object_user.GetName() + "' AND Platoon = '" + object_user.GetPlatoon() + "'");
+    std::vector<User> cont;
+    DB.GetUsers(cont);
+    DB.SELECT("id", "Equipment", "Name = '" + name + "'");
+
+    std::vector<QString> listColumns, listValue;
+    listColumns.push_back("Date");
+    listColumns.push_back("Grade");
+    listColumns.push_back("Student_id");
+    listColumns.push_back("Equipment_id");
+    listValue.push_back(QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss"));
+    listValue.push_back(grade);
+    listValue.push_back(QString::number(cont.at(0).GetId()));
+    listValue.push_back(QString::number(DB.GetEquipmentId()));
+    DB.Insert("Test", listColumns, listValue);
+
     Message_Form *object = new Message_Form(message);
     object->show();
 }
 
 void KRAZ_Form::set_image() {
-    DB.SELECT("Icon", "Equipment", "Name = 'КрАЗ-256 порожній над зчепом'");
+    DB.SELECT("Icon", "Equipment", "Name = '" + name + "'");
     image(PATHS::RESOURCES + DB.GetIcon());
     show_graphics();
 }
