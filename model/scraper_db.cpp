@@ -1,9 +1,9 @@
 #include "scraper_db.h"
 
-ScraperDB::ScraperDB(QString str) : DB(str) {
+ScraperDB::ScraperDB(QString str) : UserDB(str) {
 }
 
-ScraperDB::ScraperDB() : DB() {
+ScraperDB::ScraperDB() : UserDB() {
 }
 
 /*SELECT Icon FROM Equipment WHERE Name = 'Скрепер Д-357П на платформі';*/

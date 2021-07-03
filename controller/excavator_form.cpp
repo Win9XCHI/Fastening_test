@@ -1,7 +1,7 @@
 #include "excavator_form.h"
 #include "ui_excavator_form.h"
 
-Excavator_Form::Excavator_Form(ExcavatorDB db, QWidget *parent) :
+Excavator_Form::Excavator_Form(ExcavatorDB db, User u, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Excavator_Form)
 {
@@ -266,6 +266,7 @@ bool Excavator_Form::CheckAnswer(form_answer_excavator form) {
 
 void Excavator_Form::set_image() {
     DB.SELECT("Icon", "Equipment", "Name = 'Екскаватор ЕО-4125 на платформі'");
+    qDebug() << DB.LastError();
     image(PATHS::RESOURCES + DB.GetIcon());
     show_graphics();
 }

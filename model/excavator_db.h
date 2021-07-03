@@ -1,9 +1,9 @@
 #ifndef EXCAVATOR_DB_H
 #define EXCAVATOR_DB_H
-#include "driver/db.h"
+#include "user_db.h"
 #include "../classes/fromto.h"
 
-class ExcavatorDB : public DB {
+class ExcavatorDB : public UserDB {
 
 public:
     ExcavatorDB(QString);

@@ -9,7 +9,7 @@ class User {
 
 public:
     User();
-    User(unsigned int i, QString n, QString p);
+    User(QString n, QString p, unsigned int i = 0);
     User(const User&);
     ~User();
 

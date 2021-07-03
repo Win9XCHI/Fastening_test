@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "base/base_technics.h"
 #include "../classes/scraper.h"
+#include "../classes/test.h"
 
 namespace Ui {
 class Scraper_Form;
@@ -14,7 +15,7 @@ class Scraper_Form : public QWidget, base_technics
     Q_OBJECT
 
 public:
-    explicit Scraper_Form(ScraperDB db, QWidget *parent = nullptr);
+    explicit Scraper_Form(ScraperDB db, User u, QWidget *parent = nullptr);
     ~Scraper_Form();
 
 signals:
@@ -47,6 +48,7 @@ private:
     Ui::Scraper_Form *ui;
     ScraperDB DB;
     Scraper *object_scraper;
+    User object_user;
     unsigned int count;
 
     void FillingFormMotorScraper(form_scraper &object_form);

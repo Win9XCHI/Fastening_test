@@ -1,9 +1,9 @@
 #ifndef MOTORGRADER_DB_H
 #define MOTORGRADER_DB_H
-#include "driver/db.h"
+#include "user_db.h"
 #include "../classes/dimensions.h"
 
-class MotorGraderDB : public DB {
+class MotorGraderDB : public UserDB {
 
 public:
     MotorGraderDB(QString);

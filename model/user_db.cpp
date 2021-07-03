@@ -10,7 +10,7 @@ void UserDB::GetUsers(std::vector<User> &cont) {
     QSqlRecord rec = query.record();
 
     while(query.next()) {
-        cont.push_back({query.value(rec.indexOf("id")).toUInt(), query.value(rec.indexOf("Name")).toString(), query.value(rec.indexOf("Platoon")).toString()});
+        cont.push_back({query.value(rec.indexOf("Name")).toString(), query.value(rec.indexOf("Platoon")).toString(), query.value(rec.indexOf("id")).toUInt()});
     }
 }
 

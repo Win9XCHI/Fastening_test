@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "base/base_technics.h"
 #include "../classes/kraz.h"
+#include "../classes/test.h"
 
 namespace Ui {
 class KRAZ_Form;
@@ -14,7 +15,7 @@ class KRAZ_Form : public QWidget, base_technics
     Q_OBJECT
 
 public:
-    explicit KRAZ_Form(KRAZ_DB db, QWidget *parent = nullptr);
+    explicit KRAZ_Form(KRAZ_DB db, User u, QWidget *parent = nullptr);
     ~KRAZ_Form();
 
 signals:
@@ -43,6 +44,7 @@ private:
     Ui::KRAZ_Form *ui;
     KRAZ_DB DB;
     KRAZ *object_KRAZ;
+    User object_user;
 
     void FillingFormKRAZ(form_KRAZ &object_form);
     bool CheckAnswer(form_answer_KRAZ form);

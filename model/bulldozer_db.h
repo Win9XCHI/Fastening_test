@@ -1,10 +1,10 @@
 #ifndef BULLDOZER_DB_H
 #define BULLDOZER_DB_H
-#include "driver/db.h"
+#include "user_db.h"
 #include "../classes/dimensions.h"
 #include "../classes/fromto.h"
 
-class BulldozerDB : public DB {
+class BulldozerDB : public UserDB {
 
 public:
     BulldozerDB(QString);

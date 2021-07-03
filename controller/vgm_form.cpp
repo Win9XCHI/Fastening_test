@@ -1,7 +1,7 @@
 #include "vgm_form.h"
 #include "ui_vgm_form.h"
 
-VGM_Form::VGM_Form(VGM_DB db, QWidget *parent) :
+VGM_Form::VGM_Form(VGM_DB db, User u, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::VGM_Form)
 {

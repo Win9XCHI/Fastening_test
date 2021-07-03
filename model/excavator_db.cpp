@@ -1,9 +1,9 @@
 #include "excavator_db.h"
 
-ExcavatorDB::ExcavatorDB(QString str) : DB(str) {
+ExcavatorDB::ExcavatorDB(QString str) : UserDB(str) {
 }
 
-ExcavatorDB::ExcavatorDB() : DB() {
+ExcavatorDB::ExcavatorDB() : UserDB() {
 }
 
 /*SELECT Icon FROM Equipment WHERE Name = 'Екскаватор ЕО-4125 на платформі';*/

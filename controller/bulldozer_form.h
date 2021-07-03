@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "base/base_technics.h"
 #include "../classes/bulldozer.h"
+#include "../classes/test.h"
 
 namespace Ui {
 class Bulldozer_Form;
@@ -14,7 +15,7 @@ class Bulldozer_Form : public QWidget, base_technics
     Q_OBJECT
 
 public:
-    explicit Bulldozer_Form(BulldozerDB db, QWidget *parent = nullptr);
+    explicit Bulldozer_Form(BulldozerDB db, User u, QWidget *parent = nullptr);
     ~Bulldozer_Form();
 
 signals:
@@ -51,6 +52,7 @@ private:
     Ui::Bulldozer_Form *ui;
     BulldozerDB DB;
     Bulldozer *object_bulldozer;
+    User object_user;
     unsigned int count;
 
     void FillingFormBulldozer(form_bulldozer &object_form);

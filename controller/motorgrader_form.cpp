@@ -1,7 +1,7 @@
 #include "motorgrader_form.h"
 #include "ui_motorgrader_form.h"
 
-MotorGrader_Form::MotorGrader_Form(MotorGraderDB db, QWidget *parent) :
+MotorGrader_Form::MotorGrader_Form(MotorGraderDB db, User u, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MotorGrader_Form)
 {

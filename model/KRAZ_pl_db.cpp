@@ -1,9 +1,9 @@
 #include "kraz_pl_db.h"
 
-KRAZ_pl_DB::KRAZ_pl_DB(QString str) : DB(str) {
+KRAZ_pl_DB::KRAZ_pl_DB(QString str) : UserDB(str) {
 }
 
-KRAZ_pl_DB::KRAZ_pl_DB() : DB() {
+KRAZ_pl_DB::KRAZ_pl_DB() : UserDB() {
 }
 
 /*SELECT Icon FROM Equipment WHERE Name = 'КрАЗ-256 порожній на платформі';*/

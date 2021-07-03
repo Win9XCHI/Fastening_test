@@ -1,8 +1,8 @@
 #ifndef VGM_DB_H
 #define VGM_DB_H
-#include "driver/db.h"
+#include "user_db.h"
 
-class VGM_DB : public DB {
+class VGM_DB : public UserDB {
 
 public:
     VGM_DB(QString);

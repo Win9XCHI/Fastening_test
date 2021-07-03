@@ -1,7 +1,7 @@
 #include "kraz_form.h"
 #include "ui_kraz_form.h"
 
-KRAZ_Form::KRAZ_Form(KRAZ_DB db, QWidget *parent) :
+KRAZ_Form::KRAZ_Form(KRAZ_DB db, User u, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::KRAZ_Form)
 {

@@ -1,9 +1,9 @@
 #include "motorgrader_db.h"
 
-MotorGraderDB::MotorGraderDB(QString str) : DB(str) {
+MotorGraderDB::MotorGraderDB(QString str) : UserDB(str) {
 }
 
-MotorGraderDB::MotorGraderDB() : DB() {
+MotorGraderDB::MotorGraderDB() : UserDB() {
 }
 
 /*SELECT Icon FROM Equipment WHERE Name = 'Автогрейдер ДЗ-98 на платформі';*/

@@ -1,7 +1,7 @@
 #include "scraper_form.h"
 #include "ui_scraper_form.h"
 
-Scraper_Form::Scraper_Form(ScraperDB db, QWidget *parent) :
+Scraper_Form::Scraper_Form(ScraperDB db, User u, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Scraper_Form)
 {

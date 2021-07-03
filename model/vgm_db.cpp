@@ -1,9 +1,9 @@
 #include "vgm_db.h"
 
-VGM_DB::VGM_DB(QString str) : DB(str) {
+VGM_DB::VGM_DB(QString str) : UserDB(str) {
 }
 
-VGM_DB::VGM_DB() : DB() {
+VGM_DB::VGM_DB() : UserDB() {
 }
 
 /*SELECT Icon FROM Equipment WHERE Name = 'Танк';*/

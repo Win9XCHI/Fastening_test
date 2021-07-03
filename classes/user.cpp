@@ -4,7 +4,7 @@ User::User() : id(0), name(""), platoon("") {
 
 }
 
-User::User(unsigned int i, QString n, QString p) : id(i), name(n), platoon(p) {
+User::User(QString n, QString p, unsigned int i) : id(i), name(n), platoon(p) {
 
 }
 

@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "base/base_technics.h"
 #include "../classes/motorgrader.h"
+#include "../classes/test.h"
 
 namespace Ui {
 class MotorGrader_Form;
@@ -14,7 +15,7 @@ class MotorGrader_Form : public QWidget, base_technics
     Q_OBJECT
 
 public:
-    explicit MotorGrader_Form(MotorGraderDB db, QWidget *parent = nullptr);
+    explicit MotorGrader_Form(MotorGraderDB db, User u, QWidget *parent = nullptr);
     ~MotorGrader_Form();
 
 signals:
@@ -47,6 +48,7 @@ private:
     Ui::MotorGrader_Form *ui;
     MotorGraderDB DB;
     MotorGrader *object_motorgrader;
+    User object_user;
     unsigned int count1, count2;
 
     void FillingFormMotorGrader(form_motorgrader &object_form);

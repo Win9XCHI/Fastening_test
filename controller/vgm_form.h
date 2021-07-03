@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "base/base_technics.h"
 #include "../classes/vgm.h"
+#include "../classes/test.h"
 
 namespace Ui {
 class VGM_Form;
@@ -14,7 +15,7 @@ class VGM_Form : public QWidget, base_technics
     Q_OBJECT
 
 public:
-    explicit VGM_Form(VGM_DB db, QWidget *parent = nullptr);
+    explicit VGM_Form(VGM_DB db, User u, QWidget *parent = nullptr);
     ~VGM_Form();
 
 signals:
@@ -41,6 +42,7 @@ private:
     Ui::VGM_Form *ui;
     VGM_DB DB;
     VGM *object_VGM;
+    User object_user;
     unsigned int count1, count2;
 
     void FillingFormVGM(form_VGM &object_form);

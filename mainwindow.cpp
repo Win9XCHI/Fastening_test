@@ -13,8 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->comboBox->addItem("КрАЗ-256 порожній на платформі");
     ui->comboBox->addItem("КрАЗ-256 порожній над зчепом");
     ui->comboBox->addItem("Танк");
-    equipment = "";
-    object_user = new UserDB("DB_for_test.db");
+    //equipment = "";
 }
 
 MainWindow::~MainWindow()
@@ -23,7 +22,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::on_pushButton_3_clicked() {
-
+    /*object_user = new UserDB("DB_for_test.db");
     if (!object_user->CheckConnection()) {
         object_user->createConnection();
     }
@@ -44,42 +43,42 @@ void MainWindow::on_pushButton_3_clicked() {
         listValue.push_back(name);
         listValue.push_back(platoon);
         object_user->Insert("Student", listColumns, listValue);
-    }
+    }*/
 
     try {
         switch(ui->comboBox->currentIndex()) {
             case EQUIPMENT::EXCAVATOR: {
-                equipment = "Екскаватор ЕО-4125 на платформі";
+                //equipment = "Екскаватор ЕО-4125 на платформі";
                 Excavator();
                 break;
             }
             case EQUIPMENT::BULLDOZER: {
-                equipment = "Бульдозер Д-686 на платформі";
+                //equipment = "Бульдозер Д-686 на платформі";
                 Bulldozer();
                 break;
             }
             case EQUIPMENT::MOTORGRADER: {
-                equipment = "Автогрейдер ДЗ-98 на платформі";
+                //equipment = "Автогрейдер ДЗ-98 на платформі";
                 MotorGrader();
                 break;
             }
             case EQUIPMENT::SCRAPER: {
-                equipment = "Скрепер Д-357П на платформі";
+                //equipment = "Скрепер Д-357П на платформі";
                 Scraper();
                 break;
             }
             case EQUIPMENT::KRAZ_PL: {
-                equipment = "КрАЗ-256 порожній на платформі";
+                //equipment = "КрАЗ-256 порожній на платформі";
                 KRAZ_PL();
                 break;
             }
             case EQUIPMENT::KRAZ: {
-                equipment = "КрАЗ-256 порожній над зчепом";
+                //equipment = "КрАЗ-256 порожній над зчепом";
                 KRAZ();
                 break;
             }
             case EQUIPMENT::VGM: {
-                equipment = "Танк";
+                //equipment = "Танк";
                 VGM();
                 break;
             }
@@ -91,6 +90,7 @@ void MainWindow::on_pushButton_3_clicked() {
         Message_Form *object = new Message_Form(message);
         object->show();
     }
+    //delete object_user;
     this->close();
 }
 
@@ -126,7 +126,7 @@ void MainWindow::Excavator() {
     }
 
     Excavator_Form *object;
-    object = new Excavator_Form(DB);
+    object = new Excavator_Form(DB, create_user());
     connect(object, &Excavator_Form::firstWindow, this, &MainWindow::show);
     connect(object, &Excavator_Form::win, this, &MainWindow::win);
     connect(object, &Excavator_Form::fail, this, &MainWindow::fail);
@@ -146,7 +146,7 @@ void MainWindow::MotorGrader() {
     }
 
     MotorGrader_Form *object;
-    object = new MotorGrader_Form(DB);
+    object = new MotorGrader_Form(DB, create_user());
     connect(object, &MotorGrader_Form::firstWindow, this, &MainWindow::show);
     connect(object, &MotorGrader_Form::win, this, &MainWindow::win);
     connect(object, &MotorGrader_Form::fail, this, &MainWindow::fail);
@@ -166,7 +166,7 @@ void MainWindow::Bulldozer() {
     }
 
     Bulldozer_Form *object;
-    object = new Bulldozer_Form(DB);
+    object = new Bulldozer_Form(DB, create_user());
     connect(object, &Bulldozer_Form::firstWindow, this, &MainWindow::show);
     connect(object, &Bulldozer_Form::win, this, &MainWindow::win);
     connect(object, &Bulldozer_Form::fail, this, &MainWindow::fail);
@@ -186,7 +186,7 @@ void MainWindow::KRAZ() {
     }
 
     KRAZ_Form *object;
-    object = new KRAZ_Form(DB);
+    object = new KRAZ_Form(DB, create_user());
     connect(object, &KRAZ_Form::firstWindow, this, &MainWindow::show);
     connect(object, &KRAZ_Form::win, this, &MainWindow::win);
     connect(object, &KRAZ_Form::fail, this, &MainWindow::fail);
@@ -206,7 +206,7 @@ void MainWindow::KRAZ_PL() {
     }
 
     KRAZ_pl_form *object;
-    object = new KRAZ_pl_form(DB);
+    object = new KRAZ_pl_form(DB, create_user());
     connect(object, &KRAZ_pl_form::firstWindow, this, &MainWindow::show);
     connect(object, &KRAZ_pl_form::win, this, &MainWindow::win);
     connect(object, &KRAZ_pl_form::fail, this, &MainWindow::fail);
@@ -226,7 +226,7 @@ void MainWindow::Scraper() {
     }
 
     Scraper_Form *object;
-    object = new Scraper_Form(DB);
+    object = new Scraper_Form(DB, create_user());
     connect(object, &Scraper_Form::firstWindow, this, &MainWindow::show);
     connect(object, &Scraper_Form::win, this, &MainWindow::win);
     connect(object, &Scraper_Form::fail, this, &MainWindow::fail);
@@ -246,11 +246,15 @@ void MainWindow::VGM() {
     }
 
     VGM_Form *object;
-    object = new VGM_Form(DB);
+    object = new VGM_Form(DB, create_user());
     connect(object, &VGM_Form::firstWindow, this, &MainWindow::show);
     connect(object, &VGM_Form::win, this, &MainWindow::win);
     connect(object, &VGM_Form::fail, this, &MainWindow::fail);
     object->show();
+}
+
+User MainWindow::create_user() {
+    return {ui->lineEdit->text(), ui->lineEdit_2->text()};
 }
 
 void MainWindow::win() {
@@ -262,11 +266,18 @@ void MainWindow::fail() {
 }
 
 void MainWindow::add_attemt(QString result) {
+    /*object_user = new UserDB("DB_for_test.db");
+    object_user->createConnection();
+
+    if (!object_user->CheckConnection()) {
+        throw DatabaseException(object_user->LastError().toStdString());
+    }
+
     QString time = QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss");
     QString name = ui->lineEdit->text();
     QString platoon = ui->lineEdit->text();
     object_user->SELECT("id, Name, Platoon", "Student", "Name = '" + name + "' AND Platoon = '" + platoon + "'");
-    //qDebug() << object_user->LastError();
+
     std::vector<User> cont;
     object_user->GetUsers(cont);
     object_user->SELECT("id", "Equipment", "Name = '" + equipment + "'");
@@ -283,6 +294,7 @@ void MainWindow::add_attemt(QString result) {
     listValue.push_back(QString::number(object_test.GetUser_id()));
     listValue.push_back(QString::number(object_test.GetEquipment()));
     object_user->Insert("Test", listColumns, listValue);
+    delete object_user;*/
 }
 
 

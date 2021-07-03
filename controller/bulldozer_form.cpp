@@ -1,7 +1,7 @@
 #include "bulldozer_form.h"
 #include "ui_bulldozer_form.h"
 
-Bulldozer_Form::Bulldozer_Form(BulldozerDB db, QWidget *parent) :
+Bulldozer_Form::Bulldozer_Form(BulldozerDB db, User u, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Bulldozer_Form)
 {

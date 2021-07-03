@@ -1,9 +1,9 @@
 #include "bulldozer_db.h"
 
-BulldozerDB::BulldozerDB(QString str) : DB(str) {
+BulldozerDB::BulldozerDB(QString str) : UserDB(str) {
 }
 
-BulldozerDB::BulldozerDB() : DB() {
+BulldozerDB::BulldozerDB() : UserDB() {
 }
 
 /*SELECT Icon FROM Equipment WHERE Name = 'Бульдозер на платформі';*/

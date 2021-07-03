@@ -1,9 +1,9 @@
 #ifndef SCRAPER_DB_H
 #define SCRAPER_DB_H
-#include "driver/db.h"
+#include "user_db.h"
 #include "../classes/dimensions.h"
 
-class ScraperDB : public DB {
+class ScraperDB : public UserDB {
 
 public:
     ScraperDB(QString);

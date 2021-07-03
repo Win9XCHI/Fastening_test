@@ -1,10 +1,10 @@
 #ifndef KRAZ_DB_H
 #define KRAZ_DB_H
-#include "driver/db.h"
+#include "user_db.h"
 #include "../classes/dimensions.h"
 #include "../classes/fromto.h"
 
-class KRAZ_DB : public DB {
+class KRAZ_DB : public UserDB {
 
 public:
     KRAZ_DB(QString);
