@@ -14,11 +14,13 @@ public:
 
     void GetUsers(std::list<User> &cont);
     void GetAttempts(std::list<Test> &cont);
-    void GetEquipments(std::vector<QString> &cont);
-    void GetValue(std::map<QString, QString> &cont);
-    void GetYesNoValue(std::map<QString, QString> &cont);
-    void GetDimensionsValue(std::map<QString, Dimensions> &cont);
-    void GetFromToValue(std::map<QString, FromTo> &cont);
+    void GetEquipments(std::list<QString> &cont);
+    void GetValue(std::multimap<QString, QString> &cont);
+    void GetYesNoValue(std::multimap<QString, QString> &cont);
+    void GetDimensionsValue(std::multimap<QString, Dimensions> &cont);
+    void GetFromToValue(std::multimap<QString, FromTo> &cont);
+    QString GetTypeValue();
+    void GetId(std::vector<unsigned int> &cont);
 };
 
 #endif // PROJECTBD_H

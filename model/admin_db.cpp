@@ -22,7 +22,15 @@ void AdminDB::GetAttempts(std::list<Test> &cont) {
     }
 }
 
-void AdminDB::GetValue(std::map<QString, QString> &cont) {
+void AdminDB::GetEquipments(std::list<QString> &cont) {
+    QSqlRecord rec = query.record();
+
+    while(query.next()) {
+        cont.push_back(query.value(rec.indexOf("Name")).toString());
+    }
+}
+
+void AdminDB::GetValue(std::multimap<QString, QString> &cont) {
     QSqlRecord rec = query.record();
 
     while(query.next()) {
@@ -30,7 +38,7 @@ void AdminDB::GetValue(std::map<QString, QString> &cont) {
     }
 }
 
-void AdminDB::GetYesNoValue(std::map<QString, QString> &cont) {
+void AdminDB::GetYesNoValue(std::multimap<QString, QString> &cont) {
     QSqlRecord rec = query.record();
 
     while(query.next()) {
@@ -38,7 +46,7 @@ void AdminDB::GetYesNoValue(std::map<QString, QString> &cont) {
     }
 }
 
-void AdminDB::GetDimensionsValue(std::map<QString, Dimensions> &cont) {
+void AdminDB::GetDimensionsValue(std::multimap<QString, Dimensions> &cont) {
     QSqlRecord rec = query.record();
 
     while(query.next()) {
@@ -46,10 +54,24 @@ void AdminDB::GetDimensionsValue(std::map<QString, Dimensions> &cont) {
     }
 }
 
-void AdminDB::GetFromToValue(std::map<QString, FromTo> &cont) {
+void AdminDB::GetFromToValue(std::multimap<QString, FromTo> &cont) {
     QSqlRecord rec = query.record();
 
     while(query.next()) {
         cont.insert({query.value(rec.indexOf("Name")).toString(), {query.value(rec.indexOf("From")).toDouble(), query.value(rec.indexOf("To")).toDouble()}});
+    }
+}
+
+QString AdminDB::GetTypeValue() {
+    QSqlRecord rec = query.record();
+    query.next();
+    return query.value(rec.indexOf("Type")).toString();
+}
+
+void AdminDB::GetId(std::vector<unsigned int> &cont) {
+    QSqlRecord rec = query.record();
+
+    while(query.next()) {
+        cont.push_back(query.value(rec.indexOf("id")).toUInt());
     }
 }
