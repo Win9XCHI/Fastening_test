@@ -31,6 +31,7 @@ SOURCES += \
     controller/admin_form.cpp \
     controller/base\base_technics.cpp \
     controller/bulldozer_form.cpp \
+    model/admin_db.cpp \
     model/bulldozer_db.cpp \
     model/driver/db.cpp \
     controller/excavator_form.cpp \
@@ -73,6 +74,7 @@ HEADERS += \
     controller/base/base_technics.h \
     controller/bulldozer_form.h \
     exceptions/database_exception.h \
+    model/admin_db.h \
     model/bulldozer_db.h \
     model/driver/db.h \
     controller/excavator_form.h \
