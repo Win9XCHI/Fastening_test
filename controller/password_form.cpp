@@ -1,11 +1,12 @@
 #include "password_form.h"
 #include "ui_password_form.h"
 
-Password_Form::Password_Form(QWidget *parent) :
+Password_Form::Password_Form(AdminDB db, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Password_Form)
 {
     ui->setupUi(this);
+    DB = db;
 }
 
 Password_Form::~Password_Form()
@@ -15,7 +16,9 @@ Password_Form::~Password_Form()
 
 void Password_Form::on_pushButton_clicked()
 {
-    Admin_Form *object = new Admin_Form();
+    Admin_Form *object = new Admin_Form(DB);
+    connect(object, &Admin_Form::firstWindow, this, &Password_Form::return_main);
+    emit succes();
     object->show();
     this->close();
 }

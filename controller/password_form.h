@@ -13,14 +13,19 @@ class Password_Form : public QWidget
     Q_OBJECT
 
 public:
-    explicit Password_Form(QWidget *parent = nullptr);
+    explicit Password_Form(AdminDB db, QWidget *parent = nullptr);
     ~Password_Form();
+
+signals:
+    void succes();
+    void return_main();
 
 private slots:
     void on_pushButton_clicked();
 
 private:
     Ui::Password_Form *ui;
+    AdminDB DB;
 };
 
 #endif // PASSWORD_FORM_H

@@ -71,7 +71,20 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
-    Password_Form *object = new Password_Form();
+    AdminDB DB("DB_for_test.db");
+
+    CheckFileDB();
+
+    if (!DB.CheckConnection()) {
+        DB.createConnection();
+    }
+    if (!DB.CheckConnection()) {
+        throw DatabaseException(DB.LastError().toStdString());
+    }
+
+    Password_Form *object = new Password_Form(DB);
+    connect(object, &Password_Form::succes, this, &MainWindow::close);
+    connect(object, &Password_Form::return_main, this, &MainWindow::show);
     object->show();
 }
 
