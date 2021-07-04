@@ -21,6 +21,7 @@ public:
     QString GetName();
     QString GetPlatoon();
     User& operator=(User &other);
+    QString operator [](int i);
 };
 
 #endif // USER_H

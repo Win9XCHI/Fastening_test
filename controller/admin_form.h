@@ -24,9 +24,16 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_clicked();
+
 private:
     Ui::Admin_Form *ui;
     AdminDB DB;
+    QString equipment;
+
+    QString SetWhere(QString name, QString platoon, QString equipment);
 };
 
 #endif // ADMIN_FORM_H

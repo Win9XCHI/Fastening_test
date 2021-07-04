@@ -7,6 +7,10 @@ Test::Test(unsigned int i, unsigned int u_i, User u, QString g, QString d, unsig
     object_user = u;
 }
 
+Test::Test(User u, QString g, QString d, QString e) : grade(g), date(d), equipment(e){
+    object_user = u;
+}
+
 Test::Test(unsigned int i, unsigned int u_i, QString g, QString d, unsigned int ei) : id(i), equipment_id(ei), user_id(u_i), grade(g), date(d) {
 }
 
@@ -61,5 +65,26 @@ QString Test::GetDate() {
 
 unsigned int Test::GetEquipment() {
     return equipment_id;
+}
+
+QString Test::operator [](int i) {
+   switch (i) {
+       case 0: {
+         return object_user.GetName();
+       }
+       case 1: {
+         return object_user.GetPlatoon();
+       }
+       case 2: {
+         return grade;
+       }
+       case 3: {
+         return date;
+       }
+       case 4: {
+         return equipment;
+       }
+   }
+   return "";
 }
 

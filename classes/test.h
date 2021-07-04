@@ -9,10 +9,12 @@ class Test {
     User object_user;
     QString grade;
     QString date;
+    QString equipment;
 
 public:
     Test();
     Test(unsigned int i, unsigned int u_i, User u, QString g, QString d, unsigned int ei);
+    Test(User u, QString g, QString d, QString e);
     Test(unsigned int i, unsigned int u_i, QString g, QString d, unsigned int ei);
     ~Test();
 
@@ -29,6 +31,7 @@ public:
     QString GetGrade();
     QString GetDate();
     unsigned int GetEquipment();
+    QString operator [](int i);
 };
 
 #endif // TEST_H

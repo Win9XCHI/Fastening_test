@@ -48,3 +48,18 @@ User& User::operator=(User &other) {
     platoon = other.GetPlatoon();
     return *this;
 }
+
+QString User::operator [](int i) {
+   switch (i) {
+       case 0: {
+         return name;
+       }
+       case 1: {
+         return platoon;
+       }
+       case 2: {
+         return QString::number(id);
+       }
+   }
+   return "";
+}

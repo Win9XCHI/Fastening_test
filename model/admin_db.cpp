@@ -6,7 +6,7 @@ AdminDB::AdminDB(QString str) : DB(str) {
 AdminDB::AdminDB() : DB() {
 }
 
-void AdminDB::GetUsers(std::vector<User> &cont) {
+void AdminDB::GetUsers(std::list<User> &cont) {
     QSqlRecord rec = query.record();
 
     while(query.next()) {
@@ -14,11 +14,11 @@ void AdminDB::GetUsers(std::vector<User> &cont) {
     }
 }
 
-void AdminDB::GetAttempts(std::vector<Test> &cont) {
+void AdminDB::GetAttempts(std::list<Test> &cont) {
     QSqlRecord rec = query.record();
 
     while(query.next()) {
-        cont.push_back({query.value(rec.indexOf("id")).toUInt(), query.value(rec.indexOf("Student_id")).toUInt(), query.value(rec.indexOf("Grade")).toString(), query.value(rec.indexOf("Date")).toString(), query.value(rec.indexOf("Equipment_id")).toUInt()});
+        cont.push_back({{query.value(rec.indexOf("st_name")).toString(), query.value(rec.indexOf("Platoon")).toString()}, query.value(rec.indexOf("Grade")).toString(), query.value(rec.indexOf("Date")).toString(), query.value(rec.indexOf("eq_name")).toString()});
     }
 }
 

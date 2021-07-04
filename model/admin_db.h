@@ -12,8 +12,8 @@ public:
     AdminDB();
     virtual ~AdminDB() {}
 
-    void GetUsers(std::vector<User> &cont);
-    void GetAttempts(std::vector<Test> &cont);
+    void GetUsers(std::list<User> &cont);
+    void GetAttempts(std::list<Test> &cont);
     void GetEquipments(std::vector<QString> &cont);
     void GetValue(std::map<QString, QString> &cont);
     void GetYesNoValue(std::map<QString, QString> &cont);
