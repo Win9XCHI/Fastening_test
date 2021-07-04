@@ -18,6 +18,9 @@ public:
 signals:
     void firstWindow();
 
+private slots:
+    void on_comboBox_activated(int index);
+
 private:
     Ui::Admin_Form *ui;
 };
