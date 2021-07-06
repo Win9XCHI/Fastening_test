@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>868</width>
-    <height>711</height>
+    <width>861</width>
+    <height>713</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Бульдозер на платформі</string>
+   <string>Бульдозер Д-686 на платформі</string>
   </property>
   <widget class="QGraphicsView" name="graphicsView">
    <property name="geometry">

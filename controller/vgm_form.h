@@ -26,15 +26,19 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_lineEdit_5_editingFinished();
+
+    void on_listWidget_currentTextChanged(const QString &currentText);
+
+    void on_listWidget_2_currentTextChanged(const QString &currentText);
+
+    void on_lineEdit_cursorPositionChanged(int arg1, int arg2);
+
     void on_lineEdit_editingFinished();
 
-    void on_spinBox_valueChanged(int arg1);
+    void on_lineEdit_4_cursorPositionChanged(int arg1, int arg2);
 
-    void on_spinBox_editingFinished();
-
-    void on_spinBox_3_valueChanged(int arg1);
-
-    void on_spinBox_3_editingFinished();
+    void on_lineEdit_4_editingFinished();
 
 private:
     Ui::VGM_Form *ui;

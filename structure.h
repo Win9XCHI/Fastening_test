@@ -274,24 +274,47 @@ struct form_answer_KRAZ {
 struct form_VGM {
     QString weight;
     unsigned int s;
+    unsigned int wd;
     unsigned int t;
     unsigned int b;
+    QString nail_boards;
     unsigned int st1;
-    unsigned int n;
+    unsigned int n1;
+    unsigned int nl1;
+    QString side_bar;
     unsigned int st2;
+    QString width;
+    unsigned int st;
+    unsigned int sw;
+    unsigned int sl;
+    unsigned int sn;
+    unsigned int gap1;
+    unsigned int gap2;
+
+    form_VGM() {
+        s = wd = t = b = st1 = n1 = nl1 = st2 = st = sw = sl = sn = gap1 = gap2 = 0;
+        weight = nail_boards = nail_boards = width = "";
+    }
 };
 
 struct form_answer_VGM {
-    bool weight;
     bool s;
+    bool wd;
     bool t;
     bool b;
     bool st1;
-    bool n;
+    bool n1;
+    bool nl1;
     bool st2;
+    bool st;
+    bool sw;
+    bool sl;
+    bool sn;
+    bool gap1;
+    bool gap2;
 
     form_answer_VGM() {
-        weight = s = t = b = st1 = n = st2 = true;
+        s = wd = t = b = st1 = n1 = nl1 = st2 = st = sw = sl = sn = gap1 = gap2 = true;
     }
 };
 

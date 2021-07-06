@@ -318,7 +318,7 @@ void Bulldozer_Form::on_listWidget_currentTextChanged(const QString &currentText
         ui->groupBox->show();
     }
 
-    if (currentText == "Цвяхи" && ui->comboBox_2->currentText() == "До 15 т.") {
+    if (currentText == "Цвяхи") {
         ui->groupBox->hide();
         ui->groupBox_4->show();
     }
