@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Автогрейдер ДЗ-98 на платформі</string>
+   <string>Автогрейдер ДЗ-98 на платформі (20 т.)</string>
   </property>
   <widget class="QGraphicsView" name="graphicsView">
    <property name="geometry">

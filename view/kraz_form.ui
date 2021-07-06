@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>КрАЗ-256 порожній над зчепом</string>
+   <string>КрАЗ-256 порожній над зчепом (12 т.)</string>
   </property>
   <widget class="QGraphicsView" name="graphicsView">
    <property name="geometry">
