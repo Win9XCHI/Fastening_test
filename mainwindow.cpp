@@ -22,6 +22,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_3_clicked() {
 
+    if (!Validation::CheckPIB(ui->lineEdit->text())) {
+        ui->label->setStyleSheet("color: rgb(200, 0, 0)");
+        return;
+    }
+    if (!Validation::CheckPlatoon(ui->lineEdit_2->text())) {
+        ui->label_2->setStyleSheet("color: rgb(200, 0, 0)");
+        return;
+    }
+
     try {
         switch(ui->comboBox->currentIndex()) {
             case EQUIPMENT::EXCAVATOR: {

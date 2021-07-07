@@ -13,6 +13,7 @@
 #include "controller/vgm_form.h"
 #include "controller/password_form.h"
 #include "model/user_db.h"
+#include "functions/validation.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,8 +38,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    //QString equipment;
-    //UserDB *object_user;
 
     void Connection();
     void Excavator();
