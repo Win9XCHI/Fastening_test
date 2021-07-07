@@ -54,7 +54,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>510</y>
+     <y>570</y>
      <width>41</width>
      <height>16</height>
     </rect>
@@ -67,7 +67,7 @@
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>510</y>
+     <y>570</y>
      <width>31</width>
      <height>16</height>
     </rect>
@@ -80,7 +80,7 @@
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>510</y>
+     <y>570</y>
      <width>41</width>
      <height>16</height>
     </rect>
@@ -93,7 +93,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>540</y>
+     <y>600</y>
      <width>171</width>
      <height>31</height>
     </rect>
@@ -184,7 +184,7 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>510</y>
+     <y>570</y>
      <width>51</width>
      <height>22</height>
     </rect>
@@ -194,7 +194,7 @@
    <property name="geometry">
     <rect>
      <x>160</x>
-     <y>510</y>
+     <y>570</y>
      <width>51</width>
      <height>22</height>
     </rect>
@@ -204,7 +204,7 @@
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>510</y>
+     <y>570</y>
      <width>51</width>
      <height>22</height>
     </rect>
@@ -214,7 +214,7 @@
    <property name="geometry">
     <rect>
      <x>210</x>
-     <y>540</y>
+     <y>600</y>
      <width>113</width>
      <height>22</height>
     </rect>
@@ -294,6 +294,101 @@
    </property>
    <property name="text">
     <string>Повернутися на головну</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>530</y>
+     <width>41</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>довж.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>530</y>
+     <width>41</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>товщ.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_14">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>530</y>
+     <width>31</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>шир.</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_12">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>530</y>
+     <width>51</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_13">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>530</y>
+     <width>51</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_14">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>530</y>
+     <width>51</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_15">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>550</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Задні колеса:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_16">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>505</y>
+     <width>161</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Передні колеса:</string>
    </property>
   </widget>
  </widget>

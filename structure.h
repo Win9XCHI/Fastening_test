@@ -202,6 +202,9 @@ struct form_KRAZ_pl {
     unsigned int t1;
     unsigned int w1;
     unsigned int l1;
+    unsigned int t2;
+    unsigned int w2;
+    unsigned int l2;
     unsigned int n;
     unsigned int s;
     unsigned int t;
@@ -215,6 +218,9 @@ struct form_answer_KRAZ_pl {
     bool t1;
     bool w1;
     bool l1;
+    bool t2;
+    bool w2;
+    bool l2;
     bool n;
     bool s;
     bool t;
@@ -223,7 +229,7 @@ struct form_answer_KRAZ_pl {
     bool pog;
 
     form_answer_KRAZ_pl() {
-        b = t1 = w1 = l1 = n = s = t = wd = kg = pog = true;
+        b = t1 = w1 = l1 = t2 = w2 = l2 = n = s = t = wd = kg = pog = true;
     }
 };
 

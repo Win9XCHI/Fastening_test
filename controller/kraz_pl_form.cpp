@@ -118,6 +118,9 @@ void KRAZ_pl_form::FillingFormKRAZ_pl(form_KRAZ_pl &object_form) {
     object_form.t1 = ui->lineEdit_3->text().toUInt();
     object_form.w1 = ui->lineEdit_4->text().toUInt();
     object_form.l1 = ui->lineEdit_5->text().toUInt();
+    object_form.t2 = ui->lineEdit_12->text().toUInt();
+    object_form.w2 = ui->lineEdit_13->text().toUInt();
+    object_form.l2 = ui->lineEdit_14->text().toUInt();
     object_form.n = ui->lineEdit_6->text().toUInt();
     object_form.s = ui->lineEdit_7->text().toUInt();
     object_form.t = ui->lineEdit_8->text().toUInt();
@@ -158,6 +161,21 @@ bool KRAZ_pl_form::CheckAnswer(form_answer_KRAZ_pl form) {
     if (!form.l1) {
         ui->lineEdit_5->setStyleSheet("color: rgb(200, 0, 0)");
         ui->label_5->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.t2) {
+        ui->lineEdit_12->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_8->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.w2) {
+        ui->lineEdit_13->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_14->setStyleSheet("color: rgb(200, 0, 0)");
+        flag = false;
+    }
+    if (!form.l2) {
+        ui->lineEdit_14->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_7->setStyleSheet("color: rgb(200, 0, 0)");
         flag = false;
     }
     if (!form.n) {
