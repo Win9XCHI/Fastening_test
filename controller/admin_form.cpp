@@ -277,14 +277,20 @@ void Admin_Form::SetTableWidget_5(std::multimap<QString, FromTo> contFT) {
 void Admin_Form::TableDefault() {
     QList<QTableWidget *> allEdits = this->findChildren<QTableWidget *>();
     for (auto &element : allEdits) {
+
+        for (int i = 0; i < element->rowCount(); i++) {
+            element->removeRow(i);
+        }
+
+        for (int i = 0; i < element->columnCount(); i++) {
+            element->removeColumn(i);
+        }
         element->clear();
     }
 }
 
 void Admin_Form::on_pushButton_3_clicked() {
     TableDefault();
-    DB.SELECT("Cha.Type", "Characteristic AS Cha JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id", "Equ.Name = '" + equipment + "' AND Cha.Name = '" + ui->lineEdit->text() + "'");
-    QString type = DB.GetTypeValue();
     QString where;
 
     if (ui->lineEdit_5->text() == "") {
@@ -303,43 +309,44 @@ void Admin_Form::on_pushButton_3_clicked() {
         }
     }
 
-    if (type == "" || type == "Conditions") {
-        std::multimap<QString, QString> cont;
-        DB.SELECT("Con.Value, Cha.Name",
-                  "Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id",
-                  where,
-                  "", "Cha.Name ASC");
-        DB.GetValue(cont);
+    std::multimap<QString, QString> cont;
+    std::multimap<QString, QString> contYN;
+    std::multimap<QString, Dimensions> contD;
+    std::multimap<QString, FromTo> contFT;
+    DB.SELECT("Con.Value, Cha.Name",
+              "Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id",
+              where,
+              "", "Cha.Name ASC");
+    DB.GetValue(cont);
+
+    DB.SELECT("Yn.Answer, Cha.Name",
+              "YesNo AS Yn JOIN Conditions AS Con ON Con.id = Yn.Conditions_id JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id",
+              where,
+              "", "Cha.Name ASC");
+    DB.GetYesNoValue(contYN);
+
+    DB.SELECT("D.Thickness, D.Width, D.Length, Cha.Name",
+              "Dimensions AS D JOIN Conditions AS Con ON Con.id = D.Conditions_id JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id",
+              where,
+              "", "Cha.Name ASC");
+    DB.GetDimensionsValue(contD);
+
+    DB.SELECT("Ft.\"From\", Ft.\"To\", Cha.Name",
+              "FromTo AS Ft JOIN Conditions AS Con ON Con.id = Ft.Conditions_id JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id",
+              where,
+              "", "Cha.Name ASC");
+    DB.GetFromToValue(contFT);
+
+    if (cont.size() != 0) {
         SetTableWidget_2(cont);
     }
-
-    if (type == "YesNo") {
-        std::multimap<QString, QString> contYN;
-        DB.SELECT("Yn.Answer, Cha.Name",
-                  "YesNo AS Yn JOIN Conditions AS Con ON Con.id = Yn.Conditions_id JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id",
-                  where,
-                  "", "Cha.Name ASC");
-        DB.GetYesNoValue(contYN);
+    if (contYN.size() != 0) {
         SetTableWidget_4(contYN);
     }
-
-    if (type == "Dimensions") {
-        std::multimap<QString, Dimensions> contD;
-        DB.SELECT("D.Thickness, D.Width, D.Length, Cha.Name",
-                  "Dimensions AS D JOIN Conditions AS Con ON Con.id = D.Conditions_id JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id",
-                  where,
-                  "", "Cha.Name ASC");
-        DB.GetDimensionsValue(contD);
+    if (contD.size() != 0) {
         SetTableWidget_3(contD);
     }
-
-    if (type == "FromTo") {
-        std::multimap<QString, FromTo> contFT;
-        DB.SELECT("Ft.\"From\", Ft.\"To\", Cha.Name",
-                  "FromTo AS Ft JOIN Conditions AS Con ON Con.id = Ft.Conditions_id JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id",
-                  where,
-                  "", "Cha.Name ASC");
-        DB.GetFromToValue(contFT);
+    if (contFT.size() != 0) {
         SetTableWidget_5(contFT);
     }
 }
@@ -360,6 +367,8 @@ void Admin_Form::on_pushButton_4_clicked() {
             } else {
                 where = "Cha.Name = '" + ui->lineEdit_16->text() + "' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '" + ui->lineEdit_15->text() + "' AND Cha.Name = '" + ui->lineEdit_4->text() + "' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '" + ui->lineEdit_14->text() + "' AND Cha.Name = '" + ui->lineEdit_3->text() + "' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = '" + equipment + "' AND Con.Value = '" + ui->lineEdit_5->text() + "')))";
             }
+            DB.SELECT("Cha.Type", "Characteristic AS Cha JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id", "Equ.Name = '" + equipment + "' AND Cha.Name = '" + ui->lineEdit_16->text() + "'");
+            type = DB.GetTypeValue();
         }
     }
 
@@ -413,5 +422,5 @@ void Admin_Form::on_pushButton_4_clicked() {
         }
     }
 
-    emit on_pushButton_3_clicked();
+    on_pushButton_3_clicked();
 }
