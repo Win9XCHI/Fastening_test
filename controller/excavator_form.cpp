@@ -10,10 +10,10 @@ Excavator_Form::Excavator_Form(ExcavatorDB db, User u, QWidget *parent) :
     scene = new QGraphicsScene;
     object_excavator = new Excavator(DB);
     count = 0;
-    name = "Екскаватор ЕО-4125 на платформі";
-    ui->comboBox->addItem("");
-    ui->comboBox->addItem("Ні");
-    ui->comboBox->addItem("Так");
+    name = EQUIPMENT_NAME::EXCAVATOR;
+    ui->comboBox->addItem(YES_NO::EMPTY);
+    ui->comboBox->addItem(YES_NO::NO);
+    ui->comboBox->addItem(YES_NO::YES);
     Excavator_Form::set_image();
 
     object_user = u;
@@ -147,7 +147,7 @@ void Excavator_Form::FillingFormExcavator(form_excavator &object_form) {
     object_form.n1 = ui->lineEdit_2->text().toUInt();
     object_form.n2 = ui->lineEdit_4->text().toUInt();
 
-    ui->comboBox->currentText() == "Так" ? object_form.l = true : object_form.l = false;
+    ui->comboBox->currentText() == YES_NO::YES ? object_form.l = true : object_form.l = false;
 
     object_form.at = ui->lineEdit_6->text().toDouble();
     object_form.al = ui->lineEdit_16->text().toDouble();
@@ -158,124 +158,124 @@ void Excavator_Form::FillingFormExcavator(form_excavator &object_form) {
 void Excavator_Form::Default() {
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     for (auto &element : allEdits) {
-        element->setStyleSheet("color: rgb(0, 0, 0)");
+        element->setStyleSheet(COLOR_EDIT::BLACK);
     }
     QList<QLabel *> allLabels = this->findChildren<QLabel *>();
     for (auto &element : allLabels) {
-        element->setStyleSheet("color: rgb(0, 0, 0)");
+        element->setStyleSheet(COLOR_EDIT::BLACK);
     }
-    ui->comboBox->setStyleSheet("color: rgb(0, 0, 0)");
+    ui->comboBox->setStyleSheet(COLOR_EDIT::BLACK);
 }
 
 bool Excavator_Form::CheckAnswer(form_answer_excavator form) {
     bool flag(true);
 
     if (!form.s1) {
-        ui->lineEdit_7->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_7->setStyleSheet(COLOR_EDIT::RED);
+        ui->label->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.t1) {
-        ui->lineEdit_8->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_3->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_8->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_3->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.s2) {
-        ui->lineEdit_9->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_4->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_9->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_4->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.t2) {
-        ui->lineEdit_10->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_5->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_10->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_5->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.s3) {
-        ui->lineEdit_11->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_6->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_11->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_6->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.t3) {
-        ui->lineEdit_12->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_7->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_12->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_7->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.s4) {
-        ui->lineEdit_13->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_8->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_13->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_8->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.t4) {
-        ui->lineEdit_14->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_9->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_14->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_9->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.s5) {
-        ui->lineEdit_15->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_10->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_15->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_10->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.t5) {
-        ui->lineEdit_17->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_11->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_17->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_11->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
 
     if (!form.gb1) {
-        ui->lineEdit_19->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_12->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_19->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_12->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.gb2) {
-        ui->lineEdit_20->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_12->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_20->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_12->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
 
     if (!form.b1) {
-        ui->lineEdit->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_13->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_13->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.n1) {
-        ui->lineEdit_2->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_14->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_2->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_14->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.b2) {
-        ui->lineEdit_3->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_15->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_3->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_15->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.n2) {
-        ui->lineEdit_4->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_16->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_4->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_16->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
 
     if (!form.wd) {
-        ui->lineEdit_18->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_2->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_18->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_2->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.at) {
-        ui->lineEdit_6->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_20->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_6->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_20->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.al) {
-        ui->lineEdit_16->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_17->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_16->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_17->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.l) {
-        ui->comboBox->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_18->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->comboBox->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_18->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.bh) {
-        ui->lineEdit_5->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_19->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_5->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_19->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
 
@@ -296,7 +296,7 @@ void Excavator_Form::on_pushButton_clicked()
     form_answer_excavator object_answer = object_excavator->CheckAnswer(object_form);
 
     frame message;
-    QString grade = "";
+    QString grade = YES_NO::EMPTY;
 
     if (CheckAnswer(object_answer)) {
         message.result = MESSAGE::SUCCESS;

@@ -1,11 +1,11 @@
 #include "bulldozer.h"
 
 Bulldozer::Bulldozer(BulldozerDB db) {
-    name = "Бульдозер Д-686 на платформі";
+    name = EQUIPMENT_NAME::BULLDOZER;
     std::map<QString, QString> cont;
     std::map<QString, Dimensions> contD;
     DB = db;
-    weight = nail_boards = side_bar = "";
+    weight = nail_boards = side_bar = YES_NO::EMPTY;
     width_trackYesNo = false;
 
     Quiry(cont, contD);
@@ -29,21 +29,21 @@ void Bulldozer::Filling(std::map<QString, QString> cont, std::map<QString, Dimen
     mas_stretching.insert({"stretch", {cont["Скільки буде використано розтяжок"].toUInt(), 0, cont["Дріт якого діаметру треба застосувати"].toUInt()}});
     mas_bar.insert({"thrust", {cont["Скільки упорних брусків треба використати"].toUInt()}});
     bool flag(false);
-    if (cont["Чи потрібна дерев'яна підкладки під ніж бульдозера"] == "Так") {
+    if (cont["Чи потрібна дерев'яна підкладки під ніж бульдозера"] == YES_NO::YES) {
         flag = true;
     }
     mas_lining.insert({"lining", {flag, contD["Розміри підкладки під ніж бульдозера (мм)"], cont["Кількість цвяхів на підкладку"].toUInt()}});
 }
 
 void Bulldozer::ClearNailBoards() {
-    nail_boards = "";
+    nail_boards = YES_NO::EMPTY;
     mas_bar["thrust"].SetStaple(0);
     mas_bar["thrust"].SetNails(0);
     mas_bar["thrust"].SetLengthNail(0);
 }
 
 void Bulldozer::ClearSideBar() {
-    side_bar = "";
+    side_bar = YES_NO::EMPTY;
     width_trackYesNo = false;
     if (mas_bar.find("side") != mas_bar.cend()) {
         mas_bar.erase(mas_bar.find("side"));
@@ -72,7 +72,7 @@ void Bulldozer::SetNailBoards(QString string) {
               "Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '" + nail_boards + "' AND Cha.Name = '" + string + "' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = '" + name + "' AND Con.Value = '" + weight + "'))");
     DB.GetValue(cont);
 
-    if (nail_boards == "Будівельні скоби") {
+    if (nail_boards == BULLDOZER_FORM::STAPLES) {
         mas_bar["thrust"].SetStaple(cont["Скільки скоб треба застосувати для кріплення одного бруска"].toUInt());
     } else {
         mas_bar["thrust"].SetNails(cont["Скільки цвяхів треба застосувати для кріплення одного бруска?"].toUInt());
@@ -92,7 +92,7 @@ void Bulldozer::SetSideBar(QString string) {
               "Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '" + side_bar + "' AND Cha.Name = '" + string + "' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = '" + name + "' AND Con.Value = '" + weight + "'))");
     DB.GetValue(cont);
 
-    if (side_bar == "Бокові бруски") {
+    if (side_bar == BULLDOZER_FORM::SAID_BARS) {
         DB.SELECT("D.Thickness, D.Width, D.Length, Cha.Name",
                   "Dimensions AS D JOIN Conditions AS Con ON Con.id = D.Conditions_id JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id",
                   "Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '" + side_bar + "' AND Cha.Name = '" + string + "' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = '" + name + "' AND Con.Value = '" + weight + "'))");
@@ -154,12 +154,12 @@ form_answer_bulldozer Bulldozer::CheckAnswer(form_bulldozer form) {
         object.ll = false;
     }
 
-    if (nail_boards  == "Будівельні скоби") {
+    if (nail_boards  == BULLDOZER_FORM::STAPLES) {
         if (form.st1 != mas_bar["thrust"].GetStaple()) {
             object.st1 = false;
         }
     }
-    if (nail_boards == "Цвяхи") {
+    if (nail_boards == BULLDOZER_FORM::NAILS) {
         if (form.n1 != mas_bar["thrust"].GetNails()) {
             object.n1 = false;
         }
@@ -168,7 +168,7 @@ form_answer_bulldozer Bulldozer::CheckAnswer(form_bulldozer form) {
         }
     }
 
-    if (side_bar == "Бокові бруски") {
+    if (side_bar == BULLDOZER_FORM::SAID_BARS) {
         if (form.sn != mas_bar["side"].GetNails()) {
             object.sn = false;
         }
@@ -189,7 +189,7 @@ form_answer_bulldozer Bulldozer::CheckAnswer(form_bulldozer form) {
         }
     }
 
-    if (side_bar == "Будівельні скоби") {
+    if (side_bar == BULLDOZER_FORM::STAPLES) {
         if (form.st2 != mas_bar["side"].GetStaple()) {
             object.st2 = false;
         }

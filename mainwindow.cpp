@@ -6,13 +6,13 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->comboBox->addItem("Екскаватор ЕО-4125 на платформі");
-    ui->comboBox->addItem("Бульдозер на платформі");
-    ui->comboBox->addItem("Автогрейдер ДЗ-98 на платформі");
-    ui->comboBox->addItem("Скрепер Д-357П на платформі");
-    ui->comboBox->addItem("КрАЗ-256 порожній на платформі");
-    ui->comboBox->addItem("КрАЗ-256 порожній над зчепом");
-    ui->comboBox->addItem("Танк");
+    ui->comboBox->addItem(EQUIPMENT_NAME::EXCAVATOR);
+    ui->comboBox->addItem(EQUIPMENT_NAME::BULLDOZER);
+    ui->comboBox->addItem(EQUIPMENT_NAME::MOTORGRADER);
+    ui->comboBox->addItem(EQUIPMENT_NAME::SCRAPER);
+    ui->comboBox->addItem(EQUIPMENT_NAME::KRAZ_PL);
+    ui->comboBox->addItem(EQUIPMENT_NAME::KRAZ);
+    ui->comboBox->addItem(EQUIPMENT_NAME::VGM);
 }
 
 MainWindow::~MainWindow()
@@ -23,11 +23,11 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_3_clicked() {
 
     if (!Validation::CheckPIB(ui->lineEdit->text())) {
-        ui->label->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label->setStyleSheet(COLOR_EDIT::RED);
         return;
     }
     if (!Validation::CheckPlatoon(ui->lineEdit_2->text())) {
-        ui->label_2->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_2->setStyleSheet(COLOR_EDIT::RED);
         return;
     }
 
@@ -80,7 +80,7 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
-    AdminDB DB("DB_for_test.db");
+    AdminDB DB(PATHS::DB);
 
     CheckFileDB();
 
@@ -98,14 +98,14 @@ void MainWindow::on_pushButton_clicked()
 }
 
 void MainWindow::CheckFileDB() {
-    std::ifstream file("DB_for_test.db");
+    std::ifstream file(PATHS::DB.toStdString());
     if(!file.is_open()) {
         throw DatabaseException("Файлу DB_for_test.db не знайдено");
     }
 }
 
 void MainWindow::Excavator() {
-    ExcavatorDB DB("DB_for_test.db");
+    ExcavatorDB DB(PATHS::DB);
 
     CheckFileDB();
 
@@ -123,7 +123,7 @@ void MainWindow::Excavator() {
 }
 
 void MainWindow::MotorGrader() {
-    MotorGraderDB DB("DB_for_test.db");
+    MotorGraderDB DB(PATHS::DB);
 
     CheckFileDB();
 
@@ -141,7 +141,7 @@ void MainWindow::MotorGrader() {
 }
 
 void MainWindow::Bulldozer() {
-    BulldozerDB DB("DB_for_test.db");
+    BulldozerDB DB(PATHS::DB);
 
     CheckFileDB();
 
@@ -159,7 +159,7 @@ void MainWindow::Bulldozer() {
 }
 
 void MainWindow::KRAZ() {
-    KRAZ_DB DB("DB_for_test.db");
+    KRAZ_DB DB(PATHS::DB);
 
     CheckFileDB();
 
@@ -177,7 +177,7 @@ void MainWindow::KRAZ() {
 }
 
 void MainWindow::KRAZ_PL() {
-    KRAZ_pl_DB DB("DB_for_test.db");
+    KRAZ_pl_DB DB(PATHS::DB);
 
     CheckFileDB();
 
@@ -195,7 +195,7 @@ void MainWindow::KRAZ_PL() {
 }
 
 void MainWindow::Scraper() {
-    ScraperDB DB("DB_for_test.db");
+    ScraperDB DB(PATHS::DB);
 
     CheckFileDB();
 
@@ -213,7 +213,7 @@ void MainWindow::Scraper() {
 }
 
 void MainWindow::VGM() {
-    VGM_DB DB("DB_for_test.db");
+    VGM_DB DB(PATHS::DB);
 
     CheckFileDB();
 

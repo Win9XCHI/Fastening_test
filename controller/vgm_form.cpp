@@ -8,18 +8,18 @@ VGM_Form::VGM_Form(VGM_DB db, User u, QWidget *parent) :
     ui->setupUi(this);
     scene = new QGraphicsScene;
     DB = db;
-    name = "Танк";
-    ui->comboBox->addItem("");
-    ui->comboBox->addItem("Менше 400 мм.");
-    ui->comboBox->addItem("400 мм. і більше");
+    name = EQUIPMENT_NAME::VGM;
+    ui->comboBox->addItem(YES_NO::EMPTY);
+    ui->comboBox->addItem(BULLDOZER_FORM::WIDTH_TRACK::LESS400);
+    ui->comboBox->addItem(BULLDOZER_FORM::WIDTH_TRACK::MORE400);
     ui->groupBox->hide();
     ui->groupBox_2->hide();
     ui->groupBox_3->hide();
     ui->groupBox_4->hide();
-    ui->listWidget->addItem("Будівельні скоби");
-    ui->listWidget->addItem("Цвяхи");
-    ui->listWidget_2->addItem("Будівельні скоби");
-    ui->listWidget_2->addItem("Бокові бруски");
+    ui->listWidget->addItem(VGM_FORM::STAPLES);
+    ui->listWidget->addItem(VGM_FORM::NAILS);
+    ui->listWidget_2->addItem(VGM_FORM::STAPLES);
+    ui->listWidget_2->addItem(VGM_FORM::SAID_BARS);
     object_VGM = new VGM(DB);
     VGM_Form::set_image();
     count1 = count2 = 0;
@@ -83,7 +83,7 @@ void VGM_Form::on_pushButton_2_clicked()
     form_answer_VGM object_answer = object_VGM->CheckAnswer(object_form);
 
     frame message;
-    QString grade = "";
+    QString grade = YES_NO::EMPTY;
 
     if (CheckAnswer(object_answer)) {
         message.result = MESSAGE::SUCCESS;
@@ -153,11 +153,11 @@ void VGM_Form::FillingFormVGM(form_VGM &object_form) {
 void VGM_Form::Default() {
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     for (auto &element : allEdits) {
-        element->setStyleSheet("color: rgb(0, 0, 0)");
+        element->setStyleSheet(COLOR_EDIT::BLACK);
     }
     QList<QLabel *> allLabels = this->findChildren<QLabel *>();
     for (auto &element : allLabels) {
-        element->setStyleSheet("color: rgb(0, 0, 0)");
+        element->setStyleSheet(COLOR_EDIT::BLACK);
     }
 }
 
@@ -165,105 +165,105 @@ bool VGM_Form::CheckAnswer(form_answer_VGM form) {
     bool flag(true);
 
     if (!form.s) {
-        ui->lineEdit->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_2->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_2->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.wd) {
-        ui->lineEdit_2->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_3->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_2->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_3->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
-    if (ui->lineEdit_5->text() == "") {
-        ui->label->setStyleSheet("color: rgb(200, 0, 0)");
+    if (ui->lineEdit_5->text() == YES_NO::EMPTY) {
+        ui->label->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
 
     } else {
         if (!form.t) {
-            ui->lineEdit_3->setStyleSheet("color: rgb(200, 0, 0)");
-            ui->label_4->setStyleSheet("color: rgb(200, 0, 0)");
+            ui->lineEdit_3->setStyleSheet(COLOR_EDIT::RED);
+            ui->label_4->setStyleSheet(COLOR_EDIT::RED);
             flag = false;
         }
     }
     if (!form.b) {
-        ui->lineEdit_4->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_5->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_4->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_5->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
 
     if (ui->listWidget->currentRow() == -1) {
-        ui->label_6->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_6->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     } else {
 
-        if (ui->listWidget->currentItem()->text() == "Будівельні скоби") {
+        if (ui->listWidget->currentItem()->text() == VGM_FORM::STAPLES) {
             if (!form.st1) {
-                ui->lineEdit_9->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_15->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_9->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_15->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
         }
-        if (ui->listWidget->currentItem()->text() == "Цвяхи") {
+        if (ui->listWidget->currentItem()->text() == VGM_FORM::NAILS) {
             if (!form.n1) {
-                ui->lineEdit_16->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_21->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_16->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_21->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
             if (!form.nl1) {
-                ui->lineEdit_17->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_22->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_17->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_22->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
         }
     }
 
     if (ui->listWidget_2->currentRow() == -1) {
-        ui->label_7->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_7->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     } else {
 
-        if (ui->listWidget_2->currentItem()->text() == "Будівельні скоби") {
-            if (ui->comboBox->currentText() == "") {
-                ui->label_16->setStyleSheet("color: rgb(200, 0, 0)");
+        if (ui->listWidget_2->currentItem()->text() == VGM_FORM::STAPLES) {
+            if (ui->comboBox->currentText() == YES_NO::EMPTY) {
+                ui->label_16->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             } else {
                 if (!form.st2) {
-                    ui->lineEdit_10->setStyleSheet("color: rgb(200, 0, 0)");
-                    ui->label_17->setStyleSheet("color: rgb(200, 0, 0)");
+                    ui->lineEdit_10->setStyleSheet(COLOR_EDIT::RED);
+                    ui->label_17->setStyleSheet(COLOR_EDIT::RED);
                     flag = false;
                 }
             }
         }
 
-        if (ui->listWidget_2->currentItem()->text() == "Бокові бруски") {
+        if (ui->listWidget_2->currentItem()->text() == VGM_FORM::SAID_BARS) {
             if (!form.st) {
-                ui->lineEdit_11->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_25->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_11->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_25->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
             if (!form.sw) {
-                ui->lineEdit_12->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_14->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_12->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_14->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
             if (!form.sl) {
-                ui->lineEdit_13->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_26->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_13->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_26->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
             if (!form.sn) {
-                ui->lineEdit_14->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_19->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_14->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_19->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
             if (!form.gap1) {
-                ui->lineEdit_15->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_20->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_15->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_20->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
             if (!form.gap2) {
-                ui->lineEdit_18->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_20->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_18->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_20->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
         }
@@ -278,12 +278,12 @@ void VGM_Form::on_lineEdit_5_editingFinished() {
 
 void VGM_Form::on_listWidget_currentTextChanged(const QString &currentText)
 {
-    if (currentText == "Будівельні скоби") {
+    if (currentText == VGM_FORM::STAPLES) {
         ui->groupBox_4->hide();
         ui->groupBox->show();
     }
 
-    if (currentText == "Цвяхи") {
+    if (currentText == VGM_FORM::NAILS) {
         ui->groupBox->hide();
         ui->groupBox_4->show();
     }
@@ -292,12 +292,12 @@ void VGM_Form::on_listWidget_currentTextChanged(const QString &currentText)
 
 void VGM_Form::on_listWidget_2_currentTextChanged(const QString &currentText)
 {
-    if (currentText == "Бокові бруски") {
+    if (currentText == VGM_FORM::SAID_BARS) {
         ui->groupBox_2->hide();
         ui->groupBox_3->show();
     }
 
-    if (currentText == "Будівельні скоби") {
+    if (currentText == VGM_FORM::STAPLES) {
         ui->groupBox_3->hide();
         ui->groupBox_2->show();
     }

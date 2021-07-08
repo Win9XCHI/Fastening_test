@@ -8,14 +8,14 @@ MotorGrader_Form::MotorGrader_Form(MotorGraderDB db, User u, QWidget *parent) :
     ui->setupUi(this);
     DB = db;
     count1 = count2 = 0;
-    name = "Автогрейдер ДЗ-98 на платформі";
+    name = EQUIPMENT_NAME::MOTORGRADER;
     scene = new QGraphicsScene;
-    ui->comboBox->addItem("");
-    ui->comboBox->addItem("Ні");
-    ui->comboBox->addItem("Так");
-    ui->comboBox_2->addItem("");
-    ui->comboBox_2->addItem("Ні");
-    ui->comboBox_2->addItem("Так");
+    ui->comboBox->addItem(YES_NO::EMPTY);
+    ui->comboBox->addItem(YES_NO::NO);
+    ui->comboBox->addItem(YES_NO::YES);
+    ui->comboBox_2->addItem(YES_NO::EMPTY);
+    ui->comboBox_2->addItem(YES_NO::NO);
+    ui->comboBox_2->addItem(YES_NO::YES);
     object_motorgrader = new MotorGrader(DB);
     MotorGrader_Form::set_image();
 
@@ -88,7 +88,7 @@ void MotorGrader_Form::on_pushButton_clicked()
     form_answer_motorgrader object_answer = object_motorgrader->CheckAnswer(object_form);
 
     frame message;
-    QString grade = "";
+    QString grade = YES_NO::EMPTY;
 
     if (CheckAnswer(object_answer)) {
         message.result = MESSAGE::SUCCESS;
@@ -138,96 +138,96 @@ void MotorGrader_Form::FillingFormMotorGrader(form_motorgrader &object_form) {
     object_form.l1 = ui->lineEdit_8->text().toUInt();
     object_form.l2 = ui->lineEdit_13->text().toUInt();
 
-    ui->comboBox->currentText() == "Так" ? object_form.li1 = true : object_form.li1 = false;
-    ui->comboBox_2->currentText() == "Так" ? object_form.li2 = true : object_form.li2 = false;
+    ui->comboBox->currentText() == YES_NO::YES ? object_form.li1 = true : object_form.li1 = false;
+    ui->comboBox_2->currentText() == YES_NO::YES ? object_form.li2 = true : object_form.li2 = false;
 }
 
 void MotorGrader_Form::Default() {
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     for (auto &element : allEdits) {
-        element->setStyleSheet("color: rgb(0, 0, 0)");
+        element->setStyleSheet(COLOR_EDIT::BLACK);
     }
     QList<QLabel *> allLabels = this->findChildren<QLabel *>();
     for (auto &element : allLabels) {
-        element->setStyleSheet("color: rgb(0, 0, 0)");
+        element->setStyleSheet(COLOR_EDIT::BLACK);
     }
-    ui->comboBox->setStyleSheet("color: rgb(0, 0, 0)");
+    ui->comboBox->setStyleSheet(COLOR_EDIT::BLACK);
 }
 
 bool MotorGrader_Form::CheckAnswer(form_answer_motorgrader form) {
     bool flag(true);
 
     if (!form.s) {
-        ui->lineEdit->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit->setStyleSheet(COLOR_EDIT::RED);
+        ui->label->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.t) {
-        ui->lineEdit_2->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_2->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_2->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_2->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.wd) {
-        ui->lineEdit_3->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_3->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_3->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_3->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.b) {
-        ui->lineEdit_4->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_4->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_4->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_4->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.n) {
-        ui->lineEdit_5->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_5->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_5->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_5->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.li1) {
-        ui->label_9->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_9->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.li2) {
-        ui->label_15->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_15->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.nli1) {
-        ui->lineEdit_9->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_14->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_9->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_14->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.nli2) {
-        ui->lineEdit_10->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_20->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_10->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_20->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.t1) {
-        ui->lineEdit_6->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_11->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_6->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_11->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.t2) {
-        ui->lineEdit_11->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_21->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_11->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_21->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.w1) {
-        ui->lineEdit_7->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_12->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_7->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_12->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.w2) {
-        ui->lineEdit_12->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_22->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_12->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_22->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.l1) {
-        ui->lineEdit_8->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_13->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_8->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_13->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.l2) {
-        ui->lineEdit_13->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_23->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_13->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_23->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
 

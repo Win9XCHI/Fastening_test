@@ -1,7 +1,7 @@
 #include "kraz_pl.h"
 
 KRAZ_pl::KRAZ_pl(KRAZ_pl_DB db) {
-    name = "КрАЗ-256 порожній на платформі";
+    name = EQUIPMENT_NAME::KRAZ_PL;
     std::map<QString, QString> cont;
     std::map<QString, FromTo> contFT;
     std::map<QString, Dimensions> contD;

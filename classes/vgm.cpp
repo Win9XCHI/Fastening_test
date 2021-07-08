@@ -1,7 +1,7 @@
 #include "vgm.h"
 
 VGM::VGM(VGM_DB db) {
-    name = "Танк";
+    name = EQUIPMENT_NAME::VGM;
     std::map<QString, QString> cont;
     std::map<QString, Dimensions> contD;
     DB = db;
@@ -49,13 +49,13 @@ void VGM::SetWeight(double number) {
         return;
     }
     if (number > 0 && number < 15.1) {
-        string = "До 15 т.";
+        string = BULLDOZER_FORM::WEIGHT::T15;
     }
     if (number > 15 && number < 25.1) {
-        string = "Від 15.1 до 25 т.";
+        string = BULLDOZER_FORM::WEIGHT::T25;
     }
     if (number > 25 && number <= 50) {
-        string = "Від 25.1 до 50 т.";
+        string = BULLDOZER_FORM::WEIGHT::T50;
     }
     weight = string;
     std::map<QString, QString> cont;
@@ -76,7 +76,7 @@ void VGM::SetNailBoards(QString string) {
               "Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '" + nail_boards + "' AND Cha.Name = '" + string + "' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = '" + name + "' AND Con.Value = '" + weight + "'))");
     DB.GetValue(cont);
 
-    if (nail_boards == "Будівельні скоби") {
+    if (nail_boards == VGM_FORM::STAPLES) {
         mas_bar["thrust"].SetStaple(cont["Скільки скоб треба застосувати для кріплення одного бруска"].toUInt());
     } else {
         mas_bar["thrust"].SetNails(cont["Скільки цвяхів треба застосувати для кріплення одного бруска?"].toUInt());
@@ -96,7 +96,7 @@ void VGM::SetSideBar(QString string) {
               "Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '" + side_bar + "' AND Cha.Name = '" + string + "' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = '" + name + "' AND Con.Value = '" + weight + "'))");
     DB.GetValue(cont);
 
-    if (side_bar == "Бокові бруски") {
+    if (side_bar == VGM_FORM::SAID_BARS) {
         DB.SELECT("D.Thickness, D.Width, D.Length, Cha.Name",
                   "Dimensions AS D JOIN Conditions AS Con ON Con.id = D.Conditions_id JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id",
                   "Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '" + side_bar + "' AND Cha.Name = '" + string + "' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = '" + name + "' AND Con.Value = '" + weight + "'))");
@@ -143,12 +143,12 @@ form_answer_VGM VGM::CheckAnswer(form_VGM form) {
         object.b = false;
     }
 
-    if (nail_boards  == "Будівельні скоби") {
+    if (nail_boards  == VGM_FORM::STAPLES) {
         if (form.st1 != mas_bar["thrust"].GetStaple()) {
             object.st1 = false;
         }
     }
-    if (nail_boards == "Цвяхи") {
+    if (nail_boards == VGM_FORM::NAILS) {
         if (form.n1 != mas_bar["thrust"].GetNails()) {
             object.n1 = false;
         }
@@ -157,7 +157,7 @@ form_answer_VGM VGM::CheckAnswer(form_VGM form) {
         }
     }
 
-    if (side_bar == "Бокові бруски") {
+    if (side_bar == VGM_FORM::SAID_BARS) {
         if (form.sn != mas_bar["side"].GetNails()) {
             object.sn = false;
         }
@@ -178,7 +178,7 @@ form_answer_VGM VGM::CheckAnswer(form_VGM form) {
         }
     }
 
-    if (side_bar == "Будівельні скоби") {
+    if (side_bar == VGM_FORM::STAPLES) {
         if (form.st2 != mas_bar["side"].GetStaple()) {
             object.st2 = false;
         }

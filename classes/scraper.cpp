@@ -1,7 +1,7 @@
 #include "scraper.h"
 
 Scraper::Scraper(ScraperDB db) {
-    name = "Скрепер Д-357П на платформі";
+    name = EQUIPMENT_NAME::SCRAPER;
     std::map<QString, QString> cont;
     std::map<QString, Dimensions> contD;
     DB = db;
@@ -30,7 +30,7 @@ void Scraper::Filling(std::map<QString, QString> cont, std::map<QString, Dimensi
     mas_bar.insert({"side", {cont["Скільки потрібно бічних брусків від поперечного зміщення при відкритих бортах платформи"].toUInt(), contD["Розміри бічних брусків (мм):"], cont["Кількість цвяхів на брусок"].toUInt()}});
 
     bool flag(false);
-    if (cont["Чи потрібна підкладка під ніж скрепера"] == "Так") {
+    if (cont["Чи потрібна підкладка під ніж скрепера"] == YES_NO::YES) {
         flag = true;
     }
     mas_lining.insert({"dump", {flag, contD["Розміри підкладки під ніж скрепера (мм):"], cont["Кількість цвяхів на підкладку (69)"].toUInt()}});

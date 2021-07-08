@@ -10,25 +10,25 @@ Bulldozer_Form::Bulldozer_Form(BulldozerDB db, User u, QWidget *parent) :
     DB = db;
     count = 0;
     scene = new QGraphicsScene;
-    name = "Бульдозер Д-686 на платформі";
-    ui->comboBox->addItem("");
-    ui->comboBox->addItem("Ні");
-    ui->comboBox->addItem("Так");
-    ui->comboBox_2->addItem("");
-    ui->comboBox_2->addItem("До 15 т.");
-    ui->comboBox_2->addItem("Від 15.1 до 25 т.");
-    ui->comboBox_2->addItem("Від 25.1 до 50 т.");
-    ui->comboBox_3->addItem("");
-    ui->comboBox_3->addItem("Менше 400 мм.");
-    ui->comboBox_3->addItem("400 мм. і більше");
+    name = EQUIPMENT_NAME::BULLDOZER;
+    ui->comboBox->addItem(YES_NO::EMPTY);
+    ui->comboBox->addItem(YES_NO::NO);
+    ui->comboBox->addItem(YES_NO::YES);
+    ui->comboBox_2->addItem(YES_NO::EMPTY);
+    ui->comboBox_2->addItem(BULLDOZER_FORM::WEIGHT::T15);
+    ui->comboBox_2->addItem(BULLDOZER_FORM::WEIGHT::T25);
+    ui->comboBox_2->addItem(BULLDOZER_FORM::WEIGHT::T50);
+    ui->comboBox_3->addItem(YES_NO::EMPTY);
+    ui->comboBox_3->addItem(BULLDOZER_FORM::WIDTH_TRACK::LESS400);
+    ui->comboBox_3->addItem(BULLDOZER_FORM::WIDTH_TRACK::MORE400);
     ui->groupBox->hide();
     ui->groupBox_2->hide();
     ui->groupBox_3->hide();
     ui->groupBox_4->hide();
-    ui->listWidget->addItem("Будівельні скоби");
-    ui->listWidget->addItem("Цвяхи");
-    ui->listWidget_2->addItem("Будівельні скоби");
-    ui->listWidget_2->addItem("Бокові бруски");
+    ui->listWidget->addItem(BULLDOZER_FORM::STAPLES);
+    ui->listWidget->addItem(BULLDOZER_FORM::NAILS);
+    ui->listWidget_2->addItem(BULLDOZER_FORM::STAPLES);
+    ui->listWidget_2->addItem(BULLDOZER_FORM::SAID_BARS);
     object_bulldozer = new Bulldozer(DB);
     Bulldozer_Form::set_image();
 
@@ -94,7 +94,7 @@ void Bulldozer_Form::on_pushButton_2_clicked()
     form_answer_bulldozer object_answer = object_bulldozer->CheckAnswer(object_form);
 
     frame message;
-    QString grade = "";
+    QString grade = YES_NO::EMPTY;
 
     if (CheckAnswer(object_answer)) {
         message.result = MESSAGE::SUCCESS;
@@ -155,7 +155,7 @@ void Bulldozer_Form::FillingFormBulldozer(form_bulldozer &object_form) {
     object_form.lw = ui->lineEdit_6->text().toUInt();
     object_form.ll = ui->lineEdit_7->text().toUInt();
 
-    ui->comboBox->currentText() == "Так" ? object_form.l = true : object_form.l = false;
+    ui->comboBox->currentText() == YES_NO::YES ? object_form.l = true : object_form.l = false;
     object_form.weight = ui->comboBox_2->currentText();
     object_form.width = ui->comboBox_3->currentText();
     if (ui->listWidget->currentRow() != -1) {
@@ -169,118 +169,118 @@ void Bulldozer_Form::FillingFormBulldozer(form_bulldozer &object_form) {
 void Bulldozer_Form::Default() {
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     for (auto &element : allEdits) {
-        element->setStyleSheet("color: rgb(0, 0, 0)");
+        element->setStyleSheet(COLOR_EDIT::BLACK);
     }
     QList<QLabel *> allLabels = this->findChildren<QLabel *>();
     for (auto &element : allLabels) {
-        element->setStyleSheet("color: rgb(0, 0, 0)");
+        element->setStyleSheet(COLOR_EDIT::BLACK);
     }
-    ui->comboBox->setStyleSheet("color: rgb(0, 0, 0)");
+    ui->comboBox->setStyleSheet(COLOR_EDIT::BLACK);
 }
 
 bool Bulldozer_Form::CheckAnswer(form_answer_bulldozer form) {
     bool flag(true);
 
     if (!form.s) {
-        ui->lineEdit->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_2->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_2->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.wd) {
-        ui->lineEdit_2->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_3->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_2->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_3->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
-    if (ui->comboBox_2->currentText() == "") {
-        ui->label->setStyleSheet("color: rgb(200, 0, 0)");
+    if (ui->comboBox_2->currentText() == YES_NO::EMPTY) {
+        ui->label->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
 
     } else {
         if (!form.t) {
-            ui->lineEdit_3->setStyleSheet("color: rgb(200, 0, 0)");
-            ui->label_4->setStyleSheet("color: rgb(200, 0, 0)");
+            ui->lineEdit_3->setStyleSheet(COLOR_EDIT::RED);
+            ui->label_4->setStyleSheet(COLOR_EDIT::RED);
             flag = false;
         }
     }
     if (!form.b) {
-        ui->lineEdit_4->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_5->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_4->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_5->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
 
     if (ui->listWidget->currentRow() == -1) {
-        ui->label_6->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_6->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     } else {
 
-        if (ui->listWidget->currentItem()->text() == "Будівельні скоби") {
+        if (ui->listWidget->currentItem()->text() == BULLDOZER_FORM::STAPLES) {
             if (!form.st1) {
-                ui->lineEdit_9->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_15->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_9->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_15->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
         }
-        if (ui->listWidget->currentItem()->text() == "Цвяхи") {
+        if (ui->listWidget->currentItem()->text() == BULLDOZER_FORM::NAILS) {
             if (!form.n1) {
-                ui->lineEdit_16->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_21->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_16->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_21->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
             if (!form.nl1) {
-                ui->lineEdit_17->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_22->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_17->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_22->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
         }
     }
 
     if (ui->listWidget_2->currentRow() == -1) {
-        ui->label_7->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_7->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     } else {
 
-        if (ui->listWidget_2->currentItem()->text() == "Будівельні скоби") {
-            if (ui->comboBox_3->currentText() == "") {
-                ui->label_16->setStyleSheet("color: rgb(200, 0, 0)");
+        if (ui->listWidget_2->currentItem()->text() == BULLDOZER_FORM::STAPLES) {
+            if (ui->comboBox_3->currentText() == YES_NO::EMPTY) {
+                ui->label_16->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             } else {
                 if (!form.st2) {
-                    ui->lineEdit_10->setStyleSheet("color: rgb(200, 0, 0)");
-                    ui->label_17->setStyleSheet("color: rgb(200, 0, 0)");
+                    ui->lineEdit_10->setStyleSheet(COLOR_EDIT::RED);
+                    ui->label_17->setStyleSheet(COLOR_EDIT::RED);
                     flag = false;
                 }
             }
         }
 
-        if (ui->listWidget_2->currentItem()->text() == "Бокові бруски") {
+        if (ui->listWidget_2->currentItem()->text() == BULLDOZER_FORM::SAID_BARS) {
             if (!form.st) {
-                ui->lineEdit_11->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_25->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_11->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_25->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
             if (!form.sw) {
-                ui->lineEdit_12->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_14->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_12->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_14->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
             if (!form.sl) {
-                ui->lineEdit_13->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_26->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_13->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_26->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
             if (!form.sn) {
-                ui->lineEdit_14->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_19->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_14->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_19->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
             if (!form.gap1) {
-                ui->lineEdit_15->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_20->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_15->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_20->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
             if (!form.gap2) {
-                ui->lineEdit_18->setStyleSheet("color: rgb(200, 0, 0)");
-                ui->label_20->setStyleSheet("color: rgb(200, 0, 0)");
+                ui->lineEdit_18->setStyleSheet(COLOR_EDIT::RED);
+                ui->label_20->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
             }
         }
@@ -288,27 +288,27 @@ bool Bulldozer_Form::CheckAnswer(form_answer_bulldozer form) {
 
 
     if (!form.l) {
-        ui->label_8->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_8->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.ln) {
-        ui->lineEdit_8->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_13->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_8->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_13->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.lt) {
-        ui->lineEdit_5->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_10->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_5->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_10->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.lw) {
-        ui->lineEdit_6->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_11->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_6->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_11->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.ll) {
-        ui->lineEdit_7->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_12->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_7->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_12->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
 
@@ -316,12 +316,12 @@ bool Bulldozer_Form::CheckAnswer(form_answer_bulldozer form) {
 }
 
 void Bulldozer_Form::on_listWidget_currentTextChanged(const QString &currentText) {
-    if (currentText == "Будівельні скоби") {
+    if (currentText == BULLDOZER_FORM::STAPLES) {
         ui->groupBox_4->hide();
         ui->groupBox->show();
     }
 
-    if (currentText == "Цвяхи") {
+    if (currentText == BULLDOZER_FORM::NAILS) {
         ui->groupBox->hide();
         ui->groupBox_4->show();
     }
@@ -329,13 +329,13 @@ void Bulldozer_Form::on_listWidget_currentTextChanged(const QString &currentText
 }
 
 void Bulldozer_Form::on_listWidget_2_currentTextChanged(const QString &currentText) {
-    if (currentText == "Бокові бруски") {
+    if (currentText == BULLDOZER_FORM::SAID_BARS) {
         ui->groupBox_2->hide();
         ui->groupBox_3->show();
         bar_side_cursor(red_pen());
     }
 
-    if (currentText == "Будівельні скоби") {
+    if (currentText == BULLDOZER_FORM::STAPLES) {
         ui->groupBox_3->hide();
         ui->groupBox_2->show();
     }

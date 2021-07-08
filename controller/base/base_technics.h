@@ -2,7 +2,6 @@
 #define BASE_TECHNICS_H
 #include <QGraphicsScene>
 #include "../message_form.h"
-#include "../../constants.h"
 
 class base_technics {
 public:

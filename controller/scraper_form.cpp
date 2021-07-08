@@ -9,11 +9,11 @@ Scraper_Form::Scraper_Form(ScraperDB db, User u, QWidget *parent) :
     scene = new QGraphicsScene;
     DB = db;
     count = 0;
-    name = "Скрепер Д-357П на платформі";
+    name = EQUIPMENT_NAME::SCRAPER;
     scene = new QGraphicsScene;
-    ui->comboBox->addItem("");
-    ui->comboBox->addItem("Ні");
-    ui->comboBox->addItem("Так");
+    ui->comboBox->addItem(YES_NO::EMPTY);
+    ui->comboBox->addItem(YES_NO::NO);
+    ui->comboBox->addItem(YES_NO::YES);
     object_scraper = new Scraper(DB);
     Scraper_Form::set_image();
 
@@ -85,7 +85,7 @@ void Scraper_Form::on_pushButton_2_clicked()
     form_answer_scraper object_answer = object_scraper->CheckAnswer(object_form);
 
     frame message;
-    QString grade = "";
+    QString grade = YES_NO::EMPTY;
 
     if (CheckAnswer(object_answer)) {
         message.result = MESSAGE::SUCCESS;
@@ -142,96 +142,96 @@ void Scraper_Form::FillingFormMotorScraper(form_scraper &object_form) {
     object_form.w1 = ui->lineEdit_7->text().toUInt();
     object_form.l1 = ui->lineEdit_8->text().toUInt();
 
-    ui->comboBox->currentText() == "Так" ? object_form.li = true : object_form.li = false;
+    ui->comboBox->currentText() == YES_NO::YES ? object_form.li = true : object_form.li = false;
 }
 
 void Scraper_Form::Default() {
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     for (auto &element : allEdits) {
-        element->setStyleSheet("color: rgb(0, 0, 0)");
+        element->setStyleSheet(COLOR_EDIT::BLACK);
     }
     QList<QLabel *> allLabels = this->findChildren<QLabel *>();
     for (auto &element : allLabels) {
-        element->setStyleSheet("color: rgb(0, 0, 0)");
+        element->setStyleSheet(COLOR_EDIT::BLACK);
     }
-    ui->comboBox->setStyleSheet("color: rgb(0, 0, 0)");
+    ui->comboBox->setStyleSheet(COLOR_EDIT::BLACK);
 }
 
 bool Scraper_Form::CheckAnswer(form_answer_scraper form) {
     bool flag(true);
 
     if (!form.s) {
-        ui->lineEdit->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit->setStyleSheet(COLOR_EDIT::RED);
+        ui->label->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.t) {
-        ui->lineEdit_2->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_2->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_2->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_2->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.wd) {
-        ui->lineEdit_3->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_3->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_3->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_3->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.b1) {
-        ui->lineEdit_4->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_4->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_4->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_4->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.n1) {
-        ui->lineEdit_5->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_5->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_5->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_5->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.b2) {
-        ui->lineEdit_10->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_12->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_10->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_12->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.n2) {
-        ui->lineEdit_11->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_14->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_11->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_14->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.t2) {
-        ui->lineEdit_12->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_16->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_12->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_16->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.w2) {
-        ui->lineEdit_13->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_15->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_13->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_15->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.l2) {
-        ui->lineEdit_14->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_17->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_14->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_17->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.li) {
-        ui->label_6->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->label_6->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.nli) {
-        ui->lineEdit_9->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_11->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_9->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_11->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.t1) {
-        ui->lineEdit_6->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_8->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_6->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_8->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.w1) {
-        ui->lineEdit_7->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_9->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_7->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_9->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.l1) {
-        ui->lineEdit_8->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_10->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_8->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_10->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
 

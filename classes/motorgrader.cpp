@@ -1,7 +1,7 @@
 #include "motorgrader.h"
 
 MotorGrader::MotorGrader(MotorGraderDB db) {
-    name = "Автогрейдер ДЗ-98 на платформі";
+    name = EQUIPMENT_NAME::MOTORGRADER;
     std::map<QString, QString> cont;
     std::map<QString, Dimensions> contD;
     DB = db;
@@ -29,12 +29,12 @@ void MotorGrader::Filling(std::map<QString, QString> cont, std::map<QString, Dim
     mas_bar.insert({"thrust", {cont["Скільки упорних брусків потрібно для кріплення автогрейдера"].toUInt(), cont["Скільки цвяхів потрібно для закріплення кожного бруска"].toUInt()}});
 
     bool flag1(false), flag2(false);
-    if (cont["Чи потрібна підкладка під ніж відвалу"] == "Так") {
+    if (cont["Чи потрібна підкладка під ніж відвалу"] == YES_NO::YES) {
         flag1 = true;
     }
     mas_lining.insert({"dump", {flag1, contD["Розміри підкладки під ніж відвалу (мм)"], cont["Кількість цвяхів на підкладку під ніж відвалу"].toUInt()}});
 
-    if (cont["Чи потрібна підкладка під ніж корчувача"] == "Так") {
+    if (cont["Чи потрібна підкладка під ніж корчувача"] == YES_NO::YES) {
         flag2 = true;
     }
     mas_lining.insert({"grubber", {flag2, contD["Розміри підкладки під ніж корчувача (мм)"], cont["Кількість цвяхів на підкладку під ніж корчувача"].toUInt()}});

@@ -1,7 +1,7 @@
 #include "excavator.h"
 
 Excavator::Excavator(ExcavatorDB db) {
-    name = "Екскаватор ЕО-4125 на платформі";
+    name = EQUIPMENT_NAME::EXCAVATOR;
     std::map<QString, QString> cont;
     std::map<QString, FromTo> contFT;
     DB = db;
@@ -44,7 +44,7 @@ void Excavator::Filling(std::map<QString, QString> cont, std::map<QString, FromT
     axis_longitudinal = cont["На скільки повинна бути зміщена повздовжня вісь ексковатора відносно вісі платформи вправо (м)"].toDouble();
 
     bool flag(false);
-    if (cont["Чи потрібна дерев'яна підкладка під ковш"] == "Так") {
+    if (cont["Чи потрібна дерев'яна підкладка під ковш"] == YES_NO::YES) {
         flag = true;
     }
     object_lining = new Lining(flag);

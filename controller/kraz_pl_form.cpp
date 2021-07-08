@@ -7,7 +7,7 @@ KRAZ_pl_form::KRAZ_pl_form(KRAZ_pl_DB db, User u, QWidget *parent) :
 {
     ui->setupUi(this);
     DB = db;
-    name = "КрАЗ-256 порожній на платформі";
+    name = EQUIPMENT_NAME::KRAZ_PL;
     scene = new QGraphicsScene;
     object_KRAZ_pl = new KRAZ_pl(DB);
     KRAZ_pl_form::set_image();
@@ -75,7 +75,7 @@ void KRAZ_pl_form::on_pushButton_clicked()
     form_answer_KRAZ_pl object_answer = object_KRAZ_pl->CheckAnswer(object_form);
 
     frame message;
-    QString grade = "";
+    QString grade = YES_NO::EMPTY;
 
     if (CheckAnswer(object_answer)) {
         message.result = MESSAGE::SUCCESS;
@@ -135,11 +135,11 @@ void KRAZ_pl_form::FillingFormKRAZ_pl(form_KRAZ_pl &object_form) {
 void KRAZ_pl_form::Default() {
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     for (auto &element : allEdits) {
-        element->setStyleSheet("color: rgb(0, 0, 0)");
+        element->setStyleSheet(COLOR_EDIT::BLACK);
     }
     QList<QLabel *> allLabels = this->findChildren<QLabel *>();
     for (auto &element : allLabels) {
-        element->setStyleSheet("color: rgb(0, 0, 0)");
+        element->setStyleSheet(COLOR_EDIT::BLACK);
     }
 }
 
@@ -147,68 +147,68 @@ bool KRAZ_pl_form::CheckAnswer(form_answer_KRAZ_pl form) {
     bool flag(true);
 
     if (!form.b) {
-        ui->lineEdit->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit->setStyleSheet(COLOR_EDIT::RED);
+        ui->label->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.t1) {
-        ui->lineEdit_3->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_3->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_3->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_3->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.w1) {
-        ui->lineEdit_4->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_4->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_4->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_4->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.l1) {
-        ui->lineEdit_5->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_5->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_5->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_5->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.t2) {
-        ui->lineEdit_12->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_8->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_12->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_8->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.w2) {
-        ui->lineEdit_13->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_14->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_13->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_14->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.l2) {
-        ui->lineEdit_14->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_7->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_14->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_7->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.n) {
-        ui->lineEdit_6->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_6->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_6->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_6->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.s) {
-        ui->lineEdit_7->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_9->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_7->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_9->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.t) {
-        ui->lineEdit_8->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_10->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_8->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_10->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.wd) {
-        ui->lineEdit_9->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_11->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_9->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_11->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.kg) {
-        ui->lineEdit_10->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_12->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_10->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_12->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.pog) {
-        ui->lineEdit_11->setStyleSheet("color: rgb(200, 0, 0)");
-        ui->label_12->setStyleSheet("color: rgb(200, 0, 0)");
+        ui->lineEdit_11->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_12->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
 

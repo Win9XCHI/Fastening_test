@@ -6,6 +6,7 @@
 #include "bar.h"
 #include "lining.h"
 #include "fromto.h"
+#include "../constants.h"
 
 class Equipment {
 

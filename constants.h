@@ -12,6 +12,16 @@ namespace EQUIPMENT {
     const unsigned int VGM = 6;
 }
 
+namespace EQUIPMENT_NAME {
+    const QString EXCAVATOR = "Екскаватор ЕО-4125 на платформі";
+    const QString BULLDOZER = "Бульдозер Д-686 на платформі";
+    const QString MOTORGRADER = "Автогрейдер ДЗ-98 на платформі";
+    const QString SCRAPER = "Скрепер Д-357П на платформі";
+    const QString KRAZ_PL = "КрАЗ-256 порожній на платформі";
+    const QString KRAZ = "КрАЗ-256 порожній над зчепом";
+    const QString VGM = "Танк";
+}
+
 namespace MESSAGE {
     const QString FAIL = "Тест закінчено, ви НЕ СКЛАЛИ тест. Помилки вказані червоним кольором.";
     const QString SUCCESS = "Тест закінчено, ви СКЛАЛИ тест.";
@@ -28,6 +38,52 @@ namespace MESSAGE {
 
 namespace PATHS {
     const QString RESOURCES = "resources/";
+    const QString DB = "DB_for_test.db";
+}
+
+namespace YES_NO {
+    const QString EMPTY = "";
+    const QString YES = "Так";
+    const QString NO = "Ні";
+}
+
+namespace COLOR_EDIT {
+    const QString RED = "color: rgb(200, 0, 0)";
+    const QString BLACK = "color: rgb(0, 0, 0)";
+}
+
+namespace BULLDOZER_FORM {
+    namespace WEIGHT {
+        const QString T15 = "До 15 т.";
+        const QString T25 = "Від 15.1 до 25 т.";
+        const QString T50 = "Від 25.1 до 50 т.";
+    }
+
+    namespace WIDTH_TRACK {
+        const QString LESS400 = "Менше 400 мм.";
+        const QString MORE400 = "400 мм. і більше";
+    }
+
+    const QString STAPLES = "Будівельні скоби";
+    const QString NAILS = "Цвяхи";
+    const QString SAID_BARS = "Бокові бруски";
+}
+
+namespace VGM_FORM {
+    namespace WEIGHT {
+        const QString T15 = "До 15 т.";
+        const QString T25 = "Від 15.1 до 25 т.";
+        const QString T50 = "Від 25.1 до 50 т.";
+    }
+
+    namespace WIDTH_TRACK {
+        const QString LESS400 = "Менше 400 мм.";
+        const QString MORE400 = "400 мм. і більше";
+    }
+
+    const QString STAPLES = "Будівельні скоби";
+    const QString NAILS = "Цвяхи";
+    const QString SAID_BARS = "Бокові бруски";
 }
 
 #endif // CONST_MESSAGE_H
