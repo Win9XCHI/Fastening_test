@@ -5,6 +5,7 @@
 #include "base/base_technics.h"
 #include "../classes/vgm.h"
 #include "../classes/test.h"
+#include "../functions/validation.h"
 
 namespace Ui {
 class VGM_Form;

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "../model/admin_db.h"
+#include "../functions/validation.h"
 
 namespace Ui {
 class Admin_Form;

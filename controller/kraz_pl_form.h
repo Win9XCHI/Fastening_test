@@ -5,6 +5,7 @@
 #include "base/base_technics.h"
 #include "../classes/kraz_pl.h"
 #include "../classes/test.h"
+#include "../functions/validation.h"
 
 namespace Ui {
 class KRAZ_pl_form;

@@ -5,6 +5,7 @@
 #include "base/base_technics.h"
 #include "../classes/bulldozer.h"
 #include "../classes/test.h"
+#include "../functions/validation.h"
 
 namespace Ui {
 class Bulldozer_Form;

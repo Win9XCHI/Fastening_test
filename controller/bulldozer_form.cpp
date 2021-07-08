@@ -45,6 +45,9 @@ Bulldozer_Form::Bulldozer_Form(BulldozerDB db, User u, QWidget *parent) :
         listValue.push_back(object_user.GetPlatoon());
         DB.Insert("Student", listColumns, listValue);
     }
+
+    QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
+    Validation::LineEdit::SetDoubleValidator(allEdits);
 }
 
 Bulldozer_Form::~Bulldozer_Form()

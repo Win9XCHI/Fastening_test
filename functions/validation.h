@@ -1,6 +1,8 @@
 #ifndef VALIDATION_H
 #define VALIDATION_H
 #include <QString>
+#include <QLineEdit>
+#include <QDoubleValidator>
 #include <QRegularExpression>
 #include <vector>
 
@@ -11,6 +13,12 @@ namespace Validation {
     bool CheckPIB(QString pib);
 
     bool CheckPlatoon(QString platoon);
+
+    namespace LineEdit {
+        void SetDoubleValidator(QList<QLineEdit *> &allEdits);
+
+        void SetIntValidator(QList<QLineEdit *> &allEdits);
+    }
 }
 
 #endif // VALIDATION_H

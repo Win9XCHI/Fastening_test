@@ -14,6 +14,16 @@ Admin_Form::Admin_Form(AdminDB db, QWidget *parent) :
     ui->groupBox_6->hide();
     ui->groupBox_2->hide();
     DB = db;
+
+    QList<QLineEdit *> allEdits;
+    allEdits.push_back(ui->lineEdit_9);
+    allEdits.push_back(ui->lineEdit_8);
+    Validation::LineEdit::SetDoubleValidator(allEdits);
+    allEdits.clear();
+    allEdits.push_back(ui->lineEdit_10);
+    allEdits.push_back(ui->lineEdit_11);
+    allEdits.push_back(ui->lineEdit_12);
+    Validation::LineEdit::SetIntValidator(allEdits);
 }
 
 Admin_Form::~Admin_Form()

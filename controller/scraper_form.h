@@ -5,6 +5,7 @@
 #include "base/base_technics.h"
 #include "../classes/scraper.h"
 #include "../classes/test.h"
+#include "../functions/validation.h"
 
 namespace Ui {
 class Scraper_Form;

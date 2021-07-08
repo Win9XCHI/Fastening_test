@@ -39,3 +39,15 @@ bool Validation::CheckPlatoon(QString platoon) {
 
     return true;
 }
+
+void Validation::LineEdit::SetDoubleValidator(QList<QLineEdit *> &allEdits) {
+    for (auto &element : allEdits) {
+        element->setValidator(new QDoubleValidator(0.0, 999.0, 2, element));
+    }
+}
+
+void Validation::LineEdit::SetIntValidator(QList<QLineEdit *> &allEdits) {
+    for (auto &element : allEdits) {
+        element->setValidator( new QIntValidator(0, 10000, element));
+    }
+}
