@@ -424,3 +424,12 @@ void Admin_Form::on_pushButton_4_clicked() {
 
     on_pushButton_3_clicked();
 }
+
+void Admin_Form::on_pushButton_6_clicked()
+{
+    TableDefault();
+    QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
+    for (auto &element : allEdits) {
+        element->setText("");
+    }
+}
