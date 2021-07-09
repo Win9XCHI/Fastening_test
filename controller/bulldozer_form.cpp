@@ -33,18 +33,7 @@ Bulldozer_Form::Bulldozer_Form(BulldozerDB db, User u, QWidget *parent) :
     Bulldozer_Form::set_image();
 
     object_user = u;
-    DB.SELECT("*", "Student", "Name = '" + object_user.GetName() + "' AND Platoon = '" + object_user.GetPlatoon() + "'");
-    std::vector<User> cont;
-    DB.GetUsers(cont);
-
-    if (cont.size() == 0) {
-        std::vector<QString> listColumns, listValue;
-        listColumns.push_back("Name");
-        listColumns.push_back("Platoon");
-        listValue.push_back(object_user.GetName());
-        listValue.push_back(object_user.GetPlatoon());
-        DB.Insert("Student", listColumns, listValue);
-    }
+    DB.SetUser(object_user);
 
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     Validation::LineEdit::SetDoubleValidator(allEdits);
@@ -109,21 +98,7 @@ void Bulldozer_Form::on_pushButton_2_clicked()
         set_image();
         grade = "Не склав";
     }
-    DB.SELECT("*", "Student", "Name = '" + object_user.GetName() + "' AND Platoon = '" + object_user.GetPlatoon() + "'");
-    std::vector<User> cont;
-    DB.GetUsers(cont);
-    DB.SELECT("id", "Equipment", "Name = '" + name + "'");
-
-    std::vector<QString> listColumns, listValue;
-    listColumns.push_back("Date");
-    listColumns.push_back("Grade");
-    listColumns.push_back("Student_id");
-    listColumns.push_back("Equipment_id");
-    listValue.push_back(QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss"));
-    listValue.push_back(grade);
-    listValue.push_back(QString::number(cont.at(0).GetId()));
-    listValue.push_back(QString::number(DB.GetEquipmentId()));
-    DB.Insert("Test", listColumns, listValue);
+    DB.SetAttempt(object_user, name, grade);
 
     Message_Form *object = new Message_Form(message);
     object->show();

@@ -10,9 +10,9 @@ public:
     UserDB();
     virtual ~UserDB() {}
 
-    void SetUser(QString name, QString platoon);
+    void SetUser(User object_user);
     void GetUsers(std::vector<User> &cont);
-    void SetAttempt(unsigned int user_id, QString result, QString time);
+    void SetAttempt(User object_user, QString name_equipment, QString grade);
     void GetAttempts(std::vector<Test> &cont);
     unsigned int GetEquipmentId();
     QString GetEquipment();
