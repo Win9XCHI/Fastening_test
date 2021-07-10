@@ -110,8 +110,12 @@ FORMS += \
     view/scraper_form.ui \
     view/vgm_form.ui
 
+RC_FILE     = resources.rc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    resources.rc

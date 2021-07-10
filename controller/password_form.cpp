@@ -16,9 +16,11 @@ Password_Form::~Password_Form()
 
 void Password_Form::on_pushButton_clicked()
 {
-    Admin_Form *object = new Admin_Form(DB);
-    connect(object, &Admin_Form::firstWindow, this, &Password_Form::return_main);
-    emit succes();
-    object->show();
-    this->close();
+    if (ui->lineEdit->text() == "111") {
+        Admin_Form *object = new Admin_Form(DB);
+        connect(object, &Admin_Form::firstWindow, this, &Password_Form::return_main);
+        emit succes();
+        object->show();
+        this->close();
+    }
 }

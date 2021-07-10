@@ -32,6 +32,8 @@ void MainWindow::on_pushButton_3_clicked() {
     }
 
     try {
+        CheckFileDB();
+
         switch(ui->comboBox->currentIndex()) {
             case EQUIPMENT::EXCAVATOR: {
                 Excavator();
@@ -80,9 +82,8 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
-    AdminDB DB(PATHS::DB);
-
     CheckFileDB();
+    AdminDB DB(PATHS::DB);
 
     if (!DB.CheckConnection()) {
         DB.createConnection();
@@ -107,8 +108,6 @@ void MainWindow::CheckFileDB() {
 void MainWindow::Excavator() {
     ExcavatorDB DB(PATHS::DB);
 
-    CheckFileDB();
-
     if (!DB.CheckConnection()) {
         DB.createConnection();
     }
@@ -124,8 +123,6 @@ void MainWindow::Excavator() {
 
 void MainWindow::MotorGrader() {
     MotorGraderDB DB(PATHS::DB);
-
-    CheckFileDB();
 
     if (!DB.CheckConnection()) {
         DB.createConnection();
@@ -143,8 +140,6 @@ void MainWindow::MotorGrader() {
 void MainWindow::Bulldozer() {
     BulldozerDB DB(PATHS::DB);
 
-    CheckFileDB();
-
     if (!DB.CheckConnection()) {
         DB.createConnection();
     }
@@ -160,8 +155,6 @@ void MainWindow::Bulldozer() {
 
 void MainWindow::KRAZ() {
     KRAZ_DB DB(PATHS::DB);
-
-    CheckFileDB();
 
     if (!DB.CheckConnection()) {
         DB.createConnection();
@@ -179,8 +172,6 @@ void MainWindow::KRAZ() {
 void MainWindow::KRAZ_PL() {
     KRAZ_pl_DB DB(PATHS::DB);
 
-    CheckFileDB();
-
     if (!DB.CheckConnection()) {
         DB.createConnection();
     }
@@ -197,8 +188,6 @@ void MainWindow::KRAZ_PL() {
 void MainWindow::Scraper() {
     ScraperDB DB(PATHS::DB);
 
-    CheckFileDB();
-
     if (!DB.CheckConnection()) {
         DB.createConnection();
     }
@@ -214,8 +203,6 @@ void MainWindow::Scraper() {
 
 void MainWindow::VGM() {
     VGM_DB DB(PATHS::DB);
-
-    CheckFileDB();
 
     if (!DB.CheckConnection()) {
         DB.createConnection();
