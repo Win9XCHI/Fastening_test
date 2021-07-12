@@ -6,9 +6,8 @@ Excavator_Form::Excavator_Form(ExcavatorDB db, User u, QWidget *parent) :
     ui(new Ui::Excavator_Form)
 {
     ui->setupUi(this);
-    DB = db;
     scene = new QGraphicsScene;
-    object_excavator = new Excavator(DB);
+    object_excavator = new Excavator(db);
     count = 0;
     name = EQUIPMENT_NAME::EXCAVATOR;
     ui->comboBox->addItem(YES_NO::EMPTY);
@@ -17,7 +16,7 @@ Excavator_Form::Excavator_Form(ExcavatorDB db, User u, QWidget *parent) :
     Excavator_Form::set_image();
 
     object_user = u;
-    DB.SetUser(object_user);
+    object_excavator->GetDB()->SetUser(object_user);
 
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     Validation::LineEdit::SetDoubleValidator(allEdits);
@@ -25,15 +24,23 @@ Excavator_Form::Excavator_Form(ExcavatorDB db, User u, QWidget *parent) :
 
 Excavator_Form::~Excavator_Form()
 {
-    DB.close();
+    object_excavator->GetDB()->close();
     delete ui;
+    delete object_excavator;
+    delete scene;
 }
 
+/* Showing graphics
+ * Input: -
+ * Output: - */
 void Excavator_Form::show_graphics() {
     ui->graphicsView->setScene(scene);
     ui->graphicsView->show();
 }
 
+/* Functions with graphics
+ * Input: pen
+ * Output: - */
 void Excavator_Form::SM_swilev_cursor(QPen pen) {
     triangle(pen, 180, 130);
 }
@@ -109,13 +116,18 @@ void Excavator_Form::lining(QPen pen) {
     scene->addLine(505, 187, 530, 187, pen);
 }
 
+/* Pressing "To main window" button
+ * Input: -
+ * Output: - */
 void Excavator_Form::on_pushButton_2_clicked()
 {
-    DB.close();
-    this->close();
     emit firstWindow();
+    this->~Excavator_Form();
 }
 
+/* Filling а structure from form`s items
+ * Input: structure
+ * Output: - */
 void Excavator_Form::FillingFormExcavator(form_excavator &object_form) {
     object_form.s1 = ui->lineEdit_7->text().toUInt();
     object_form.s2 = ui->lineEdit_9->text().toUInt();
@@ -144,6 +156,9 @@ void Excavator_Form::FillingFormExcavator(form_excavator &object_form) {
     object_form.gb2 = ui->lineEdit_20->text().toUInt();
 }
 
+/* Doing items` color are black
+ * Input: -
+ * Output: - */
 void Excavator_Form::Default() {
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     for (auto &element : allEdits) {
@@ -156,6 +171,9 @@ void Excavator_Form::Default() {
     ui->comboBox->setStyleSheet(COLOR_EDIT::BLACK);
 }
 
+/* Cheking logical structure
+ * Input: structure
+ * Output: - */
 bool Excavator_Form::CheckAnswer(form_answer_excavator form) {
     bool flag(true);
 
@@ -271,12 +289,18 @@ bool Excavator_Form::CheckAnswer(form_answer_excavator form) {
     return flag;
 }
 
+/* Set up image in the form
+ * Input: -
+ * Output: - */
 void Excavator_Form::set_image() {
-    DB.SELECT("Icon", "Equipment", "Name = '" + name + "'");
-    image(PATHS::RESOURCES + DB.GetIcon());
+    object_excavator->GetDB()->SELECT("Icon", "Equipment", "Name = '" + name + "'");
+    image(PATHS::RESOURCES + object_excavator->GetDB()->GetIcon());
     show_graphics();
 }
 
+/* Pressing "Done" button
+ * Input: -
+ * Output: - */
 void Excavator_Form::on_pushButton_clicked()
 {
     Default();
@@ -289,18 +313,16 @@ void Excavator_Form::on_pushButton_clicked()
 
     if (CheckAnswer(object_answer)) {
         message.result = MESSAGE::SUCCESS;
-        message.string = MESSAGE::PREPARATION;
-        message.preparation = MESSAGE::EXCAVATOR;
         grade = "Склав";
     } else {
         message.result = MESSAGE::FAIL;
-        message.string = MESSAGE::PREPARATION;
-        message.preparation = MESSAGE::EXCAVATOR;
         scene->clear();
         set_image();
         grade = "Не склав";
     }
-    DB.SetAttempt(object_user, name, grade);
+    message.string = MESSAGE::PREPARATION;
+    message.preparation = MESSAGE::EXCAVATOR;
+    object_excavator->GetDB()->SetAttempt(object_user, name, grade);
 
     Message_Form *object = new Message_Form(message);
     object->show();

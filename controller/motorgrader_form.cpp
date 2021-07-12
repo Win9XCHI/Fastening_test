@@ -6,7 +6,6 @@ MotorGrader_Form::MotorGrader_Form(MotorGraderDB db, User u, QWidget *parent) :
     ui(new Ui::MotorGrader_Form)
 {
     ui->setupUi(this);
-    DB = db;
     count1 = count2 = 0;
     name = EQUIPMENT_NAME::MOTORGRADER;
     scene = new QGraphicsScene;
@@ -16,32 +15,43 @@ MotorGrader_Form::MotorGrader_Form(MotorGraderDB db, User u, QWidget *parent) :
     ui->comboBox_2->addItem(YES_NO::EMPTY);
     ui->comboBox_2->addItem(YES_NO::NO);
     ui->comboBox_2->addItem(YES_NO::YES);
-    object_motorgrader = new MotorGrader(DB);
+    object_motorgrader = new MotorGrader(db);
     MotorGrader_Form::set_image();
 
     object_user = u;
-    DB.SetUser(object_user);
+    object_motorgrader->GetDB()->SetUser(object_user);
 
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     Validation::LineEdit::SetDoubleValidator(allEdits);
 }
 
 MotorGrader_Form::~MotorGrader_Form() {
-    DB.close();
+    object_motorgrader->GetDB()->close();
     delete ui;
+    delete object_motorgrader;
+    delete scene;
 }
 
+/* Set up image in the form
+ * Input: -
+ * Output: - */
 void MotorGrader_Form::set_image() {
-    DB.SELECT("Icon", "Equipment", "Name = '" + name + "'");
-    image(PATHS::RESOURCES + DB.GetIcon());
+    object_motorgrader->GetDB()->SELECT("Icon", "Equipment", "Name = '" + name + "'");
+    image(PATHS::RESOURCES + object_motorgrader->GetDB()->GetIcon());
     show_graphics();
 }
 
+/* Showing graphics
+ * Input: -
+ * Output: - */
 void MotorGrader_Form::show_graphics() {
     ui->graphicsView->setScene(scene);
     ui->graphicsView->show();
 }
 
+/* Functions with graphics
+ * Input: pen
+ * Output: - */
 void MotorGrader_Form::stretch_marks_cursor(QPen pen) {
     scene->addLine(120, 150, 30, 210, pen);
     scene->addLine(595, 205, 540, 160, pen);
@@ -62,13 +72,18 @@ void MotorGrader_Form::lining_grubber_cursor(QPen pen) {
     scene->addLine(615, 205, 635, 205, pen);
 }
 
+/* Pressing "To main window" button
+ * Input: -
+ * Output: - */
 void MotorGrader_Form::on_pushButton_2_clicked()
 {
-    DB.close();
-    this->close();
     emit firstWindow();
+    this->~MotorGrader_Form();
 }
 
+/* Pressing "Done" button
+ * Input: -
+ * Output: - */
 void MotorGrader_Form::on_pushButton_clicked()
 {
     Default();
@@ -81,23 +96,24 @@ void MotorGrader_Form::on_pushButton_clicked()
 
     if (CheckAnswer(object_answer)) {
         message.result = MESSAGE::SUCCESS;
-        message.string = MESSAGE::PREPARATION;
-        message.preparation = MESSAGE::MOTORGRADER;
         grade = "Склав";
     } else {
         message.result = MESSAGE::FAIL;
-        message.string = MESSAGE::PREPARATION;
-        message.preparation = MESSAGE::MOTORGRADER;
         scene->clear();
         set_image();
         grade = "Не склав";
     }
-    DB.SetAttempt(object_user, name, grade);
+    message.string = MESSAGE::PREPARATION;
+    message.preparation = MESSAGE::MOTORGRADER;
+    object_motorgrader->GetDB()->SetAttempt(object_user, name, grade);
 
     Message_Form *object = new Message_Form(message);
     object->show();
 }
 
+/* Filling а structure from form`s items
+ * Input: structure
+ * Output: - */
 void MotorGrader_Form::FillingFormMotorGrader(form_motorgrader &object_form) {
     object_form.s = ui->lineEdit->text().toUInt();
     object_form.t = ui->lineEdit_2->text().toUInt();
@@ -117,6 +133,9 @@ void MotorGrader_Form::FillingFormMotorGrader(form_motorgrader &object_form) {
     ui->comboBox_2->currentText() == YES_NO::YES ? object_form.li2 = true : object_form.li2 = false;
 }
 
+/* Doing items` color are black
+ * Input: -
+ * Output: - */
 void MotorGrader_Form::Default() {
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     for (auto &element : allEdits) {
@@ -129,6 +148,9 @@ void MotorGrader_Form::Default() {
     ui->comboBox->setStyleSheet(COLOR_EDIT::BLACK);
 }
 
+/* Cheking logical structure
+ * Input: structure
+ * Output: - */
 bool MotorGrader_Form::CheckAnswer(form_answer_motorgrader form) {
     bool flag(true);
 

@@ -12,6 +12,13 @@ Scraper::Scraper(ScraperDB db) {
 
 Scraper::~Scraper() {}
 
+ScraperDB* Scraper::GetDB() {
+    return &DB;
+}
+
+/* Execute queries to database
+ * Input: containers for answer
+ * Output: - */
 void Scraper::Quiry(std::map<QString, QString> &cont, std::map<QString, Dimensions> &contD) {
     DB.SELECT("Con.Value, Cha.Name", "Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id", "Equ.Name = '" + name + "' AND Con.Value NOT NULL");
     DB.GetGeneralValue(cont);
@@ -23,6 +30,9 @@ void Scraper::Quiry(std::map<QString, QString> &cont, std::map<QString, Dimensio
     DB.GetYesNoValue(cont);
 }
 
+/* Filling class`s variables
+ * Input: containers with data from database
+ * Output: - */
 void Scraper::Filling(std::map<QString, QString> cont, std::map<QString, Dimensions> contD) {
     mas_stretching.insert({"stretch", {cont["Скільки розтяжок потрібно для кріплення скрепера"].toUInt(), cont["Скільки ниток в розтяжці (75)"].toUInt(), cont["Якого діаметру повинен бути дріт (мм)"].toUInt()}});
 
@@ -36,6 +46,9 @@ void Scraper::Filling(std::map<QString, QString> cont, std::map<QString, Dimensi
     mas_lining.insert({"dump", {flag, contD["Розміри підкладки під ніж скрепера (мм):"], cont["Кількість цвяхів на підкладку (69)"].toUInt()}});
 }
 
+/* Check answer from form and data from database
+ * Input: structure with data from form
+ * Output: logical structure with data about true each variables */
 form_answer_scraper Scraper::CheckAnswer(form_scraper form) {
     form_answer_scraper object;
 

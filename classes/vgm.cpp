@@ -14,16 +14,29 @@ VGM::VGM(VGM_DB db) {
 
 VGM::~VGM() {}
 
+VGM_DB* VGM::GetDB() {
+    return &DB;
+}
+
+/* Execute queries to database
+ * Input: containers for answer
+ * Output: - */
 void VGM::Quiry(std::map<QString, QString> &cont) {
     DB.SELECT("Con.Value, Cha.Name", "Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id", "Equ.Name = '" + name + "' AND Con.Value NOT NULL AND Con.Conditions_id IS NULL AND Cha.Name != 'Вага ВГМ'");
     DB.GetValue(cont);
 }
 
+/* Filling class`s variables
+ * Input: containers with data from database
+ * Output: - */
 void VGM::Filling(std::map<QString, QString> cont) {
     mas_stretching.insert({"stretch", {cont["Скільки буде використано розтяжок"].toUInt(), 0, cont["Дріт якого діаметру треба застосувати"].toUInt()}});
     mas_bar.insert({"thrust", {cont["Скільки упорних брусків треба використати"].toUInt()}});
 }
 
+/* Clear variables dependent from nail boards
+ * Input: -
+ * Output: - */
 void VGM::ClearNailBoards() {
     nail_boards = "";
     mas_bar["thrust"].SetStaple(0);
@@ -31,6 +44,9 @@ void VGM::ClearNailBoards() {
     mas_bar["thrust"].SetLengthNail(0);
 }
 
+/* Clear variables dependent from side bar
+ * Input: -
+ * Output: - */
 void VGM::ClearSideBar() {
     side_bar = "";
     width_trackYesNo = false;
@@ -127,6 +143,9 @@ void VGM::SetWidthTrack(QString string) {
     }
 }
 
+/* Check answer from form and data from database
+ * Input: structure with data from form
+ * Output: logical structure with data about true each variables */
 form_answer_VGM VGM::CheckAnswer(form_VGM form) {
     form_answer_VGM object;
 

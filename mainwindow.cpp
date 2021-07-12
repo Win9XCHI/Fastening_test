@@ -20,6 +20,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/* Pressing "Start test" button
+ * Input: -
+ * Output: - */
 void MainWindow::on_pushButton_3_clicked() {
 
     if (!Validation::CheckPIB(ui->lineEdit->text())) {
@@ -74,22 +77,27 @@ void MainWindow::on_pushButton_3_clicked() {
     this->close();
 }
 
+/* Pressing "About" button
+ * Input: -
+ * Output: - */
 void MainWindow::on_pushButton_2_clicked()
 {
     About_Form *object = new About_Form();
     object->show();
 }
 
+/* Pressing "Admin" button
+ * Input: -
+ * Output: - */
 void MainWindow::on_pushButton_clicked()
 {
     CheckFileDB();
     AdminDB DB(PATHS::DB);
 
     if (!DB.CheckConnection()) {
-        DB.createConnection();
-    }
-    if (!DB.CheckConnection()) {
-        throw DatabaseException(DB.LastError().toStdString());
+        if (!DB.createConnection()) {
+            throw DatabaseException(DB.LastError().toStdString());
+        }
     }
 
     Password_Form *object = new Password_Form(DB);
@@ -98,6 +106,9 @@ void MainWindow::on_pushButton_clicked()
     object->show();
 }
 
+/* Check file database near program, if there is not DB then throw exception
+ * Input: -
+ * Output: - */
 void MainWindow::CheckFileDB() {
     std::ifstream file(PATHS::DB.toStdString());
     if(!file.is_open()) {
@@ -105,14 +116,16 @@ void MainWindow::CheckFileDB() {
     }
 }
 
+/* Call form excavator
+ * Input: -
+ * Output: - */
 void MainWindow::Excavator() {
     ExcavatorDB DB(PATHS::DB);
 
     if (!DB.CheckConnection()) {
-        DB.createConnection();
-    }
-    if (!DB.CheckConnection()) {
-        throw DatabaseException(DB.LastError().toStdString());
+        if (!DB.createConnection()) {
+            throw DatabaseException(DB.LastError().toStdString());
+        }
     }
 
     Excavator_Form *object;
@@ -121,14 +134,16 @@ void MainWindow::Excavator() {
     object->show();
 }
 
+/* Call form motorgrader
+ * Input: -
+ * Output: - */
 void MainWindow::MotorGrader() {
     MotorGraderDB DB(PATHS::DB);
 
     if (!DB.CheckConnection()) {
-        DB.createConnection();
-    }
-    if (!DB.CheckConnection()) {
-        throw DatabaseException(DB.LastError().toStdString());
+        if (!DB.createConnection()) {
+            throw DatabaseException(DB.LastError().toStdString());
+        }
     }
 
     MotorGrader_Form *object;
@@ -137,30 +152,33 @@ void MainWindow::MotorGrader() {
     object->show();
 }
 
+/* Call form bulldozer
+ * Input: -
+ * Output: - */
 void MainWindow::Bulldozer() {
     BulldozerDB DB(PATHS::DB);
 
     if (!DB.CheckConnection()) {
-        DB.createConnection();
+        if (!DB.createConnection()) {
+            throw DatabaseException(DB.LastError().toStdString());
+        }
     }
-    if (!DB.CheckConnection()) {
-        throw DatabaseException(DB.LastError().toStdString());
-    }
-
     Bulldozer_Form *object;
     object = new Bulldozer_Form(DB, create_user());
     connect(object, &Bulldozer_Form::firstWindow, this, &MainWindow::show);
     object->show();
 }
 
+/* Call form KRAZ
+ * Input: -
+ * Output: - */
 void MainWindow::KRAZ() {
     KRAZ_DB DB(PATHS::DB);
 
     if (!DB.CheckConnection()) {
-        DB.createConnection();
-    }
-    if (!DB.CheckConnection()) {
-        throw DatabaseException(DB.LastError().toStdString());
+        if (!DB.createConnection()) {
+            throw DatabaseException(DB.LastError().toStdString());
+        }
     }
 
     KRAZ_Form *object;
@@ -169,14 +187,16 @@ void MainWindow::KRAZ() {
     object->show();
 }
 
+/* Call form KRAZ_PL
+ * Input: -
+ * Output: - */
 void MainWindow::KRAZ_PL() {
     KRAZ_pl_DB DB(PATHS::DB);
 
     if (!DB.CheckConnection()) {
-        DB.createConnection();
-    }
-    if (!DB.CheckConnection()) {
-        throw DatabaseException(DB.LastError().toStdString());
+        if (!DB.createConnection()) {
+            throw DatabaseException(DB.LastError().toStdString());
+        }
     }
 
     KRAZ_pl_form *object;
@@ -185,14 +205,16 @@ void MainWindow::KRAZ_PL() {
     object->show();
 }
 
+/* Call form scraper
+ * Input: -
+ * Output: - */
 void MainWindow::Scraper() {
     ScraperDB DB(PATHS::DB);
 
     if (!DB.CheckConnection()) {
-        DB.createConnection();
-    }
-    if (!DB.CheckConnection()) {
-        throw DatabaseException(DB.LastError().toStdString());
+        if (!DB.createConnection()) {
+            throw DatabaseException(DB.LastError().toStdString());
+        }
     }
 
     Scraper_Form *object;
@@ -201,14 +223,16 @@ void MainWindow::Scraper() {
     object->show();
 }
 
+/* Call form VGM
+ * Input: -
+ * Output: - */
 void MainWindow::VGM() {
     VGM_DB DB(PATHS::DB);
 
     if (!DB.CheckConnection()) {
-        DB.createConnection();
-    }
-    if (!DB.CheckConnection()) {
-        throw DatabaseException(DB.LastError().toStdString());
+        if (!DB.createConnection()) {
+            throw DatabaseException(DB.LastError().toStdString());
+        }
     }
 
     VGM_Form *object;
@@ -217,11 +241,16 @@ void MainWindow::VGM() {
     object->show();
 }
 
+/* Create user object from ПІБ and Взвод
+ * Input: -
+ * Output: user object */
 User MainWindow::create_user() {
     return {ui->lineEdit->text(), ui->lineEdit_2->text()};
 }
 
-
+/* Pressing "Exit" button
+ * Input: -
+ * Output: - */
 void MainWindow::on_pushButton_4_clicked()
 {
     this->close();

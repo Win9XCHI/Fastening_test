@@ -2,6 +2,7 @@
 #define STRUCTURE_H
 #include <QString>
 
+/* Structure for message form */
 struct frame {
     QString result;
     QString string;

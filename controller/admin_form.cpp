@@ -31,6 +31,9 @@ Admin_Form::~Admin_Form()
     delete ui;
 }
 
+/* Selecting option in comboBox
+ * Input: option`s index
+ * Output: - */
 void Admin_Form::on_comboBox_activated(int index)
 {
     if (index == 1) {
@@ -68,17 +71,23 @@ void Admin_Form::on_comboBox_activated(int index)
     }
 }
 
+/* Pressing "To main window" button
+ * Input: -
+ * Output: - */
 void Admin_Form::on_pushButton_5_clicked()
 {
     emit firstWindow();
-    this->close();
+    this->~Admin_Form();
 }
 
+/* Construct where statement for select query to database
+ * Input: user`s name and platoon, equipment`s name
+ * Output: 'where' string for quiry */
 QString Admin_Form::SetWhere(QString name, QString platoon, QString equipment) {
     QString where = YES_NO::EMPTY;
 
     if (name != YES_NO::EMPTY) {
-        where = "S.Name = '" + name + "'";
+        where = "S.Name LIKE '" + name + " %'";
     }
 
     if (name != YES_NO::EMPTY && platoon != YES_NO::EMPTY) {
@@ -100,6 +109,9 @@ QString Admin_Form::SetWhere(QString name, QString platoon, QString equipment) {
     return where;
 }
 
+/* Pressing "Output students" button
+ * Input: -
+ * Output: - */
 void Admin_Form::on_pushButton_2_clicked() {
     DB.SELECT("*", "Student AS S", SetWhere(ui->lineEdit_6->text(), ui->lineEdit_7->text(), YES_NO::EMPTY), YES_NO::EMPTY, "Name ASC");
     std::list<User> cont;
@@ -121,10 +133,13 @@ void Admin_Form::on_pushButton_2_clicked() {
      }
 }
 
+/* Pressing "Output grades" button
+ * Input: -
+ * Output: - */
 void Admin_Form::on_pushButton_clicked() {
     DB.SELECT("S.Name AS st_name, S.Platoon, T.Date, T.Grade, E.Name AS eq_name",
               "Student AS S JOIN Test AS T ON T.Student_id = S.id JOIN Equipment AS E ON E.id = T.Equipment_id",
-              SetWhere(ui->lineEdit_6->text(), ui->lineEdit_7->text(), ui->lineEdit_7->text()), YES_NO::EMPTY,
+              SetWhere(ui->lineEdit_6->text(), ui->lineEdit_7->text(), ui->lineEdit_13->text()), YES_NO::EMPTY,
               "E.Name ASC, T.Date ASC");
     std::list<Test> cont;
     DB.GetAttempts(cont);
@@ -145,6 +160,9 @@ void Admin_Form::on_pushButton_clicked() {
      }
 }
 
+/* Filling class`s variables
+ * Input: containers with data from database
+ * Output: - */
 void Admin_Form::FillingCont(QString equipment, std::multimap<QString, QString> &cont, std::multimap<QString, QString> &contYN, std::multimap<QString, Dimensions> &contD, std::multimap<QString, FromTo> &contFT) {
     DB.SELECT("Con.Value, Cha.Name",
               "Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id",
@@ -171,6 +189,9 @@ void Admin_Form::FillingCont(QString equipment, std::multimap<QString, QString> 
     DB.GetFromToValue(contFT);
 }
 
+/* Selecting option in comboBox_2
+ * Input: option`s string
+ * Output: - */
 void Admin_Form::on_comboBox_2_activated(const QString &arg1) {
     std::multimap<QString, QString> cont;
     std::multimap<QString, QString> contYN;
@@ -186,6 +207,9 @@ void Admin_Form::on_comboBox_2_activated(const QString &arg1) {
     SetTableWidget_5(contFT);
 }
 
+/* Output simple characteristics
+ * Input: characteristic`s data
+ * Output: - */
 void Admin_Form::SetTableWidget_2(std::multimap<QString, QString> cont) {
     unsigned int column_count = 2;
     ui->tableWidget_2->setRowCount(cont.size());
@@ -209,6 +233,9 @@ void Admin_Form::SetTableWidget_2(std::multimap<QString, QString> cont) {
     }
 }
 
+/* Output "Yes or no" characteristics
+ * Input: characteristic`s data
+ * Output: - */
 void Admin_Form::SetTableWidget_4(std::multimap<QString, QString> contYN) {
     unsigned int column_count = 2;
     ui->tableWidget_4->setRowCount(contYN.size());
@@ -231,6 +258,9 @@ void Admin_Form::SetTableWidget_4(std::multimap<QString, QString> contYN) {
     }
 }
 
+/* Output dimensions characteristics
+ * Input: characteristic`s data
+ * Output: - */
 void Admin_Form::SetTableWidget_3(std::multimap<QString, Dimensions> contD) {
     unsigned int column_count = 4;
     ui->tableWidget_3->setRowCount(contD.size());
@@ -258,6 +288,9 @@ void Admin_Form::SetTableWidget_3(std::multimap<QString, Dimensions> contD) {
     }
 }
 
+/* Output "From and to" characteristics
+ * Input: characteristic`s data
+ * Output: - */
 void Admin_Form::SetTableWidget_5(std::multimap<QString, FromTo> contFT) {
     unsigned int column_count = 3;
     ui->tableWidget_5->setRowCount(contFT.size());
@@ -284,6 +317,9 @@ void Admin_Form::SetTableWidget_5(std::multimap<QString, FromTo> contFT) {
     }
 }
 
+/* Clear TableWidgets
+ * Input: -
+ * Output: - */
 void Admin_Form::TableDefault() {
     QList<QTableWidget *> allEdits = this->findChildren<QTableWidget *>();
     for (auto &element : allEdits) {
@@ -299,6 +335,9 @@ void Admin_Form::TableDefault() {
     }
 }
 
+/* Pressing "Check characteristic" button
+ * Input: -
+ * Output: - */
 void Admin_Form::on_pushButton_3_clicked() {
     TableDefault();
     QString where;
@@ -361,6 +400,9 @@ void Admin_Form::on_pushButton_3_clicked() {
     }
 }
 
+/* Pressing "New characteristic`s value" button
+ * Input: -
+ * Output: - */
 void Admin_Form::on_pushButton_4_clicked() {
     QString where;
     DB.SELECT("Cha.Type", "Characteristic AS Cha JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id", "Equ.Name = '" + equipment + "' AND Cha.Name = '" + ui->lineEdit->text() + "'");
@@ -428,13 +470,16 @@ void Admin_Form::on_pushButton_4_clicked() {
         DB.GetId(cont);
 
         if (cont.size() == 1) {
-            DB.UPDATE("FromTo", "From = " + ui->lineEdit_9->text() + ", To = " + ui->lineEdit_8->text(), "id = " + QString::number(cont[0]));
+            DB.UPDATE("FromTo", "\"From\" = " + ui->lineEdit_9->text() + ", \"To\" = " + ui->lineEdit_8->text(), "id = " + QString::number(cont[0]));
         }
     }
 
     on_pushButton_3_clicked();
 }
 
+/* Pressing "Clear form" button
+ * Input: -
+ * Output: - */
 void Admin_Form::on_pushButton_6_clicked()
 {
     TableDefault();

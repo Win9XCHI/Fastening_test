@@ -13,6 +13,13 @@ KRAZ::KRAZ(KRAZ_DB db) {
 
 KRAZ::~KRAZ() {}
 
+KRAZ_DB* KRAZ::GetDB() {
+    return &DB;
+}
+
+/* Execute queries to database
+ * Input: containers for answer
+ * Output: - */
 void KRAZ::Quiry(std::map<QString, QString> &cont, std::map<QString, FromTo> &contFT, std::map<QString, Dimensions> &contD) {
     DB.SELECT("Con.Value, Cha.Name", "Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id", "Equ.Name = '" + name + "' AND Con.Value NOT NULL");
     DB.GetGeneralValue(cont);
@@ -24,6 +31,9 @@ void KRAZ::Quiry(std::map<QString, QString> &cont, std::map<QString, FromTo> &co
     DB.GetFromToValue(contFT);
 }
 
+/* Filling class`s variables
+ * Input: containers with data from database
+ * Output: - */
 void KRAZ::Filling(std::map<QString, QString> cont, std::map<QString, FromTo> contFT, std::map<QString, Dimensions> contD) {
     mas_stretching.insert({"stretch", {cont["Скільки розтяжок потрібно використати"].toUInt(), cont["Скільки ниток у розтяжці (60)"].toUInt(), cont["Якого діаметру розтяжки потрібно використати"].toUInt()}});
     mas_bar.insert({"thrust", {cont["Скільки потрібно використати упорних брусків"].toUInt(), contD["Які потрібні розміри упорних брусків (мм)"], static_cast<unsigned int>(contFT["Скільки цвяхів (150 мм) на брусок"].GetFrom())}});
@@ -32,6 +42,9 @@ void KRAZ::Filling(std::map<QString, QString> cont, std::map<QString, FromTo> co
     mas_fromto.insert({"distance", contFT["Яка відстань між боковим бруском і покришкою"]});
 }
 
+/* Check answer from form and data from database
+ * Input: structure with data from form
+ * Output: logical structure with data about true each variables */
 form_answer_KRAZ KRAZ::CheckAnswer(form_KRAZ form) {
     form_answer_KRAZ object;
 

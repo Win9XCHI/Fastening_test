@@ -6,15 +6,18 @@ ExcavatorDB::ExcavatorDB(QString str) : UserDB(str) {
 ExcavatorDB::ExcavatorDB() : UserDB() {
 }
 
-/*SELECT Icon FROM Equipment WHERE Name = 'Екскаватор ЕО-4125 на платформі';*/
+/* Get icon from equipment table
+ * Input: -
+ * Output: icon */
 QString ExcavatorDB::GetIcon() {
     QSqlRecord rec = query.record();
     query.next();
     return query.value(rec.indexOf("Icon")).toString();
 }
 
-/*SELECT Con.Value, Cha.Name FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment
- * AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = 'Екскаватор ЕО-4125 на платформі' AND Con.Value NOT NULL;*/
+/* Get data from conditions table
+ * Input: container for info hold
+ * Output: - */
 void ExcavatorDB::GetGeneralValue(std::map<QString, QString> &cont) {
     QSqlRecord rec = query.record();
 
@@ -23,8 +26,9 @@ void ExcavatorDB::GetGeneralValue(std::map<QString, QString> &cont) {
     }
 }
 
-/*SELECT Ft."From", Ft."To", Cha.Name FROM FromTo AS Ft JOIN Conditions AS Con ON Con.id = Ft.Conditions_id JOIN Characteristic AS Cha ON Cha.id =
- * Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = 'Екскаватор ЕО-4125 на платформі';*/
+/* Get data from FromTo table
+ * Input: container for info hold
+ * Output: - */
 void ExcavatorDB::GetFromToValue(std::map<QString, FromTo> &cont) {
     QSqlRecord rec = query.record();
 
@@ -33,8 +37,9 @@ void ExcavatorDB::GetFromToValue(std::map<QString, FromTo> &cont) {
     }
 }
 
-/*SELECT Yn.Answer, Cha.Name FROM YesNo AS Yn JOIN Conditions AS Con ON Con.id = Yn.Conditions_id JOIN Characteristic AS Cha ON Cha.id =
- * Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = 'Екскаватор ЕО-4125 на платформі';*/
+/* Get data from YesNo table
+ * Input: container for info hold
+ * Output: - */
 void ExcavatorDB::GetYesNoValue(std::map<QString, QString> &cont) {
     QSqlRecord rec = query.record();
 

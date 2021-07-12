@@ -14,6 +14,13 @@ Bulldozer::Bulldozer(BulldozerDB db) {
 
 Bulldozer::~Bulldozer() {}
 
+BulldozerDB* Bulldozer::GetDB() {
+    return &DB;
+}
+
+/* Execute queries to database
+ * Input: containers for answer
+ * Output: - */
 void Bulldozer::Quiry(std::map<QString, QString> &cont, std::map<QString, Dimensions> &contD) {
     DB.SELECT("Con.Value, Cha.Name", "Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id", "Equ.Name = '" + name + "' AND Con.Value NOT NULL AND Con.Conditions_id IS NULL AND Cha.Name != 'Вага бульдозера'");
     DB.GetValue(cont);
@@ -25,6 +32,9 @@ void Bulldozer::Quiry(std::map<QString, QString> &cont, std::map<QString, Dimens
     DB.GetYesNoValue(cont);
 }
 
+/* Filling class`s variables
+ * Input: containers with data from database
+ * Output: - */
 void Bulldozer::Filling(std::map<QString, QString> cont, std::map<QString, Dimensions> contD) {
     mas_stretching.insert({"stretch", {cont["Скільки буде використано розтяжок"].toUInt(), 0, cont["Дріт якого діаметру треба застосувати"].toUInt()}});
     mas_bar.insert({"thrust", {cont["Скільки упорних брусків треба використати"].toUInt()}});
@@ -35,6 +45,9 @@ void Bulldozer::Filling(std::map<QString, QString> cont, std::map<QString, Dimen
     mas_lining.insert({"lining", {flag, contD["Розміри підкладки під ніж бульдозера (мм)"], cont["Кількість цвяхів на підкладку"].toUInt()}});
 }
 
+/* Clear variables dependent from nail boards
+ * Input: -
+ * Output: - */
 void Bulldozer::ClearNailBoards() {
     nail_boards = YES_NO::EMPTY;
     mas_bar["thrust"].SetStaple(0);
@@ -42,6 +55,9 @@ void Bulldozer::ClearNailBoards() {
     mas_bar["thrust"].SetLengthNail(0);
 }
 
+/* Clear variables dependent from side bar
+ * Input: -
+ * Output: - */
 void Bulldozer::ClearSideBar() {
     side_bar = YES_NO::EMPTY;
     width_trackYesNo = false;
@@ -123,6 +139,9 @@ void Bulldozer::SetWidthTrack(QString string) {
     }
 }
 
+/* Check answer from form and data from database
+ * Input: structure with data from form
+ * Output: logical structure with data about true each variables */
 form_answer_bulldozer Bulldozer::CheckAnswer(form_bulldozer form) {
     form_answer_bulldozer object;
 

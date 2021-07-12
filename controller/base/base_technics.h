@@ -4,7 +4,7 @@
 #include "../message_form.h"
 
 class base_technics {
-public:
+protected:
     base_technics();
     QGraphicsScene *scene;
     void image(QString);

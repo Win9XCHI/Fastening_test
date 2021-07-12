@@ -12,6 +12,13 @@ MotorGrader::MotorGrader(MotorGraderDB db) {
 
 MotorGrader::~MotorGrader() {}
 
+MotorGraderDB* MotorGrader::GetDB() {
+    return &DB;
+}
+
+/* Execute queries to database
+ * Input: containers for answer
+ * Output: - */
 void MotorGrader::Quiry(std::map<QString, QString> &cont, std::map<QString, Dimensions> &contD) {
     DB.SELECT("Con.Value, Cha.Name", "Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id", "Equ.Name = '" + name + "' AND Con.Value NOT NULL");
     DB.GetGeneralValue(cont);
@@ -23,6 +30,9 @@ void MotorGrader::Quiry(std::map<QString, QString> &cont, std::map<QString, Dime
     DB.GetYesNoValue(cont);
 }
 
+/* Filling class`s variables
+ * Input: containers with data from database
+ * Output: - */
 void MotorGrader::Filling(std::map<QString, QString> cont, std::map<QString, Dimensions> contD) {
     mas_stretching.insert({"stretch", {cont["Скільки розтяжок потрібно для кріплення автогрейдера"].toUInt(), cont["Скільки ниток в розтяжці (47)"].toUInt(), cont["Якого діаметру повинен бути дріт (мм)"].toUInt()}});
 
@@ -40,6 +50,9 @@ void MotorGrader::Filling(std::map<QString, QString> cont, std::map<QString, Dim
     mas_lining.insert({"grubber", {flag2, contD["Розміри підкладки під ніж корчувача (мм)"], cont["Кількість цвяхів на підкладку під ніж корчувача"].toUInt()}});
 }
 
+/* Check answer from form and data from database
+ * Input: structure with data from form
+ * Output: logical structure with data about true each variables */
 form_answer_motorgrader MotorGrader::CheckAnswer(form_motorgrader form) {
     form_answer_motorgrader object;
 

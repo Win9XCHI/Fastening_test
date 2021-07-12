@@ -7,18 +7,16 @@ Scraper_Form::Scraper_Form(ScraperDB db, User u, QWidget *parent) :
 {
     ui->setupUi(this);
     scene = new QGraphicsScene;
-    DB = db;
     count = 0;
     name = EQUIPMENT_NAME::SCRAPER;
-    scene = new QGraphicsScene;
     ui->comboBox->addItem(YES_NO::EMPTY);
     ui->comboBox->addItem(YES_NO::NO);
     ui->comboBox->addItem(YES_NO::YES);
-    object_scraper = new Scraper(DB);
+    object_scraper = new Scraper(db);
     Scraper_Form::set_image();
 
     object_user = u;
-    DB.SetUser(object_user);
+    object_scraper->GetDB()->SetUser(object_user);
 
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     Validation::LineEdit::SetDoubleValidator(allEdits);
@@ -26,15 +24,23 @@ Scraper_Form::Scraper_Form(ScraperDB db, User u, QWidget *parent) :
 
 Scraper_Form::~Scraper_Form()
 {
-    DB.close();
+    object_scraper->GetDB()->close();
     delete ui;
+    delete object_scraper;
+    delete scene;
 }
 
+/* Showing graphics
+ * Input: -
+ * Output: - */
 void Scraper_Form::show_graphics() {
     ui->graphicsView->setScene(scene);
     ui->graphicsView->show();
 }
 
+/* Functions with graphics
+ * Input: pen
+ * Output: - */
 void Scraper_Form::stretch_marks_cursor(QPen pen) {
     scene->addLine(10, 190, 105, 135, pen);
     scene->addLine(160, 190, 235, 145, pen);
@@ -58,14 +64,18 @@ void Scraper_Form::lining_cursor(QPen pen) {
     scene->addLine(380, 180, 400, 180, pen);
 }
 
-
+/* Pressing "To main window" button
+ * Input: -
+ * Output: - */
 void Scraper_Form::on_pushButton_clicked()
 {
-    DB.close();
-    this->close();
     emit firstWindow();
+    this->~Scraper_Form();
 }
 
+/* Pressing "Done" button
+ * Input: -
+ * Output: - */
 void Scraper_Form::on_pushButton_2_clicked()
 {
     Default();
@@ -78,29 +88,33 @@ void Scraper_Form::on_pushButton_2_clicked()
 
     if (CheckAnswer(object_answer)) {
         message.result = MESSAGE::SUCCESS;
-        message.string = MESSAGE::PREPARATION;
-        message.preparation = MESSAGE::SCRAPER;
         grade = "Склав";
     } else {
         message.result = MESSAGE::FAIL;
-        message.string = MESSAGE::PREPARATION;
-        message.preparation = MESSAGE::SCRAPER;
         scene->clear();
         set_image();
         grade = "Не склав";
     }
-    DB.SetAttempt(object_user, name, grade);
+    message.string = MESSAGE::PREPARATION;
+    message.preparation = MESSAGE::SCRAPER;
+    object_scraper->GetDB()->SetAttempt(object_user, name, grade);
 
     Message_Form *object = new Message_Form(message);
     object->show();
 }
 
+/* Set up image in the form
+ * Input: -
+ * Output: - */
 void Scraper_Form::set_image() {
-    DB.SELECT("Icon", "Equipment", "Name = '" + name + "'");
-    image(PATHS::RESOURCES + DB.GetIcon());
+    object_scraper->GetDB()->SELECT("Icon", "Equipment", "Name = '" + name + "'");
+    image(PATHS::RESOURCES + object_scraper->GetDB()->GetIcon());
     show_graphics();
 }
 
+/* Filling а structure from form`s items
+ * Input: structure
+ * Output: - */
 void Scraper_Form::FillingFormMotorScraper(form_scraper &object_form) {
     object_form.s = ui->lineEdit->text().toUInt();
     object_form.t = ui->lineEdit_2->text().toUInt();
@@ -120,6 +134,9 @@ void Scraper_Form::FillingFormMotorScraper(form_scraper &object_form) {
     ui->comboBox->currentText() == YES_NO::YES ? object_form.li = true : object_form.li = false;
 }
 
+/* Doing items` color are black
+ * Input: -
+ * Output: - */
 void Scraper_Form::Default() {
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     for (auto &element : allEdits) {
@@ -132,6 +149,9 @@ void Scraper_Form::Default() {
     ui->comboBox->setStyleSheet(COLOR_EDIT::BLACK);
 }
 
+/* Cheking logical structure
+ * Input: structure
+ * Output: - */
 bool Scraper_Form::CheckAnswer(form_answer_scraper form) {
     bool flag(true);
 

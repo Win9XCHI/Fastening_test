@@ -6,34 +6,18 @@ BulldozerDB::BulldozerDB(QString str) : UserDB(str) {
 BulldozerDB::BulldozerDB() : UserDB() {
 }
 
-/*SELECT Icon FROM Equipment WHERE Name = 'Бульдозер на платформі';*/
+/* Get icon from equipment table
+ * Input: -
+ * Output: icon */
 QString BulldozerDB::GetIcon() {
     QSqlRecord rec = query.record();
     query.next();
     return query.value(rec.indexOf("Icon")).toString();
 }
 
-/* SELECT Con.Value, Cha.Name FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN
- * Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = 'Бульдозер на платформі' AND Con.Value NOT NULL AND
- * Con.Conditions_id IS NULL AND Cha.Name != 'Вага бульдозера';
-*/
-
-/* SELECT Con.Value, Cha.Name FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN
- * Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE
- * Cha.Name != 'Чим будуть прибивати бруски до платформи' AND Cha.Name !=
- * 'Чим будете кріпити бульдозер від поперечного зміщення при відкритих бортах платформи' AND Con.Conditions_id =
- * (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN
- * Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = 'Бульдозер на платформі' AND Con.Value = '...');
-*/
-
-/* SELECT Con.Value, Cha.Name FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN
- * Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE
- * Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN
- * Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '...' AND
- * Cha.Name = '...' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON
- * Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = 'Бульдозер на платформі'
- * AND Con.Value = '...'));
-*/
+/* Get data from conditions table
+ * Input: container for info hold
+ * Output: - */
 void BulldozerDB::GetValue(std::map<QString, QString> &cont) {
     QSqlRecord rec = query.record();
 
@@ -42,10 +26,9 @@ void BulldozerDB::GetValue(std::map<QString, QString> &cont) {
     }
 }
 
-/* SELECT Yn.Answer, Cha.Name FROM YesNo AS Yn JOIN Conditions AS Con ON Con.id = Yn.Conditions_id JOIN
- * Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE
- * Equ.Name = 'Бульдозер на платформі';
-*/
+/* Get data from YesNo table
+ * Input: container for info hold
+ * Output: - */
 void BulldozerDB::GetYesNoValue(std::map<QString, QString> &cont) {
     QSqlRecord rec = query.record();
 
@@ -54,20 +37,9 @@ void BulldozerDB::GetYesNoValue(std::map<QString, QString> &cont) {
     }
 }
 
-/* SELECT D.Thickness, D.Width, D.Length, Cha.Name FROM Dimensions AS D JOIN Conditions AS Con ON
- * Con.id = D.Conditions_id JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN
- * Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = 'Бульдозер на платформі' AND Con.Conditions_id IS NULL;
-*/
-
-/* SELECT D.Thickness, D.Width, D.Length, Cha.Name FROM Dimensions AS D JOIN Conditions AS Con ON
- * Con.id = D.Conditions_id JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN
- * Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Conditions_id =
- * (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN
- * Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '...' AND
- * Cha.Name = '...' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON
- * Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE
- * Equ.Name = 'Бульдозер на платформі' AND Con.Value = '...'));
-*/
+/* Get data from dimensions table
+ * Input: container for info hold
+ * Output: - */
 void BulldozerDB::GetDimensionsValue(std::map<QString, Dimensions> &cont) {
     QSqlRecord rec = query.record();
 
@@ -76,10 +48,9 @@ void BulldozerDB::GetDimensionsValue(std::map<QString, Dimensions> &cont) {
     }
 }
 
-/* SELECT Con.Value FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN
- * Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = 'Бульдозер на платформі' AND Con.Value NOT NULL AND
- * Con.Conditions_id IS NULL AND Cha.Name = 'Вага бульдозера';
-*/
+/* Get weight from conditions table
+ * Input: container for info hold
+ * Output: - */
 void BulldozerDB::GetWeightValue(std::vector<QString> &cont) {
     QSqlRecord rec = query.record();
 
@@ -88,28 +59,9 @@ void BulldozerDB::GetWeightValue(std::vector<QString> &cont) {
     }
 }
 
-/* SELECT COUNT(Con.Value) AS c FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN
- * Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '...' AND Cha.Name = '...'
- * AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN
- * Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = 'Бульдозер на платформі' AND Con.Value = '...');
-*/
-bool BulldozerDB::Is_Value() {
-    QSqlRecord rec = query.record();
-    query.next();
-    if (query.value(rec.indexOf("Name")) == 0) {
-        return false;
-    }
-    return true;
-}
-
-/* SELECT Ft."From", Ft."To", Cha.Name FROM FromTo AS Ft JOIN Conditions AS Con ON Con.id = Ft.Conditions_id JOIN
- * Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Conditions_id =
- * (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id =
- * Cha.Equipment_id WHERE Con.Value = 'Бокові бруски' AND Cha.Name =
- * 'Чим будете кріпити бульдозер від поперечного зміщення при відкритих бортах платформи' AND Con.Conditions_id =
- * (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id =
- * Cha.Equipment_id WHERE Equ.Name = 'Бульдозер на платформі' AND Con.Value = '...'));
- */
+/* Get data from FromTo table
+ * Input: container for info hold
+ * Output: - */
 void BulldozerDB::GetFromToValue(std::map<QString, FromTo> &cont) {
     QSqlRecord rec = query.record();
 

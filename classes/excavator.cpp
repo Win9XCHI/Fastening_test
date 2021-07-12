@@ -11,11 +11,15 @@ Excavator::Excavator(ExcavatorDB db) {
 }
 
 Excavator::~Excavator() {
-    if (object_lining != nullptr) {
-        delete object_lining;
-    }
 }
 
+ExcavatorDB* Excavator::GetDB() {
+    return &DB;
+}
+
+/* Execute queries to database
+ * Input: containers for answer
+ * Output: - */
 void Excavator::Quiry(std::map<QString, QString> &cont, std::map<QString, FromTo> &contFT) {
     DB.SELECT("Con.Value, Cha.Name", "Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id", "Equ.Name = '" + name + "' AND Con.Value NOT NULL");
     DB.GetGeneralValue(cont);
@@ -27,6 +31,9 @@ void Excavator::Quiry(std::map<QString, QString> &cont, std::map<QString, FromTo
     DB.GetYesNoValue(cont);
 }
 
+/* Filling class`s variables
+ * Input: containers with data from database
+ * Output: - */
 void Excavator::Filling(std::map<QString, QString> cont, std::map<QString, FromTo> contFT) {
     mas_stretching.insert({"swivel platform", {cont["Скільки розтяжок потрібно для кріплення поворотної платформи"].toUInt(), cont["Скільки ниток в розтяжці (2)"].toUInt(), cont["Якого діаметру треба застосувати проволоку (мм)"].toUInt()}});
     mas_stretching.insert({"chassis", {cont["Скільки розтяжок потрібно для кріплення ходової частини"].toUInt(), cont["Скільки ниток в розтяжці (4)"].toUInt(), cont["Якого діаметру треба застосувати проволоку (мм)"].toUInt()}});
@@ -47,9 +54,12 @@ void Excavator::Filling(std::map<QString, QString> cont, std::map<QString, FromT
     if (cont["Чи потрібна дерев'яна підкладка під ковш"] == YES_NO::YES) {
         flag = true;
     }
-    object_lining = new Lining(flag);
+    mas_lining.insert({"lining", flag});
 }
 
+/* Check answer from form and data from database
+ * Input: structure with data from form
+ * Output: logical structure with data about true each variables */
 form_answer_excavator Excavator::CheckAnswer(form_excavator form) {
     form_answer_excavator object;
 
@@ -113,7 +123,7 @@ form_answer_excavator Excavator::CheckAnswer(form_excavator form) {
     if (form.al != axis_longitudinal) {
         object.al = false;
     }
-    if (form.l != object_lining->GetYesNo()) {
+    if (form.l != mas_lining["lining"].GetYesNo()) {
         object.l = false;
     }
     if (form.bh != boom_height) {

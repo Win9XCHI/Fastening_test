@@ -7,7 +7,6 @@ VGM_Form::VGM_Form(VGM_DB db, User u, QWidget *parent) :
 {
     ui->setupUi(this);
     scene = new QGraphicsScene;
-    DB = db;
     name = EQUIPMENT_NAME::VGM;
     ui->comboBox->addItem(YES_NO::EMPTY);
     ui->comboBox->addItem(BULLDOZER_FORM::WIDTH_TRACK::LESS400);
@@ -20,12 +19,12 @@ VGM_Form::VGM_Form(VGM_DB db, User u, QWidget *parent) :
     ui->listWidget->addItem(VGM_FORM::NAILS);
     ui->listWidget_2->addItem(VGM_FORM::STAPLES);
     ui->listWidget_2->addItem(VGM_FORM::SAID_BARS);
-    object_VGM = new VGM(DB);
+    object_VGM = new VGM(db);
     VGM_Form::set_image();
     count1 = count2 = 0;
 
     object_user = u;
-    DB.SetUser(object_user);
+    object_VGM->GetDB()->SetUser(object_user);
 
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     Validation::LineEdit::SetDoubleValidator(allEdits);
@@ -33,15 +32,23 @@ VGM_Form::VGM_Form(VGM_DB db, User u, QWidget *parent) :
 
 VGM_Form::~VGM_Form()
 {
-    DB.close();
+    object_VGM->GetDB()->close();
     delete ui;
+    delete object_VGM;
+    delete scene;
 }
 
+/* Showing graphics
+ * Input: -
+ * Output: - */
 void VGM_Form::show_graphics() {
     ui->graphicsView->setScene(scene);
     ui->graphicsView->show();
 }
 
+/* Functions with graphics
+ * Input: pen
+ * Output: - */
 void VGM_Form::bar_cursor(QPen pen) {
     QPolygonF polygon;
     polygon << QPointF(270, 155) << QPointF(280, 145) << QPointF(290, 155);
@@ -57,13 +64,18 @@ void VGM_Form::stretch_marks_cursor(QPen pen) {
     scene->addLine(700, 155, 580, 125, pen);
 }
 
+/* Pressing "To main window" button
+ * Input: -
+ * Output: - */
 void VGM_Form::on_pushButton_clicked()
 {
-    DB.close();
-    this->close();
     emit firstWindow();
+    this->~VGM_Form();
 }
 
+/* Pressing "Done" button
+ * Input: -
+ * Output: - */
 void VGM_Form::on_pushButton_2_clicked()
 {
     Default();
@@ -76,29 +88,33 @@ void VGM_Form::on_pushButton_2_clicked()
 
     if (CheckAnswer(object_answer)) {
         message.result = MESSAGE::SUCCESS;
-        message.string = MESSAGE::PREPARATION;
-        message.preparation = MESSAGE::VGM;
         grade = "Склав";
     } else {
         message.result = MESSAGE::FAIL;
-        message.string = MESSAGE::PREPARATION;
-        message.preparation = MESSAGE::VGM;
         scene->clear();
         set_image();
         grade = "Не склав";
     }
-    DB.SetAttempt(object_user, name, grade);
+    message.string = MESSAGE::PREPARATION;
+    message.preparation = MESSAGE::VGM;
+    object_VGM->GetDB()->SetAttempt(object_user, name, grade);
 
     Message_Form *object = new Message_Form(message);
     object->show();
 }
 
+/* Set up image in the form
+ * Input: -
+ * Output: - */
 void VGM_Form::set_image() {
-    DB.SELECT("Icon", "Equipment", "Name = '" + name + "'");
-    image(PATHS::RESOURCES + DB.GetIcon());
+    object_VGM->GetDB()->SELECT("Icon", "Equipment", "Name = '" + name + "'");
+    image(PATHS::RESOURCES + object_VGM->GetDB()->GetIcon());
     show_graphics();
 }
 
+/* Filling а structure from form`s items
+ * Input: structure
+ * Output: - */
 void VGM_Form::FillingFormVGM(form_VGM &object_form) {
     object_form.s = ui->lineEdit->text().toUInt();
     object_form.wd = ui->lineEdit_2->text().toUInt();
@@ -125,6 +141,9 @@ void VGM_Form::FillingFormVGM(form_VGM &object_form) {
     }
 }
 
+/* Doing items` color are black
+ * Input: -
+ * Output: - */
 void VGM_Form::Default() {
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     for (auto &element : allEdits) {
@@ -136,6 +155,9 @@ void VGM_Form::Default() {
     }
 }
 
+/* Cheking logical structure
+ * Input: structure
+ * Output: - */
 bool VGM_Form::CheckAnswer(form_answer_VGM form) {
     bool flag(true);
 

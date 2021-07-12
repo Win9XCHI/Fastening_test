@@ -6,6 +6,9 @@ AdminDB::AdminDB(QString str) : DB(str) {
 AdminDB::AdminDB() : DB() {
 }
 
+/* Get data from user table
+ * Input: container for info hold
+ * Output: - */
 void AdminDB::GetUsers(std::list<User> &cont) {
     QSqlRecord rec = query.record();
 
@@ -14,6 +17,9 @@ void AdminDB::GetUsers(std::list<User> &cont) {
     }
 }
 
+/* Get data from test table
+ * Input: container for info hold
+ * Output: - */
 void AdminDB::GetAttempts(std::list<Test> &cont) {
     QSqlRecord rec = query.record();
 
@@ -22,6 +28,9 @@ void AdminDB::GetAttempts(std::list<Test> &cont) {
     }
 }
 
+/* Get data from equipment table
+ * Input: container for info hold
+ * Output: - */
 void AdminDB::GetEquipments(std::list<QString> &cont) {
     QSqlRecord rec = query.record();
 
@@ -30,6 +39,9 @@ void AdminDB::GetEquipments(std::list<QString> &cont) {
     }
 }
 
+/* Get data from conditions table
+ * Input: container for info hold
+ * Output: - */
 void AdminDB::GetValue(std::multimap<QString, QString> &cont) {
     QSqlRecord rec = query.record();
 
@@ -38,6 +50,9 @@ void AdminDB::GetValue(std::multimap<QString, QString> &cont) {
     }
 }
 
+/* Get data from YesNo table
+ * Input: container for info hold
+ * Output: - */
 void AdminDB::GetYesNoValue(std::multimap<QString, QString> &cont) {
     QSqlRecord rec = query.record();
 
@@ -46,6 +61,9 @@ void AdminDB::GetYesNoValue(std::multimap<QString, QString> &cont) {
     }
 }
 
+/* Get data from dimensions table
+ * Input: container for info hold
+ * Output: - */
 void AdminDB::GetDimensionsValue(std::multimap<QString, Dimensions> &cont) {
     QSqlRecord rec = query.record();
 
@@ -54,6 +72,9 @@ void AdminDB::GetDimensionsValue(std::multimap<QString, Dimensions> &cont) {
     }
 }
 
+/* Get data from FromTo table
+ * Input: container for info hold
+ * Output: - */
 void AdminDB::GetFromToValue(std::multimap<QString, FromTo> &cont) {
     QSqlRecord rec = query.record();
 
@@ -62,12 +83,18 @@ void AdminDB::GetFromToValue(std::multimap<QString, FromTo> &cont) {
     }
 }
 
+/* Get type from characteristic table
+ * Input: -
+ * Output: type */
 QString AdminDB::GetTypeValue() {
     QSqlRecord rec = query.record();
     query.next();
     return query.value(rec.indexOf("Type")).toString();
 }
 
+/* Get id
+ * Input: container for info hold
+ * Output: - */
 void AdminDB::GetId(std::vector<unsigned int> &cont) {
     QSqlRecord rec = query.record();
 

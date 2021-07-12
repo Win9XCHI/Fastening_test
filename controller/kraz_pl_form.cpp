@@ -6,14 +6,13 @@ KRAZ_pl_form::KRAZ_pl_form(KRAZ_pl_DB db, User u, QWidget *parent) :
     ui(new Ui::KRAZ_pl_form)
 {
     ui->setupUi(this);
-    DB = db;
     name = EQUIPMENT_NAME::KRAZ_PL;
     scene = new QGraphicsScene;
-    object_KRAZ_pl = new KRAZ_pl(DB);
+    object_KRAZ_pl = new KRAZ_pl(db);
     KRAZ_pl_form::set_image();
 
     object_user = u;
-    DB.SetUser(object_user);
+    object_KRAZ_pl->GetDB()->SetUser(object_user);
 
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     Validation::LineEdit::SetDoubleValidator(allEdits);
@@ -21,15 +20,23 @@ KRAZ_pl_form::KRAZ_pl_form(KRAZ_pl_DB db, User u, QWidget *parent) :
 
 KRAZ_pl_form::~KRAZ_pl_form()
 {
-    DB.close();
+    object_KRAZ_pl->GetDB()->close();
     delete ui;
+    delete object_KRAZ_pl;
+    delete scene;
 }
 
+/* Showing graphics
+ * Input: -
+ * Output: - */
 void KRAZ_pl_form::show_graphics() {
     ui->graphicsView->setScene(scene);
     ui->graphicsView->show();
 }
 
+/* Functions with graphics
+ * Input: pen
+ * Output: - */
 void KRAZ_pl_form::bar_cursor(QPen pen) {
     triangle(pen, 190, 280);
     triangle(pen, 240, 280);
@@ -49,13 +56,18 @@ void KRAZ_pl_form::stretch_marks_cursor(QPen pen) {
     scene->addLine(710, 300, 660, 250, pen);
 }
 
+/* Pressing "To main window" button
+ * Input: -
+ * Output: - */
 void KRAZ_pl_form::on_pushButton_2_clicked()
 {
-    DB.close();
-    this->close();
     emit firstWindow();
+    this->~KRAZ_pl_form();
 }
 
+/* Pressing "Done" button
+ * Input: -
+ * Output: - */
 void KRAZ_pl_form::on_pushButton_clicked()
 {
     Default();
@@ -68,29 +80,33 @@ void KRAZ_pl_form::on_pushButton_clicked()
 
     if (CheckAnswer(object_answer)) {
         message.result = MESSAGE::SUCCESS;
-        message.string = MESSAGE::PREPARATION;
-        message.preparation = MESSAGE::KRAZ_PL;
         grade = "Склав";
     } else {
         message.result = MESSAGE::FAIL;
-        message.string = MESSAGE::PREPARATION;
-        message.preparation = MESSAGE::KRAZ_PL;
         scene->clear();
         set_image();
         grade = "Не склав";
     }
-    DB.SetAttempt(object_user, name, grade);
+    message.string = MESSAGE::PREPARATION;
+    message.preparation = MESSAGE::KRAZ_PL;
+    object_KRAZ_pl->GetDB()->SetAttempt(object_user, name, grade);
 
     Message_Form *object = new Message_Form(message);
     object->show();
 }
 
+/* Set up image in the form
+ * Input: -
+ * Output: - */
 void KRAZ_pl_form::set_image() {
-    DB.SELECT("Icon", "Equipment", "Name = '" + name + "'");
-    image(PATHS::RESOURCES + DB.GetIcon());
+    object_KRAZ_pl->GetDB()->SELECT("Icon", "Equipment", "Name = '" + name + "'");
+    image(PATHS::RESOURCES + object_KRAZ_pl->GetDB()->GetIcon());
     show_graphics();
 }
 
+/* Filling а structure from form`s items
+ * Input: structure
+ * Output: - */
 void KRAZ_pl_form::FillingFormKRAZ_pl(form_KRAZ_pl &object_form) {
     object_form.b = ui->lineEdit->text().toUInt();
     object_form.t1 = ui->lineEdit_3->text().toUInt();
@@ -107,6 +123,9 @@ void KRAZ_pl_form::FillingFormKRAZ_pl(form_KRAZ_pl &object_form) {
     object_form.pog = ui->lineEdit_11->text().toDouble();
 }
 
+/* Doing items` color are black
+ * Input: -
+ * Output: - */
 void KRAZ_pl_form::Default() {
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     for (auto &element : allEdits) {
@@ -118,6 +137,9 @@ void KRAZ_pl_form::Default() {
     }
 }
 
+/* Cheking logical structure
+ * Input: structure
+ * Output: - */
 bool KRAZ_pl_form::CheckAnswer(form_answer_KRAZ_pl form) {
     bool flag(true);
 

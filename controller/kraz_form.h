@@ -23,8 +23,14 @@ signals:
     void firstWindow();
 
 private slots:
+    /* Pressing "To main window" button
+     * Input: -
+     * Output: - */
     void on_pushButton_2_clicked();
 
+    /* Pressing "Done" button
+     * Input: -
+     * Output: - */
     void on_pushButton_clicked();
 
     void on_lineEdit_cursorPositionChanged(int arg1, int arg2);
@@ -41,17 +47,38 @@ private slots:
 
 private:
     Ui::KRAZ_Form *ui;
-    KRAZ_DB DB;
     KRAZ *object_KRAZ;
     User object_user;
     QString name;
 
+    /* Filling а structure from form`s items
+     * Input: structure
+     * Output: - */
     void FillingFormKRAZ(form_KRAZ &object_form);
+
+    /* Cheking logical structure
+     * Input: structure
+     * Output: - */
     bool CheckAnswer(form_answer_KRAZ form);
+
+    /* Doing items` color are black
+     * Input: -
+     * Output: - */
     void Default();
+
+    /* Set up image in the form
+     * Input: -
+     * Output: - */
     void set_image() override;
 
+    /* Showing graphics
+     * Input: -
+     * Output: - */
     void show_graphics();
+
+    /* Functions with graphics
+     * Input: pen
+     * Output: - */
     void bar_thrust_cursor(QPen);
     void bar_side_cursor(QPen);
     void bars_thrust(QPen);

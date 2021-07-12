@@ -31,7 +31,7 @@ public:
     QString GetGrade();
     QString GetDate();
     unsigned int GetEquipment();
-    QString operator [](int i);
+    QString operator [](int i); //0 - Name, 1 - Platoon, 2 - grade, 3 - date, 4 - equipment
 };
 
 #endif // TEST_H

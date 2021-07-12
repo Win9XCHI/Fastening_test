@@ -23,8 +23,14 @@ signals:
     void firstWindow();
 
 private slots:
+    /* Pressing "To main window" button
+     * Input: -
+     * Output: - */
     void on_pushButton_clicked();
 
+    /* Pressing "Done" button
+     * Input: -
+     * Output: - */
     void on_pushButton_2_clicked();
 
     void on_listWidget_currentTextChanged(const QString &currentText);
@@ -49,18 +55,39 @@ private slots:
 
 private:
     Ui::Bulldozer_Form *ui;
-    BulldozerDB DB;
     Bulldozer *object_bulldozer;
     User object_user;
     QString name;
     unsigned int count;
 
+    /* Filling а structure from form`s items
+     * Input: structure
+     * Output: - */
     void FillingFormBulldozer(form_bulldozer &object_form);
+
+    /* Cheking logical structure
+     * Input: structure
+     * Output: - */
     bool CheckAnswer(form_answer_bulldozer form);
+
+    /* Doing items` color are black
+     * Input: -
+     * Output: - */
     void Default();
+
+    /* Set up image in the form
+     * Input: -
+     * Output: - */
     void set_image() override;
 
+    /* Showing graphics
+     * Input: -
+     * Output: - */
     void show_graphics();
+
+    /* Functions with graphics
+     * Input: pen
+     * Output: - */
     void stretch_marks_cursor(QPen);
     void bar_thrust_cursor(QPen);
     void bar_side_cursor(QPen);

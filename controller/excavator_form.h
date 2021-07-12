@@ -23,8 +23,14 @@ signals:
     void firstWindow();
 
 private slots:
+    /* Pressing "To main window" button
+     * Input: -
+     * Output: - */
     void on_pushButton_2_clicked();
 
+    /* Pressing "Done" button
+     * Input: -
+     * Output: - */
     void on_pushButton_clicked();
 
     void on_lineEdit_7_cursorPositionChanged(int arg1, int arg2);
@@ -69,18 +75,39 @@ private slots:
 
 private:
     Ui::Excavator_Form *ui;
-    ExcavatorDB DB;
     Excavator *object_excavator;
     User object_user;
     QString name;
     unsigned int count;
 
+    /* Filling а structure from form`s items
+     * Input: structure
+     * Output: - */
     void FillingFormExcavator(form_excavator &object_form);
+
+    /* Cheking logical structure
+     * Input: structure
+     * Output: - */
     bool CheckAnswer(form_answer_excavator form);
+
+    /* Doing items` color are black
+     * Input: -
+     * Output: - */
     void Default();
+
+    /* Set up image in the form
+     * Input: -
+     * Output: - */
     void set_image() override;
 
+    /* Showing graphics
+     * Input: -
+     * Output: - */
     void show_graphics();
+
+    /* Functions with graphics
+     * Input: pen
+     * Output: - */
     void SM_swilev_cursor(QPen);
     void SM_undercarriage_cursor(QPen);
     void SM_root_cursor(QPen);

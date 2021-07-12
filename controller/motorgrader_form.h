@@ -23,8 +23,14 @@ signals:
     void firstWindow();
 
 private slots:
+    /* Pressing "To main window" button
+     * Input: -
+     * Output: - */
     void on_pushButton_2_clicked();
 
+    /* Pressing "Done" button
+     * Input: -
+     * Output: - */
     void on_pushButton_clicked();
 
     void on_lineEdit_cursorPositionChanged(int arg1, int arg2);
@@ -45,18 +51,39 @@ private slots:
 
 private:
     Ui::MotorGrader_Form *ui;
-    MotorGraderDB DB;
     MotorGrader *object_motorgrader;
     User object_user;
     QString name;
     unsigned int count1, count2;
 
+    /* Filling а structure from form`s items
+     * Input: structure
+     * Output: - */
     void FillingFormMotorGrader(form_motorgrader &object_form);
+
+    /* Cheking logical structure
+     * Input: structure
+     * Output: - */
     bool CheckAnswer(form_answer_motorgrader form);
+
+    /* Doing items` color are black
+     * Input: -
+     * Output: - */
     void Default();
+
+    /* Set up image in the form
+     * Input: -
+     * Output: - */
     void set_image() override;
 
+    /* Showing graphics
+     * Input: -
+     * Output: - */
     void show_graphics();
+
+    /* Functions with graphics
+     * Input: pen
+     * Output: - */
     void stretch_marks_cursor(QPen);
     void bar_cursor(QPen);
     void lining_blade_cursor(QPen);

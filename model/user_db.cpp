@@ -6,6 +6,9 @@ UserDB::UserDB(QString str) : DB(str) {
 UserDB::UserDB() : DB() {
 }
 
+/* Get data from user table
+ * Input: container for info hold
+ * Output: - */
 void UserDB::GetUsers(std::vector<User> &cont) {
     QSqlRecord rec = query.record();
 
@@ -14,6 +17,9 @@ void UserDB::GetUsers(std::vector<User> &cont) {
     }
 }
 
+/* Get data from test table
+ * Input: container for info hold
+ * Output: - */
 void UserDB::GetAttempts(std::vector<Test> &cont) {
     QSqlRecord rec = query.record();
 
@@ -22,18 +28,27 @@ void UserDB::GetAttempts(std::vector<Test> &cont) {
     }
 }
 
-unsigned int UserDB::GetEquipmentId() {
+/* Get id
+ * Input: -
+ * Output: id */
+unsigned int UserDB::GetId() {
     QSqlRecord rec = query.record();
     query.next();
     return query.value(rec.indexOf("id")).toUInt();
 }
 
+/* Get equipment name from equipment table
+ * Input: -
+ * Output: equipment name */
 QString UserDB::GetEquipment() {
     QSqlRecord rec = query.record();
     query.next();
     return query.value(rec.indexOf("Name")).toString();
 }
 
+/* Insert data to user table
+ * Input: user object
+ * Output: - */
 void UserDB::SetUser(User object_user) {
     SELECT("*", "Student", "Name = '" + object_user.GetName() + "' AND Platoon = '" + object_user.GetPlatoon() + "'");
     std::vector<User> cont;
@@ -45,10 +60,13 @@ void UserDB::SetUser(User object_user) {
         listColumns.push_back("Platoon");
         listValue.push_back(object_user.GetName());
         listValue.push_back(object_user.GetPlatoon());
-        Insert("Student", listColumns, listValue);
+        INSERT("Student", listColumns, listValue);
     }
 }
 
+/* Insert data to test table
+ * Input: user object, equipment name, grade
+ * Output: - */
 void UserDB::SetAttempt(User object_user, QString name_equipment, QString grade) {
     SELECT("*", "Student", "Name = '" + object_user.GetName() + "' AND Platoon = '" + object_user.GetPlatoon() + "'");
     std::vector<User> cont;
@@ -63,6 +81,6 @@ void UserDB::SetAttempt(User object_user, QString name_equipment, QString grade)
     listValue.push_back(QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss"));
     listValue.push_back(grade);
     listValue.push_back(QString::number(cont.at(0).GetId()));
-    listValue.push_back(QString::number(GetEquipmentId()));
-    Insert("Test", listColumns, listValue);
+    listValue.push_back(QString::number(GetId()));
+    INSERT("Test", listColumns, listValue);
 }

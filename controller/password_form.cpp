@@ -17,10 +17,13 @@ Password_Form::~Password_Form()
 void Password_Form::on_pushButton_clicked()
 {
     if (ui->lineEdit->text() == "111") {
+        ui->label->setStyleSheet(COLOR_EDIT::BLACK);
         Admin_Form *object = new Admin_Form(DB);
         connect(object, &Admin_Form::firstWindow, this, &Password_Form::return_main);
         emit succes();
         object->show();
         this->close();
+    } else {
+        ui->label->setStyleSheet(COLOR_EDIT::RED);
     }
 }

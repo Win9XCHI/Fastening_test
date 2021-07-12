@@ -9,22 +9,31 @@ DB::DB(QString strBase) {
 DB::DB() {
 }
 
+//Check database connection
+//Input: -
+//Output: Created or not
 bool DB::CheckConnection() {
     return db.isOpen();
 }
 
+//Close database connection
+//Input: -
+//Output: -
 void DB::close() {
     if (CheckConnection()) {
         db.close();
+        QSqlDatabase::removeDatabase(db.databaseName());
     }
 }
 
+//Create database connection
+//Input: -
+//Output: Created or not
 bool DB::createConnection() {
     bool connected = db.open();
 
     if (!connected) {
-        qDebug() << db.lastError().text();
-        throw "System error: Not connect to database";
+        throw DatabaseException("System error: Not connect to database\n" + db.lastError().text().toStdString());
     }
     else {
         query = QSqlQuery( db );
@@ -32,15 +41,24 @@ bool DB::createConnection() {
     return connected;
 }
 
+//Return last error in database
+//Input: -
+//Output: string with error
 QString DB::LastError() {
     qDebug() <<  query.lastError().text();
     return query.lastError().text();
 }
 
+//Return size returned records after query SELECT
+//Input: -
+//Output: size
 int DB::GetSize() {
     return size;
 }
 
+//Delete records in table
+//Input: table name, definition
+//Output: Query done or not
 bool DB::DeleteRecord(QString table_name, QString definition) {
     bool flag = true;
 
@@ -60,6 +78,9 @@ bool DB::DeleteRecord(QString table_name, QString definition) {
     return flag;
 }
 
+//Execute query SELECT
+//Input: columns, table name, definition, limit, order by
+//Output: Query done or not
 bool DB::SELECT(QString column, QString table, QString definition, QString limit, QString Order_by) {
     bool flag = true;
 
@@ -116,6 +137,9 @@ bool DB::SELECT(QString column, QString table, QString definition, QString limit
         return flag;
 }
 
+//Execute query UPDATE
+//Input: table name, values, definition
+//Output: Query done or not
 bool DB::UPDATE(QString table, QString value, QString definition) {
     bool flag = true;
 
@@ -136,7 +160,10 @@ bool DB::UPDATE(QString table, QString value, QString definition) {
     return flag;
 }
 
-bool DB::Insert(QString table_name, std::vector<QString> listColumns, std::vector<QString> listValue) {
+//Insert record in table
+//Input: table name, columns, values
+//Output: Query done or not
+bool DB::INSERT(QString table_name, std::vector<QString> listColumns, std::vector<QString> listValue) {
     bool flag = true;
 
     if (table_name != "" && !listValue.empty() && !listColumns.empty()) {
@@ -174,6 +201,9 @@ bool DB::Insert(QString table_name, std::vector<QString> listColumns, std::vecto
     return flag;
 }
 
+//Create new table
+//Input: table name, array: name, type and rule for columns
+//Output: -
 void DB::CREATE_TABLE(QString table_name, std::vector<std::vector<QString>> columns) {
     QString body;
 
@@ -193,6 +223,9 @@ void DB::CREATE_TABLE(QString table_name, std::vector<std::vector<QString>> colu
     query.prepare("CREATE TABLE " + table_name + "( " + body + " );");
 }
 
+//Drop table
+//Input: table name
+//Output: -
 void DB::DROP(QString table_name) {
     query.prepare("DROP TABLE " + table_name + ";");
 }

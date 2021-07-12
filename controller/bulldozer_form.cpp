@@ -7,9 +7,7 @@ Bulldozer_Form::Bulldozer_Form(BulldozerDB db, User u, QWidget *parent) :
 {
     ui->setupUi(this);
     scene = new QGraphicsScene;
-    DB = db;
     count = 0;
-    scene = new QGraphicsScene;
     name = EQUIPMENT_NAME::BULLDOZER;
     ui->comboBox->addItem(YES_NO::EMPTY);
     ui->comboBox->addItem(YES_NO::NO);
@@ -29,11 +27,11 @@ Bulldozer_Form::Bulldozer_Form(BulldozerDB db, User u, QWidget *parent) :
     ui->listWidget->addItem(BULLDOZER_FORM::NAILS);
     ui->listWidget_2->addItem(BULLDOZER_FORM::STAPLES);
     ui->listWidget_2->addItem(BULLDOZER_FORM::SAID_BARS);
-    object_bulldozer = new Bulldozer(DB);
+    object_bulldozer = new Bulldozer(db);
     Bulldozer_Form::set_image();
 
     object_user = u;
-    DB.SetUser(object_user);
+    object_bulldozer->GetDB()->SetUser(object_user);
 
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     Validation::LineEdit::SetDoubleValidator(allEdits);
@@ -41,15 +39,23 @@ Bulldozer_Form::Bulldozer_Form(BulldozerDB db, User u, QWidget *parent) :
 
 Bulldozer_Form::~Bulldozer_Form()
 {
-    DB.close();
+    object_bulldozer->GetDB()->close();
     delete ui;
+    delete object_bulldozer;
+    delete scene;
 }
 
+/* Showing graphics
+ * Input: -
+ * Output: - */
 void Bulldozer_Form::show_graphics() {
     ui->graphicsView->setScene(scene);
     ui->graphicsView->show();
 }
 
+/* Functions with graphics
+ * Input: pen
+ * Output: - */
 void Bulldozer_Form::stretch_marks_cursor(QPen pen) {
     scene->addLine(20, 200, 60, 170, pen);
     scene->addLine(370, 210, 300, 150, pen);
@@ -68,13 +74,18 @@ void Bulldozer_Form::lining_cursor(QPen pen) {
     scene->addLine(490, 220, 640, 220, pen);
 }
 
+/* Pressing "To main window" button
+ * Input: -
+ * Output: - */
 void Bulldozer_Form::on_pushButton_clicked()
 {
-    DB.close();
-    this->close();
     emit firstWindow();
+    this->~Bulldozer_Form();
 }
 
+/* Pressing "Done" button
+ * Input: -
+ * Output: - */
 void Bulldozer_Form::on_pushButton_2_clicked()
 {
     Default();
@@ -87,29 +98,33 @@ void Bulldozer_Form::on_pushButton_2_clicked()
 
     if (CheckAnswer(object_answer)) {
         message.result = MESSAGE::SUCCESS;
-        message.string = MESSAGE::PREPARATION;
-        message.preparation = MESSAGE::BULLDOZER;
         grade = "Склав";
     } else {
         message.result = MESSAGE::FAIL;
-        message.string = MESSAGE::PREPARATION;
-        message.preparation = MESSAGE::BULLDOZER;
         scene->clear();
         set_image();
         grade = "Не склав";
     }
-    DB.SetAttempt(object_user, name, grade);
+    message.string = MESSAGE::PREPARATION;
+    message.preparation = MESSAGE::BULLDOZER;
+    object_bulldozer->GetDB()->SetAttempt(object_user, name, grade);
 
     Message_Form *object = new Message_Form(message);
     object->show();
 }
 
+/* Set up image in the form
+ * Input: -
+ * Output: - */
 void Bulldozer_Form::set_image() {
-    DB.SELECT("Icon", "Equipment", "Name = '" + name + "'");
-    image(PATHS::RESOURCES + DB.GetIcon());
+    object_bulldozer->GetDB()->SELECT("Icon", "Equipment", "Name = '" + name + "'");
+    image(PATHS::RESOURCES + object_bulldozer->GetDB()->GetIcon());
     show_graphics();
 }
 
+/* Filling а structure from form`s items
+ * Input: structure
+ * Output: - */
 void Bulldozer_Form::FillingFormBulldozer(form_bulldozer &object_form) {
     object_form.s = ui->lineEdit->text().toUInt();
     object_form.wd = ui->lineEdit_2->text().toUInt();
@@ -141,6 +156,9 @@ void Bulldozer_Form::FillingFormBulldozer(form_bulldozer &object_form) {
     }
 }
 
+/* Doing items` color are black
+ * Input: -
+ * Output: - */
 void Bulldozer_Form::Default() {
     QList<QLineEdit *> allEdits = this->findChildren<QLineEdit *>();
     for (auto &element : allEdits) {
@@ -153,6 +171,9 @@ void Bulldozer_Form::Default() {
     ui->comboBox->setStyleSheet(COLOR_EDIT::BLACK);
 }
 
+/* Cheking logical structure
+ * Input: structure
+ * Output: - */
 bool Bulldozer_Form::CheckAnswer(form_answer_bulldozer form) {
     bool flag(true);
 
