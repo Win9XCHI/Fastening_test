@@ -1,17 +1,19 @@
 # Fastening_test
 
-The program is implemented in the C ++ programming language, Qt 5.15.0 framework and SQLite 3.24.0 database. QtCreater 4.14.0 was used as the development environment. Used compiler - MinGW81 x32.
+The program is implemented in the C ++ programming language, Qt 5.15.0 framework and SQLite 3.24.0 database. QtCreater 4.14.0 was used as the development environment. Used compiler - MinGW81 x32
 
-Instructions for deploying the "Fastening test" application
+Documentation, "resources" folder and "DB_for_test.db"  - [Google Drive](https://drive.google.com/drive/folders/1x1Jde-aRtAC9bRCvMoQvXUXjOvj56-bA?usp=sharing)
 
-1 Set up password in controller\password_form.cpp (line 19)
+## Instructions for deploying the "Fastening test" application
 
-2 Build project for release
+1. Set up password in controller\password_form.cpp (line 19)
 
-3 Create separate folder and move here .exe from folder such as "@dir\build-Fastening_test-Desktop_Qt_5_15_0_MinGW_32_bit-Release"
+2. Build project for release
 
-4 Run windeployqt.exe (Qt\5.15.0\mingw81_32\bin) in new folder
+3. Create separate folder and move here .exe from folder such as "@dir\build-Fastening_test-Desktop_Qt_5_15_0_MinGW_32_bit-Release"
 
-5 Move here "resources" folder and "DB_for_test.db"
+4. Run windeployqt.exe (Qt\5.15.0\mingw81_32\bin) in new folder
 
-6 Create installer (https://doc.qt.io/qtinstallerframework/index.html)
+5. Move here "resources" folder and "DB_for_test.db"
+
+6. Create installer ([Qt Doc](https://doc.qt.io/qtinstallerframework/index.html))
