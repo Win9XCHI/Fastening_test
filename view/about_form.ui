@@ -6,13 +6,116 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>793</width>
+    <height>408</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Про програму</string>
   </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>771</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Програма &quot;Fastening test&quot; призначена для тестування знань студентів та курсантів з закріплення техніки на
+залізничних платформах. В процесі складання тесту можуть зустрітися такі типи питань:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>370</y>
+     <width>231</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Copyright (C) 2021, Nikulitsov Yehor</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>771</width>
+     <height>161</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>1)	Прості – відповідь є якесь одне число. Наприклад питання «Скільки буде використано розтяжок» і відповідь – «2».
+2)	Так або ні – питання у яких треба обрати один варіант з двох – «Так» або «Ні».
+3)	Розміри – питання у якому потрібно вказати розміри (товщина, ширина, довжина)
+якогось елемента (наприклад підкладки чи брусків).
+4)	Від до – питання у якому треба вказати два числа, наприклад зазор чи витрати проволоки.
+5)	Умовні – питання будь-якого виду з попередніх які змінюють значення в залежності від відповідей на попередні питання.
+Наприклад кількість ниток в розтяжці залежить від ваги ВГМ.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>200</y>
+     <width>751</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>У поля для вводу можливо вводити лише цілі числа або числа з плаваючою точкою.
+На кожній формі розміщено дві кнопки – «Готово» та «Повернутися на головну». 
+Кнопка «Повернутися на головну» закриває форму техніки та відкриває головне вікно програми.
+Кнопка «Готово» призначена для перевірки введених значень і видачі результатів тестування.
+</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>280</y>
+     <width>561</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Результатом тестування є оцінки - &quot;Склав&quot; або &quot;Не склав&quot;.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>310</y>
+     <width>701</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Для того щоб почати тестування введіть свій ПІБ (три слова на українській мові), взвод (число),
+оберіть потрібну техніку та натисніть кнопку &quot;Почати&quot;.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>370</y>
+     <width>431</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Сторінка проекту - https://github.com/Win9XCHI/Fastening_test</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
