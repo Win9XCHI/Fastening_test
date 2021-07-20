@@ -24,6 +24,11 @@ namespace Validation {
      * Output: correct or not */
     bool CheckPlatoon(QString platoon);
 
+    /* Delete unnecessary gaps in string
+     * Input: string
+     * Output: string without unnecessary gaps */
+    QString DeleteGaps(QString string);
+
     namespace LineEdit {
 
         /* Set up validator for lineEdits items for only double numbers

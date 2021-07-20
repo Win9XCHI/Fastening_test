@@ -25,7 +25,9 @@ MainWindow::~MainWindow()
  * Output: - */
 void MainWindow::on_pushButton_3_clicked() {
 
-    if (!Validation::CheckPIB(ui->lineEdit->text())) {
+    ui->lineEdit->setText(Validation::DeleteGaps(ui->lineEdit->text()));
+
+    if (!Validation::CheckPIB(Validation::DeleteGaps(ui->lineEdit->text()))) {
         ui->label->setStyleSheet(COLOR_EDIT::RED);
         return;
     }
@@ -245,7 +247,7 @@ void MainWindow::VGM() {
  * Input: -
  * Output: user object */
 User MainWindow::create_user() {
-    return {ui->lineEdit->text(), ui->lineEdit_2->text()};
+    return {Validation::DeleteGaps(ui->lineEdit->text()), ui->lineEdit_2->text()};
 }
 
 /* Pressing "Exit" button

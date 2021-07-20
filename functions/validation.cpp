@@ -30,7 +30,7 @@ bool Validation::CheckPIB(QString pib) {
         return false;
     }
 
-    if (pib.contains(QRegularExpression("[^-А-Яа-яіїІЇ \f\n\r\t\v]"))) {
+    if (pib.contains(QRegularExpression("[^-А-Яа-яіїІЇЄє \f\n\r\t\v]"))) {
         return false;
     }
 
@@ -51,6 +51,30 @@ bool Validation::CheckPlatoon(QString platoon) {
     }
 
     return true;
+}
+
+/* Delete unnecessary gaps in string
+ * Input: string
+ * Output: string without unnecessary gaps */
+QString Validation::DeleteGaps(QString string) {
+    int count(0);
+
+    for (int i = 0; i < string.size() - 1; i++) {
+        if (string[i] == ' ' && string[i + 1] == ' ') {
+            string.remove(i, 1);
+        }
+    }
+
+    for (int i = 0; i < string.size(); i++) {
+        if (string[i] == ' ' && count >= 2) {
+            string.remove(i, string.size() - i);
+        }
+        if (string[i] == ' ') {
+            count++;
+            i++;
+        }
+    }
+    return string;
 }
 
 /* Set up validator for lineEdits items for only double numbers
