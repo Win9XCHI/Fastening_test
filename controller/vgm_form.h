@@ -84,6 +84,12 @@ private:
      * Output: - */
     void bar_cursor(QPen);
     void stretch_marks_cursor(QPen);
+
+    /* Clear lineEdits
+     * Input: -
+     * Output: - */
+    void clear_staples_nails();
+    void clear_staples_sideBars();
 };
 
 #endif // VGM_FORM_H

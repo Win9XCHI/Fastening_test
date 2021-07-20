@@ -92,6 +92,12 @@ private:
     void bar_thrust_cursor(QPen);
     void bar_side_cursor(QPen);
     void lining_cursor(QPen);
+
+    /* Clear lineEdits
+     * Input: -
+     * Output: - */
+    void clear_staples_nails();
+    void clear_staples_sideBars();
 };
 
 #endif // BULLDOZER_FORM_H

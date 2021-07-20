@@ -311,6 +311,26 @@ bool Bulldozer_Form::CheckAnswer(form_answer_bulldozer form) {
     return flag;
 }
 
+/* Clear lineEdits
+ * Input: -
+ * Output: - */
+void Bulldozer_Form::clear_staples_nails() {
+    ui->lineEdit_9->setText("");
+    ui->lineEdit_16->setText("");
+    ui->lineEdit_17->setText("");
+}
+
+void Bulldozer_Form::clear_staples_sideBars() {
+    ui->comboBox_3->setCurrentIndex(0);
+    ui->lineEdit_10->setText("");
+    ui->lineEdit_11->setText("");
+    ui->lineEdit_12->setText("");
+    ui->lineEdit_13->setText("");
+    ui->lineEdit_14->setText("");
+    ui->lineEdit_15->setText("");
+    ui->lineEdit_18->setText("");
+}
+
 void Bulldozer_Form::on_listWidget_currentTextChanged(const QString &currentText) {
     if (currentText == BULLDOZER_FORM::STAPLES) {
         ui->groupBox_4->hide();
@@ -321,6 +341,7 @@ void Bulldozer_Form::on_listWidget_currentTextChanged(const QString &currentText
         ui->groupBox->hide();
         ui->groupBox_4->show();
     }
+    clear_staples_nails();
     object_bulldozer->SetNailBoards(currentText);
 }
 
@@ -335,6 +356,7 @@ void Bulldozer_Form::on_listWidget_2_currentTextChanged(const QString &currentTe
         ui->groupBox_3->hide();
         ui->groupBox_2->show();
     }
+    clear_staples_sideBars();
     object_bulldozer->SetSideBar(currentText);
 }
 

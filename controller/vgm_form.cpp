@@ -273,6 +273,26 @@ void VGM_Form::on_lineEdit_5_editingFinished() {
     object_VGM->SetWeight(ui->lineEdit_5->text().toDouble());
 }
 
+/* Clear lineEdits
+ * Input: -
+ * Output: - */
+void VGM_Form::clear_staples_nails() {
+    ui->lineEdit_9->setText("");
+    ui->lineEdit_16->setText("");
+    ui->lineEdit_17->setText("");
+}
+
+void VGM_Form::clear_staples_sideBars() {
+    ui->comboBox->setCurrentIndex(0);
+    ui->lineEdit_10->setText("");
+    ui->lineEdit_11->setText("");
+    ui->lineEdit_12->setText("");
+    ui->lineEdit_13->setText("");
+    ui->lineEdit_14->setText("");
+    ui->lineEdit_15->setText("");
+    ui->lineEdit_18->setText("");
+}
+
 void VGM_Form::on_listWidget_currentTextChanged(const QString &currentText)
 {
     if (currentText == VGM_FORM::STAPLES) {
@@ -284,6 +304,7 @@ void VGM_Form::on_listWidget_currentTextChanged(const QString &currentText)
         ui->groupBox->hide();
         ui->groupBox_4->show();
     }
+    clear_staples_nails();
     object_VGM->SetNailBoards(currentText);
 }
 
@@ -298,6 +319,7 @@ void VGM_Form::on_listWidget_2_currentTextChanged(const QString &currentText)
         ui->groupBox_3->hide();
         ui->groupBox_2->show();
     }
+    clear_staples_sideBars();
     object_VGM->SetSideBar(currentText);
 }
 
