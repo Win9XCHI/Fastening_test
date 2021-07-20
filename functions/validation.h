@@ -2,9 +2,9 @@
 #define VALIDATION_H
 #include <QString>
 #include <QLineEdit>
-#include <QDoubleValidator>
 #include <QRegularExpression>
 #include <vector>
+#include "../classes/customqdoublevalidator.h"
 
 namespace Validation {
 

@@ -82,7 +82,7 @@ QString Validation::DeleteGaps(QString string) {
  * Output: - */
 void Validation::LineEdit::SetDoubleValidator(QList<QLineEdit *> &allEdits) {
     for (auto &element : allEdits) {
-        element->setValidator(new QDoubleValidator(0.0, 999.0, 2, element));
+        element->setValidator(new CustomQDoubleValidator(0.0, 999.0, 2, element));
     }
 }
 
