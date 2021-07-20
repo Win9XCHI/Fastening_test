@@ -14,6 +14,8 @@ class CustomQDoubleValidator : public QDoubleValidator {
         State validate(QString &str, int &pos) const{
             QString s(str);
 
+            s.replace(locale().decimalPoint(), 'b');
+
             for(QStringList::ConstIterator point = _decimalPoints.begin(); point != _decimalPoints.end(); ++point){
                 s.replace(*point, locale().decimalPoint());
             }
