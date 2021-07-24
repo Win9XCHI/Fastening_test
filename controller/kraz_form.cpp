@@ -117,7 +117,7 @@ void KRAZ_Form::FillingFormKRAZ(form_KRAZ &object_form) {
     object_form.t1 = ui->lineEdit_3->text().toUInt();
     object_form.w1 = ui->lineEdit_4->text().toUInt();
     object_form.l1 = ui->lineEdit_5->text().toUInt();
-    object_form.n1 = ui->lineEdit_15->text().toUInt();
+    object_form.n1 = ui->lineEdit_14->text().toUInt();
     object_form.s = ui->lineEdit_9->text().toUInt();
     object_form.t = ui->lineEdit_10->text().toUInt();
     object_form.wd = ui->lineEdit_11->text().toUInt();
