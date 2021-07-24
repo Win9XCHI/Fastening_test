@@ -159,7 +159,7 @@ bool KRAZ_Form::CheckAnswer(form_answer_KRAZ form) {
     }
     if (!form.t1) {
         ui->lineEdit_3->setStyleSheet(COLOR_EDIT::RED);
-        ui->label_3->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_5->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.w1) {
@@ -169,7 +169,7 @@ bool KRAZ_Form::CheckAnswer(form_answer_KRAZ form) {
     }
     if (!form.l1) {
         ui->lineEdit_5->setStyleSheet(COLOR_EDIT::RED);
-        ui->label_5->setStyleSheet(COLOR_EDIT::RED);
+        ui->label_3->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
     if (!form.n1) {
