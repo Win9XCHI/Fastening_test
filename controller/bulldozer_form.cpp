@@ -187,7 +187,7 @@ bool Bulldozer_Form::CheckAnswer(form_answer_bulldozer form) {
         ui->label_3->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
-    if (ui->comboBox_2->currentText() == YES_NO::EMPTY) {
+    if (!form.weight) {
         ui->label->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
 
@@ -204,7 +204,7 @@ bool Bulldozer_Form::CheckAnswer(form_answer_bulldozer form) {
         flag = false;
     }
 
-    if (ui->listWidget->currentRow() == -1) {
+    if (ui->listWidget->currentRow() == -1 || !form.nail_boards) {
         ui->label_6->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     } else {
@@ -230,12 +230,12 @@ bool Bulldozer_Form::CheckAnswer(form_answer_bulldozer form) {
         }
     }
 
-    if (ui->listWidget_2->currentRow() == -1) {
+    if (!form.side_bar) {
         ui->label_7->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     } else {
+        if (ui->listWidget_2->currentRow() != -1 && ui->listWidget_2->currentItem()->text() == BULLDOZER_FORM::STAPLES) {
 
-        if (ui->listWidget_2->currentItem()->text() == BULLDOZER_FORM::STAPLES) {
             if (ui->comboBox_3->currentText() == YES_NO::EMPTY) {
                 ui->label_16->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
@@ -248,7 +248,7 @@ bool Bulldozer_Form::CheckAnswer(form_answer_bulldozer form) {
             }
         }
 
-        if (ui->listWidget_2->currentItem()->text() == BULLDOZER_FORM::SAID_BARS) {
+        if (ui->listWidget_2->currentRow() != -1 && ui->listWidget_2->currentItem()->text() == BULLDOZER_FORM::SAID_BARS) {
             if (!form.st) {
                 ui->lineEdit_11->setStyleSheet(COLOR_EDIT::RED);
                 ui->label_25->setStyleSheet(COLOR_EDIT::RED);
@@ -332,6 +332,12 @@ void Bulldozer_Form::clear_staples_sideBars() {
 }
 
 void Bulldozer_Form::on_listWidget_currentTextChanged(const QString &currentText) {
+
+    if (currentText == "") {
+        ui->groupBox_4->hide();
+        ui->groupBox->hide();
+    }
+
     if (currentText == BULLDOZER_FORM::STAPLES) {
         ui->groupBox_4->hide();
         ui->groupBox->show();
@@ -346,6 +352,12 @@ void Bulldozer_Form::on_listWidget_currentTextChanged(const QString &currentText
 }
 
 void Bulldozer_Form::on_listWidget_2_currentTextChanged(const QString &currentText) {
+
+    if (currentText == "") {
+        ui->groupBox_2->hide();
+        ui->groupBox_3->hide();
+    }
+
     if (currentText == BULLDOZER_FORM::SAID_BARS) {
         ui->groupBox_2->hide();
         ui->groupBox_3->show();
@@ -362,6 +374,10 @@ void Bulldozer_Form::on_listWidget_2_currentTextChanged(const QString &currentTe
 
 void Bulldozer_Form::on_comboBox_2_activated(const QString &arg1) {
     object_bulldozer->SetWeight(arg1);
+    clear_staples_nails();
+    clear_staples_sideBars();
+    ui->listWidget->setCurrentRow(-1);
+    ui->listWidget_2->setCurrentRow(-1);
 }
 
 void Bulldozer_Form::on_lineEdit_cursorPositionChanged(int arg1, int arg2) {

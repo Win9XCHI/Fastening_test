@@ -550,6 +550,20 @@
     </property>
    </widget>
   </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>540</y>
+     <width>411</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>*Щоб очистити вибір Скоби/Цвяхи та Скоби/Бокові бруски
+знову введіть вагу у поле &quot;Вага ВГМ&quot;</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

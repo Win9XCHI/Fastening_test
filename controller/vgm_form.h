@@ -47,6 +47,8 @@ private slots:
 
     void on_lineEdit_4_editingFinished();
 
+    void on_comboBox_activated(const QString &arg1);
+
 private:
     Ui::VGM_Form *ui;
     VGM *object_VGM;

@@ -65,13 +65,13 @@ void VGM::SetWeight(double number) {
         return;
     }
     if (number > 0 && number < 15.1) {
-        string = BULLDOZER_FORM::WEIGHT::T15;
+        string = VGM_FORM::WEIGHT::T15;
     }
     if (number > 15 && number < 25.1) {
-        string = BULLDOZER_FORM::WEIGHT::T25;
+        string = VGM_FORM::WEIGHT::T25;
     }
     if (number > 25 && number <= 50) {
-        string = BULLDOZER_FORM::WEIGHT::T50;
+        string = VGM_FORM::WEIGHT::T50;
     }
     weight = string;
     std::map<QString, QString> cont;
@@ -120,7 +120,7 @@ void VGM::SetSideBar(QString string) {
 
         DB.SELECT("Ft.\"From\", Ft.\"To\", Cha.Name",
                   "FromTo AS Ft JOIN Conditions AS Con ON Con.id = Ft.Conditions_id JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id",
-                  "Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '" + side_bar + "' AND Cha.Name = '" + string + "' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = '" + name + "' AND Con.Value = '" + weight + "'));");
+                  "Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Con.Value = '" + side_bar + "' AND Cha.Name = '" + string + "' AND Con.Conditions_id = (SELECT Con.id FROM Conditions AS Con JOIN Characteristic AS Cha ON Cha.id = Con.Characteristic_id JOIN Equipment AS Equ ON Equ.id = Cha.Equipment_id WHERE Equ.Name = '" + name + "' AND Con.Value = '" + weight + "'))");
         DB.GetFromToValue(contFT);
 
         mas_bar.insert({"side", {2, contD["Який розмір бокових брусків (мм)"], cont["Скільки цвяхів потрібно забити в кожний брусок"].toUInt()}});
@@ -133,6 +133,10 @@ void VGM::SetSideBar(QString string) {
 
 void VGM::SetWidthTrack(QString string) {
     if (width_trackYesNo) {
+        if (mas_bar.find("side") != mas_bar.cend()) {
+            mas_bar.erase(mas_bar.find("side"));
+        }
+
         width_track = string;
         std::map<QString, QString> cont;
         DB.SELECT("Con.Value, Cha.Name",
@@ -149,6 +153,10 @@ void VGM::SetWidthTrack(QString string) {
 form_answer_VGM VGM::CheckAnswer(form_VGM form) {
     form_answer_VGM object;
 
+    if (weight == YES_NO::EMPTY) {
+        object.weight = false;
+    }
+
     if (form.s != mas_stretching["stretch"].GetCount()) {
         object.s = false;
     }
@@ -162,18 +170,25 @@ form_answer_VGM VGM::CheckAnswer(form_VGM form) {
         object.b = false;
     }
 
-    if (nail_boards  == VGM_FORM::STAPLES) {
-        if (form.st1 != mas_bar["thrust"].GetStaple()) {
-            object.st1 = false;
-        }
-    }
     if (nail_boards == VGM_FORM::NAILS) {
+        if (weight != VGM_FORM::WEIGHT::T15) {
+            object.nail_boards = false;
+        }
         if (form.n1 != mas_bar["thrust"].GetNails()) {
             object.n1 = false;
         }
         if (form.nl1 != mas_bar["thrust"].GetLengthNail()) {
             object.nl1 = false;
         }
+    }
+    if (nail_boards  == VGM_FORM::STAPLES) {
+        if (form.st1 != mas_bar["thrust"].GetStaple()) {
+            object.st1 = false;
+        }
+    }
+
+    if ((weight == VGM_FORM::WEIGHT::T50 && side_bar != "") || (side_bar == "" && weight != VGM_FORM::WEIGHT::T50)) {
+        object.side_bar = false;
     }
 
     if (side_bar == VGM_FORM::SAID_BARS) {

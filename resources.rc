@@ -9,8 +9,8 @@ IDI_ICON1 ICON "resources/icon.ico"
 #define VER_FILEDESCRIPTION_STR     "Fastening_test"
 #define VER_INTERNALNAME_STR        "Fastening_test"
 #define VER_LEGALCOPYRIGHT_STR      "Copyright (C) 2021, Nikulitsov Yehor"
-#define VER_ORIGINALFILENAME_STR    "Fastening_test.exe"
-#define VER_PRODUCTNAME_STR         "Fastening test"
+#define VER_ORIGINALFILENAME_STR    "Тестування кріплення техніки.exe"
+#define VER_PRODUCTNAME_STR         "Тестування кріплення техніки"
 
 VS_VERSION_INFO VERSIONINFO
 FILEVERSION     VER_FILEVERSION

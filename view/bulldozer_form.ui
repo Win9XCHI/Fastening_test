@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>861</width>
-    <height>713</height>
+    <height>730</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -105,9 +105,9 @@
    <property name="geometry">
     <rect>
      <x>480</x>
-     <y>330</y>
+     <y>310</y>
      <width>221</width>
-     <height>51</height>
+     <height>61</height>
     </rect>
    </property>
    <property name="text">
@@ -298,8 +298,8 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>692</x>
-     <y>673</y>
+     <x>690</x>
+     <y>690</y>
      <width>161</width>
      <height>28</height>
     </rect>
@@ -312,7 +312,7 @@
    <property name="geometry">
     <rect>
      <x>520</x>
-     <y>660</y>
+     <y>680</y>
      <width>161</width>
      <height>41</height>
     </rect>
@@ -325,7 +325,7 @@
    <property name="geometry">
     <rect>
      <x>480</x>
-     <y>540</y>
+     <y>530</y>
      <width>371</width>
      <height>81</height>
     </rect>
@@ -362,7 +362,7 @@
    <property name="geometry">
     <rect>
      <x>480</x>
-     <y>390</y>
+     <y>370</y>
      <width>371</width>
      <height>101</height>
     </rect>
@@ -423,7 +423,7 @@
    <property name="geometry">
     <rect>
      <x>480</x>
-     <y>390</y>
+     <y>370</y>
      <width>371</width>
      <height>151</height>
     </rect>
@@ -589,7 +589,7 @@
    <property name="geometry">
     <rect>
      <x>480</x>
-     <y>540</y>
+     <y>530</y>
      <width>371</width>
      <height>111</height>
     </rect>
@@ -672,11 +672,25 @@
   <widget class="QListWidget" name="listWidget_2">
    <property name="geometry">
     <rect>
-     <x>695</x>
-     <y>330</y>
+     <x>700</x>
+     <y>320</y>
      <width>151</width>
      <height>51</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_27">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>645</y>
+     <width>371</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>*Щоб очистити вибір Скоби/Цвяхи та Скоби/Бокові бруски
+знову оберіть вагу у полі &quot;Вага бульдозера&quot;</string>
    </property>
   </widget>
  </widget>

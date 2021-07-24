@@ -171,7 +171,7 @@ bool VGM_Form::CheckAnswer(form_answer_VGM form) {
         ui->label_3->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     }
-    if (ui->lineEdit_5->text() == YES_NO::EMPTY) {
+    if (!form.weight) {
         ui->label->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
 
@@ -188,7 +188,7 @@ bool VGM_Form::CheckAnswer(form_answer_VGM form) {
         flag = false;
     }
 
-    if (ui->listWidget->currentRow() == -1) {
+    if (ui->listWidget->currentRow() == -1 || !form.nail_boards) {
         ui->label_6->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     } else {
@@ -214,12 +214,12 @@ bool VGM_Form::CheckAnswer(form_answer_VGM form) {
         }
     }
 
-    if (ui->listWidget_2->currentRow() == -1) {
+    if (!form.side_bar) {
         ui->label_7->setStyleSheet(COLOR_EDIT::RED);
         flag = false;
     } else {
 
-        if (ui->listWidget_2->currentItem()->text() == VGM_FORM::STAPLES) {
+        if (ui->listWidget_2->currentRow() != -1 && ui->listWidget_2->currentItem()->text() == VGM_FORM::STAPLES) {
             if (ui->comboBox->currentText() == YES_NO::EMPTY) {
                 ui->label_16->setStyleSheet(COLOR_EDIT::RED);
                 flag = false;
@@ -232,7 +232,7 @@ bool VGM_Form::CheckAnswer(form_answer_VGM form) {
             }
         }
 
-        if (ui->listWidget_2->currentItem()->text() == VGM_FORM::SAID_BARS) {
+        if (ui->listWidget_2->currentRow() != -1 && ui->listWidget_2->currentItem()->text() == VGM_FORM::SAID_BARS) {
             if (!form.st) {
                 ui->lineEdit_11->setStyleSheet(COLOR_EDIT::RED);
                 ui->label_25->setStyleSheet(COLOR_EDIT::RED);
@@ -271,6 +271,10 @@ bool VGM_Form::CheckAnswer(form_answer_VGM form) {
 
 void VGM_Form::on_lineEdit_5_editingFinished() {
     object_VGM->SetWeight(ui->lineEdit_5->text().toDouble());
+    clear_staples_nails();
+    clear_staples_sideBars();
+    ui->listWidget->setCurrentRow(-1);
+    ui->listWidget_2->setCurrentRow(-1);
 }
 
 /* Clear lineEdits
@@ -295,6 +299,11 @@ void VGM_Form::clear_staples_sideBars() {
 
 void VGM_Form::on_listWidget_currentTextChanged(const QString &currentText)
 {
+    if (currentText == "") {
+        ui->groupBox_4->hide();
+        ui->groupBox->hide();
+    }
+
     if (currentText == VGM_FORM::STAPLES) {
         ui->groupBox_4->hide();
         ui->groupBox->show();
@@ -310,6 +319,11 @@ void VGM_Form::on_listWidget_currentTextChanged(const QString &currentText)
 
 void VGM_Form::on_listWidget_2_currentTextChanged(const QString &currentText)
 {
+    if (currentText == "") {
+        ui->groupBox_2->hide();
+        ui->groupBox_3->hide();
+    }
+
     if (currentText == VGM_FORM::SAID_BARS) {
         ui->groupBox_2->hide();
         ui->groupBox_3->show();
@@ -355,4 +369,10 @@ void VGM_Form::on_lineEdit_4_editingFinished()
     }
     bar_cursor(red_pen());
     show_graphics();
+}
+
+void VGM_Form::on_comboBox_activated(const QString &arg1) {
+    if (!arg1.isEmpty()) {
+        object_VGM->SetWidthTrack(arg1);
+    }
 }

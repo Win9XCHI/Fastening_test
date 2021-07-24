@@ -173,6 +173,9 @@ struct form_bulldozer {
 };
 
 struct form_answer_bulldozer {
+    bool weight;
+    bool nail_boards;
+    bool side_bar;
     bool s;
     bool wd;
     bool t;
@@ -194,7 +197,7 @@ struct form_answer_bulldozer {
     bool ll;
 
     form_answer_bulldozer() {
-        s = wd = t = b = st1 = n1 = nl1 = st2 = st = sw = sl = sn = gap1 = gap2 = l = ln = lt = lw = ll = true;
+        weight = nail_boards = side_bar = s = wd = t = b = st1 = n1 = nl1 = st2 = st = sw = sl = sn = gap1 = gap2 = l = ln = lt = lw = ll = true;
     }
 };
 
@@ -305,6 +308,9 @@ struct form_VGM {
 };
 
 struct form_answer_VGM {
+    bool weight;
+    bool nail_boards;
+    bool side_bar;
     bool s;
     bool wd;
     bool t;
@@ -321,7 +327,7 @@ struct form_answer_VGM {
     bool gap2;
 
     form_answer_VGM() {
-        s = wd = t = b = st1 = n1 = nl1 = st2 = st = sw = sl = sn = gap1 = gap2 = true;
+        weight = nail_boards = side_bar = s = wd = t = b = st1 = n1 = nl1 = st2 = st = sw = sl = sn = gap1 = gap2 = true;
     }
 };
 
